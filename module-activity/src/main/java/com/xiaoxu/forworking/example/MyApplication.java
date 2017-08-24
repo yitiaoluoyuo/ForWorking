@@ -3,14 +3,14 @@ package com.xiaoxu.forworking.example;
 import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
-import com.xiaoxu.xiaoxu_core.app.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.XiaoXu;
 import com.xiaoxu.xiaoxu_ec.icon.FontXiaoXuModule;
 
 /**
  * Created by xiaoxu on 2017/8/24.
  */
 
-public class Example extends Application {
+public class MyApplication extends Application {
 
     @Override
     public void onCreate() {

@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+//生成R2资源文件的插件
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 25
@@ -33,4 +35,11 @@ dependencies {
     //字体图标
     compile 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
     compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+    //Fragment依赖
+    compile 'me.yokeyword:fragmentation:1.0.3'
+    //边缘滑动回到上一个fragment
+    compile 'me.yokeyword:fragmentation-swipeback:1.0.3'
+    //ButterKnife依赖
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }

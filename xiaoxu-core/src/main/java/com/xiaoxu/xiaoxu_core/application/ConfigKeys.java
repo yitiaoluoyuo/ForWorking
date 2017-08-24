@@ -1,4 +1,4 @@
-package com.xiaoxu.xiaoxu_core.app;
+package com.xiaoxu.xiaoxu_core.application;
 
 /**
  * Created by xiaoxu on 2017/8/24.

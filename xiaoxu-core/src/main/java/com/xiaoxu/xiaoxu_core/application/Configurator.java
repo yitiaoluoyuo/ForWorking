@@ -1,4 +1,4 @@
-package com.xiaoxu.xiaoxu_core.app;
+package com.xiaoxu.xiaoxu_core.application;
 
 import android.app.Activity;
 import android.os.Handler;

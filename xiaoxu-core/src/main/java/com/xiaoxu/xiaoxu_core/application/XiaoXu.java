@@ -1,4 +1,4 @@
-package com.xiaoxu.xiaoxu_core.app;
+package com.xiaoxu.xiaoxu_core.application;
 
 import android.content.Context;
 
@@ -18,5 +18,9 @@ public final class XiaoXu {
 
     private static HashMap<Object,Object> getConfigurations(){
         return Configurator.getInstance().getXiaoXuConfigs();
+    }
+
+    public static Context getApplication(){
+        return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT);
     }
 }
