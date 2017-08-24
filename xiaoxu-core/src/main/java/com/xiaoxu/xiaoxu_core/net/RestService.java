@@ -21,6 +21,9 @@ import retrofit2.http.Url;
 
 /**
  * Created by xiaoxu on 2017/8/24.
+ *
+ *rest请求服务的实现
+ *
  *@QueryMap 自动拼接参数到URL中
  */
 

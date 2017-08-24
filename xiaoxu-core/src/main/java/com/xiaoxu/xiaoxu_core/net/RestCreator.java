@@ -14,20 +14,28 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by xiaoxu on 2017/8/24.
+ * 构建全局的变量和对象
  * 构建OkHttpClient，Retrofit，service
  */
 
 public class RestCreator {
 
+
+
     public static RestService getRestService(){
-        return RestSreviceHolder.REST_SERVICE;
+        return RestServiceHolder.REST_SERVICE;
     }
 
     /**
      * 参数容器
+     * 惰性加载
      */
     private static final class ParamsHolder {
         private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
+    }
+
+    public static final WeakHashMap<String, Object> getParams(){
+        return ParamsHolder.PARAMS;
     }
 
 
@@ -68,7 +76,7 @@ public class RestCreator {
     /**
      * Service接口
      */
-    private static final class RestSreviceHolder{
+    private static final class RestServiceHolder {
          private static final RestService REST_SERVICE =
                  RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
     }
