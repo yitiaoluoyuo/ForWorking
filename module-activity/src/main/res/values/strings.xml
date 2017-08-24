@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ForWorking</string>
+    <string name="fa_coffee">{fa-coffee}</string>
 </resources>
