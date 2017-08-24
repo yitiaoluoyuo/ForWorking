@@ -16,6 +16,14 @@ public final class XiaoXu {
         return Configurator.getInstance();
     }
 
+    public static Configurator getConfigurator(){
+        return Configurator.getInstance();
+    }
+
+    public static <T> T getConfiguration(Object key){
+        return getConfigurator().getConfiguration(key);
+    }
+
     private static HashMap<Object,Object> getConfigurations(){
         return Configurator.getInstance().getXiaoXuConfigs();
     }
