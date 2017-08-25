@@ -7,6 +7,7 @@ import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.IRequest;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.net.callback.RequestCallBacks;
+import com.xiaoxu.xiaoxu_core.net.download.DownloadHandler;
 import com.xiaoxu.xiaoxu_core.ui.LoaderStyle;
 import com.xiaoxu.xiaoxu_core.ui.XiaoXuLoader;
 
@@ -105,7 +106,7 @@ public class RestClient {
                 call = restService.putRaw(URL,BODY);
                 break;
             case UPLOAD:
-                // TODO: 2017/8/25 需要进一步熟悉的api 
+                // TODO: 2017/8/25 需要进一步熟悉的api
                 final RequestBody requestBody =
                         RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
                 final MultipartBody.Part body =
@@ -161,5 +162,11 @@ public class RestClient {
 
     public final void delete(){
         request(HttpMethod.DELETE);
+    }
+
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME,
+                SUCCESS, FAILURE, ERROR)
+                .handleDownload();
     }
 }

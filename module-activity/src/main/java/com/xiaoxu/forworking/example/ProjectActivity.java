@@ -32,7 +32,7 @@ public class ProjectActivity extends ProxyActivity {
 
         String s = "import Context is ready";
 
-        Toast.makeText(XiaoXu.getApplication(),s,Toast.LENGTH_LONG).show();
+        Toast.makeText(XiaoXu.getApplicationContext(),s,Toast.LENGTH_LONG).show();
     }*/
 
 
@@ -61,8 +61,11 @@ public class ProjectActivity extends ProxyActivity {
 
                    }
                })
+               .name("")
+               .dir("")
+               .extension("")
                .build()
-               .get();
+               .download();
 
 
 

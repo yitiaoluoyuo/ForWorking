@@ -1,4 +1,4 @@
-package com.xiaoxu.xiaoxu_core.util;
+package com.xiaoxu.xiaoxu_core.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
@@ -14,13 +14,13 @@ public class DimenUtil {
 
     // TODO: 2017/8/25 测量屏幕宽高的方法
     public static int getScreenWidth(){
-        final Resources resources = XiaoXu.getApplication().getResources();
+        final Resources resources = XiaoXu.getApplicationContext().getResources();
         final DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         return displayMetrics.widthPixels;
     }
 
     public static int getScreenHeight(){
-        final Resources resources = XiaoXu.getApplication().getResources();
+        final Resources resources = XiaoXu.getApplicationContext().getResources();
         final DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         return displayMetrics.heightPixels;
     }

@@ -28,7 +28,7 @@ public final class XiaoXu {
         return Configurator.getInstance().getXiaoXuConfigs();
     }
 
-    public static Context getApplication(){
+    public static Context getApplicationContext(){
         return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT);
     }
 }

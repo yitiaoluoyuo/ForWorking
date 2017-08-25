@@ -8,7 +8,7 @@ import android.view.WindowManager;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.xiaoxu.xiaoxu_core.R;
-import com.xiaoxu.xiaoxu_core.util.DimenUtil;
+import com.xiaoxu.xiaoxu_core.util.dimen.DimenUtil;
 
 import java.util.ArrayList;
 
