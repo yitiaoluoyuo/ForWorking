@@ -8,8 +8,8 @@ import com.xiaoxu.xiaoxu_core.net.callback.IRequest;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.net.callback.RequestCallBacks;
 import com.xiaoxu.xiaoxu_core.net.download.DownloadHandler;
-import com.xiaoxu.xiaoxu_core.ui.LoaderStyle;
-import com.xiaoxu.xiaoxu_core.ui.XiaoXuLoader;
+import com.xiaoxu.xiaoxu_core.ui.loader.LoaderStyle;
+import com.xiaoxu.xiaoxu_core.ui.loader.XiaoXuLoader;
 
 import java.io.File;
 import java.util.Map;

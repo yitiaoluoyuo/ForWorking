@@ -10,12 +10,14 @@ import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
+import com.xiaoxu.xiaoxu_ec.launcher.LauncherScrollDelegate;
 
 public class ProjectActivity extends ProxyActivity {
 
     @Override
     public XiaoXuDelegate setRootDelegate() {
-        return new ProjectDelegate();
+
+        return new LauncherScrollDelegate();
 
     }
 

@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+//生成R2资源文件的插件
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 25
@@ -24,4 +26,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':xiaoxu-core')
+    //编译生成R2文件
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }

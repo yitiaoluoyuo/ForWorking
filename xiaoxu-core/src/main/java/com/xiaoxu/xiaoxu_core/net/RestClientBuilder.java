@@ -6,7 +6,7 @@ import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.IRequest;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
-import com.xiaoxu.xiaoxu_core.ui.LoaderStyle;
+import com.xiaoxu.xiaoxu_core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;

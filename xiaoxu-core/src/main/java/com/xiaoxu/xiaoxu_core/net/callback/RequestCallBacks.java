@@ -4,8 +4,8 @@ import android.os.Handler;
 
 import com.xiaoxu.xiaoxu_core.application.ConfigKeys;
 import com.xiaoxu.xiaoxu_core.application.XiaoXu;
-import com.xiaoxu.xiaoxu_core.ui.LoaderStyle;
-import com.xiaoxu.xiaoxu_core.ui.XiaoXuLoader;
+import com.xiaoxu.xiaoxu_core.ui.loader.LoaderStyle;
+import com.xiaoxu.xiaoxu_core.ui.loader.XiaoXuLoader;
 
 import retrofit2.Call;
 import retrofit2.Callback;
