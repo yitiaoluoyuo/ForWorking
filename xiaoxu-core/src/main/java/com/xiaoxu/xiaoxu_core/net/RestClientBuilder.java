@@ -68,8 +68,8 @@ public class RestClientBuilder {
         return this;
     }
 
-    public final RestClientBuilder file(String file) {
-        this.mFile = new File(file);
+    public final RestClientBuilder file(String filePath) {
+        this.mFile = new File(filePath);
         return this;
     }
 
