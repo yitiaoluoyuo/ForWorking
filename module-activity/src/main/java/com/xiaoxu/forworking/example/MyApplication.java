@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.interceptors.DebugInterceptor;
 import com.xiaoxu.xiaoxu_ec.icon.FontXiaoXuModule;
 
 /**
@@ -16,9 +17,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         XiaoXu.init(this)
-                .withApiHost("http://news.baidu.com")
+                .withApiHost("https://www.baidu.com")
+                .withLoaderDelayed(5000)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontXiaoXuModule())
+                .withInterceptor(new DebugInterceptor("index",R.raw.testjson))
                 .configure();
 
     }

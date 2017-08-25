@@ -1,14 +1,14 @@
 package com.xiaoxu.xiaoxu_core.application;
 
-import android.app.Activity;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * Created by xiaoxu on 2017/8/24.
@@ -17,20 +17,21 @@ import java.util.HashMap;
 
 public class Configurator {
 
-    //利用HashMap作为存储配置的容器
-    private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
+    //配置参数的容器
+    private static final HashMap<Object, Object> XiaoXu_CONFIGS = new HashMap<>();
     private static final Handler HANDLER = new Handler();
-    //存储字体图标
+    //字体图标容器
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
-    //private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
+    //拦截器容器
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
-        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
-        LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
+        XiaoXu_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
+        XiaoXu_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     final HashMap<Object, Object> getXiaoXuConfigs() {
-        return LATTE_CONFIGS;
+        return XiaoXu_CONFIGS;
     }
 
     //静态内部类的单例创建
@@ -47,17 +48,17 @@ public class Configurator {
         //配置完成时，进行字体图标的初始化
         initIcons();
         //Logger.addLogAdapter(new AndroidLogAdapter());
-        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+        XiaoXu_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
         //Utils.init(Latte.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
+        XiaoXu_CONFIGS.put(ConfigKeys.API_HOST, host);
         return this;
     }
 
     public final Configurator withLoaderDelayed(long delayed) {
-        LATTE_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
+        XiaoXu_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
         return this;
     }
 
@@ -78,37 +79,37 @@ public class Configurator {
         return this;
     }
 
-    /*public final Configurator withInterceptor(Interceptor interceptor) {
+    public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
-        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        XiaoXu_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
         return this;
-    }*/
+    }
 
-   /* public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
-        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        XiaoXu_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    /*public final Configurator withWeChatAppId(String appId) {
+        XiaoXu_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appId);
         return this;
     }*/
 
-    public final Configurator withWeChatAppId(String appId) {
-        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appId);
+    /*public final Configurator withWeChatAppSecret(String appSecret) {
+        XiaoXu_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
         return this;
-    }
+    }*/
 
-    public final Configurator withWeChatAppSecret(String appSecret) {
-        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
+    /*public final Configurator withActivity(Activity activity) {
+        XiaoXu_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
         return this;
     }
-
-    public final Configurator withActivity(Activity activity) {
-        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+*/
+   /* public Configurator withJavascriptInterface(@NonNull String name) {
+        XiaoXu_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
         return this;
-    }
-
-    public Configurator withJavascriptInterface(@NonNull String name) {
-        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
-        return this;
-    }
+    }*/
 
    /* public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
         final EventManager manager = EventManager.getInstance();
@@ -118,7 +119,7 @@ public class Configurator {
 
     //检查配置是否完成
     private void checkConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
+        final boolean isReady = (boolean) XiaoXu_CONFIGS.get(ConfigKeys.CONFIG_READY);
         //TODO 设置一些自定义异常方便定位异常
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready,call configure");
@@ -128,10 +129,10 @@ public class Configurator {
     @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Object key) {
         checkConfiguration();
-        final Object value = LATTE_CONFIGS.get(key);
+        final Object value = XiaoXu_CONFIGS.get(key);
         if (value == null) {
             throw new NullPointerException(key.toString() + " IS NULL");
         }
-        return (T) LATTE_CONFIGS.get(key);
+        return (T) XiaoXu_CONFIGS.get(key);
     }
 }

@@ -2,6 +2,8 @@ package com.xiaoxu.xiaoxu_core.net.callback;
 
 import android.os.Handler;
 
+import com.xiaoxu.xiaoxu_core.application.ConfigKeys;
+import com.xiaoxu.xiaoxu_core.application.XiaoXu;
 import com.xiaoxu.xiaoxu_core.ui.LoaderStyle;
 import com.xiaoxu.xiaoxu_core.ui.XiaoXuLoader;
 
@@ -64,13 +66,17 @@ public class RequestCallBacks implements Callback<String> {
 
     //为loader加3秒的延迟
     private  void stopLoading(){
+        Object delayedTimeValue = XiaoXu.getConfiguration(ConfigKeys.LOADER_DELAYED);
+        if (delayedTimeValue == null){
+            delayedTimeValue = 3000;
+        }
         if (LOADERSTYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     XiaoXuLoader.stopLoading();
                 }
-            }, 3000);
+            },Long.valueOf(String.valueOf(delayedTimeValue)));
         }
     }
 }

@@ -110,6 +110,15 @@
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d6bea7388fe80c5557f1e12f659df22082949721.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b50f2cd90fa8e5748605d013a813747459180d32\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="C:\Users\Administrator\.android\build-cache\0dc6c673d14c2638f48cea56a79253ad8c9831e1\output\jars\classes.jar"
         jumboMode="false"
@@ -135,6 +144,15 @@
         revision="26.0.1"
         sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\okio-1.13.0_f63c7ab08dbed3c34e0fe0b9b1a691240ffa1bb7.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="813aa08afcfb48f0bb16bef79ca5cd2aa08522f4">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f18d56746afd27625a4ad76ccae042d292a81f05\classes.dex" />
     </item>
     <item
         is-multidex="false"

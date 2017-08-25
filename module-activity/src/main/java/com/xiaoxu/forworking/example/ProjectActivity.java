@@ -40,7 +40,7 @@ public class ProjectActivity extends ProxyActivity {
    void testRestClient(){
        RestClient
                .builder()
-               .url("/")
+               .url("/index")
                //.params("","")
                .loader(this)
                .success(new ISuccess() {
@@ -52,20 +52,17 @@ public class ProjectActivity extends ProxyActivity {
                .error(new IError() {
            @Override
            public void onError(int code, String msg) {
-
+               Toast.makeText(getBaseContext(),"error",Toast.LENGTH_LONG).show();
            }
        })
                .failure(new IFailure() {
                    @Override
                    public void onFailure() {
-
+                       Toast.makeText(getBaseContext(),"failure",Toast.LENGTH_LONG).show();
                    }
                })
-               .name("")
-               .dir("")
-               .extension("")
                .build()
-               .download();
+               .get();
 
 
 
