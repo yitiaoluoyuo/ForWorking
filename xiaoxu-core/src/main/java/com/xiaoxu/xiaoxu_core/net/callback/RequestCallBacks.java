@@ -1,5 +1,10 @@
 package com.xiaoxu.xiaoxu_core.net.callback;
 
+import android.os.Handler;
+
+import com.xiaoxu.xiaoxu_core.ui.LoaderStyle;
+import com.xiaoxu.xiaoxu_core.ui.XiaoXuLoader;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,36 +19,50 @@ public class RequestCallBacks implements Callback<String> {
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
+    private final LoaderStyle LOADERSTYLE;
 
-    public RequestCallBacks(IRequest request, ISuccess success, IFailure failure, IError error) {
+    private static final Handler HANDLER = new Handler();
+
+    public RequestCallBacks(IRequest request, ISuccess success, IFailure failure, IError error, LoaderStyle loaderstyle) {
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
         this.ERROR = error;
+        this.LOADERSTYLE = loaderstyle;
     }
 
     @Override
     public void onResponse(Call<String> call, Response<String> response) {
-        if (response.isSuccessful()){
-            if (call.isExecuted()){
+        if (response.isSuccessful()) {
+            if (call.isExecuted()) {
                 // TODO: 2017/8/24 把空指针扼杀在摇篮
-                if (SUCCESS !=null){
+                if (SUCCESS != null) {
                     SUCCESS.onSuccess(response.body());
                 }
             }
-        }else {
-            if (ERROR !=null){
-                ERROR.onError(response.code(),response.message());
+        } else {
+            if (ERROR != null) {
+                ERROR.onError(response.code(), response.message());
             }
+        }
+
+        //为loader加3秒的延迟
+        if (LOADERSTYLE != null) {
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    XiaoXuLoader.stopLoading();
+                }
+            }, 3000);
         }
     }
 
     @Override
     public void onFailure(Call<String> call, Throwable t) {
-        if (FAILURE != null){
+        if (FAILURE != null) {
             FAILURE.onFailure();
         }
-        if (REQUEST !=null){
+        if (REQUEST != null) {
             REQUEST.onRequestEnd();
         }
     }

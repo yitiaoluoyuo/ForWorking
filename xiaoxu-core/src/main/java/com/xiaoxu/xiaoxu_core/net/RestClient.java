@@ -7,6 +7,8 @@ import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.IRequest;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.net.callback.RequestCallBacks;
+import com.xiaoxu.xiaoxu_core.ui.LoaderStyle;
+import com.xiaoxu.xiaoxu_core.ui.XiaoXuLoader;
 
 import java.io.File;
 import java.util.Map;
@@ -80,6 +82,10 @@ public class RestClient {
             REQUEST.onRequestStart();
         }
 
+        if (LOADER_STYLE != null){
+            XiaoXuLoader.showLoading(CONTEXT,LOADER_STYLE);
+        }
+
         switch (method) {
             case GET:
                 call = restService.get(URL, PARAMS);
@@ -107,7 +113,8 @@ public class RestClient {
                 REQUEST,
                 SUCCESS,
                 FAILURE,
-                ERROR);
+                ERROR,
+                LOADER_STYLE);
     }
 
     public final void get(){
