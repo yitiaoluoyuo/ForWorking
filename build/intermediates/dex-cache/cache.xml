@@ -2,22 +2,85 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Administrator\.android\build-cache\4f6e37bdaab3de3e8d77e4e6bedd9f018db2da97\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="19519ac7fbc442bf08785147ebf9c99c6e2ceaa0">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f18d56746afd27625a4ad76ccae042d292a81f05\classes.dex" />
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_11e5fcbc1ee92fb9d53e4b61c25c281368e3c7a2.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Administrator\.android\build-cache\66518d55b051b2bfbc464996c7bc78dcb1fa929a\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b50f2cd90fa8e5748605d013a813747459180d32\classes.dex" />
+        sha1="392c97a8270ccf3cc7fe6e0a5d97a5e97a61e65c">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d67774894bcc66f260312e7cf74c0e4d80b0976d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-annotations\build\libs\xiaoxu-annotations.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6d99df3c09af7bc37537f7627d307a018341dfc1">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-core\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="117e7d86ba04bb69c1f97835a50f7df669d5f30a">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_9b9a7514d43eda7240f7e121d66a35fbb05da75c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-ec\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ebd2e0243cb0ff515ee23804727e3b2177547d7e">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.alibaba\fastjson\1.1.57.android\432b7cdf5c6aedc452406928adea891136569091\fastjson-1.1.57.android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="432b7cdf5c6aedc452406928adea891136569091">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\fastjson-1.1.57.android_7e282917f2e24b30c824d5e685523dc3f31d9572.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.android\build-cache\49f7e12d5e43f2f164d658ed75cea06996519cbb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_402906df4b20cae4b177702179db4b373eaebe7d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.android\build-cache\6340b020af26c51d0ce4f018f19c8e5f6f234328\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_7d05558a43cf31923da55191829167af13dd8bcc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.android\build-cache\1920b980eda8c6a8685be69824fbcb13938a0510\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b99798f653c15a17af6779bb9f01a66f2ee6e6ef">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_388e45f8657798be563b6056fbfecd775bcbb10f.jar" />
     </item>
 
 </items>

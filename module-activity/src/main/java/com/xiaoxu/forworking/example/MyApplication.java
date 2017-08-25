@@ -17,7 +17,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         XiaoXu.init(this)
-                .withApiHost("https://www.baidu.com")
+                .withApiHost("http://happymmall.com")
                 .withLoaderDelayed(5000)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontXiaoXuModule())

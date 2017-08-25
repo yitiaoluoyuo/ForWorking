@@ -6,6 +6,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherScrollTag;
+import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
 import com.xiaoxu.xiaoxu_core.util.timer.BaseTimerTask;
 import com.xiaoxu.xiaoxu_core.util.timer.ITimerListener;
 import com.xiaoxu.xiaoxu_ec.R;
@@ -36,7 +38,7 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
         if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
-            //checkIsShowScroll();
+            checkIsShowScroll();
         }
     }
 
@@ -69,13 +71,14 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
         initTimer();
     }*/
 
-   /* //判断是否显示滑动启动页
+   //判断是否显示滑动启动页
     private void checkIsShowScroll() {
-        if (!XiaoXuPreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+        //判断是否是第一次运行APP
+        if (!XiaoXuPreference.getAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name())) {
             getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录了APP
-            AccountManager.checkAccount(new IUserChecker() {
+            /*AccountManager.checkAccount(new IUserChecker() {
                 @Override
                 public void onSignIn() {
                     if (mILauncherListener != null) {
@@ -89,9 +92,9 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
                     }
                 }
-            });
+            });*/
         }
-    }*/
+    }
 
     @Override
     public void onTimer() {
@@ -105,7 +108,7 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
-                            //checkIsShowScroll();
+                            checkIsShowScroll();
                         }
                     }
                 }

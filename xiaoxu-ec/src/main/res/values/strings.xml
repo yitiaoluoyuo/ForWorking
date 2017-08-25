@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">xiaoxu-ec</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="re_password">重复密码</string>
+    <string name="phone_number">电话号码</string>
+    <string name="email">邮箱</string>
+    <string name="problem">设置找回密码问题</string>
+    <string name="answer">设置问题答案</string>
+    <string name="sign_up_already">已有账号？去登录 >></string>
+    <string name="username_is_empty">请输入用户名</string>
 </resources>

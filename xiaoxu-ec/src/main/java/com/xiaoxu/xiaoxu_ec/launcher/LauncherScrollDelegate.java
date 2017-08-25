@@ -8,6 +8,8 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherHolderCreator;
+import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherScrollTag;
+import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
 import com.xiaoxu.xiaoxu_ec.R;
 
 import java.util.ArrayList;
@@ -61,18 +63,11 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
 
     @Override
     public void onItemClick(int position) {
-
-    }
-
-
-
-   /* @Override
-    public void onItemClick(int position) {
         //如果点击的是最后一个
         if (position == INTEGERS.size() - 1) {
-            LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
+            XiaoXuPreference.setAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name(), true);
             //检查用户是否已经登录
-            AccountManager.checkAccount(new IUserChecker() {
+           /* AccountManager.checkAccount(new IUserChecker() {
                 @Override
                 public void onSignIn() {
                     if (mILauncherListener != null) {
@@ -86,7 +81,14 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
                     }
                 }
-            });
+            });*/
         }
+    }
+
+
+
+   /* @Override
+    public void onItemClick(int position) {
+
     }*/
 }

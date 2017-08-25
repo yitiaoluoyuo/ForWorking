@@ -2,6 +2,7 @@ package com.xiaoxu.forworking.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.xiaoxu.xiaoxu_core.activities.ProxyActivity;
@@ -10,21 +11,24 @@ import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
-import com.xiaoxu.xiaoxu_ec.launcher.LauncherScrollDelegate;
+import com.xiaoxu.xiaoxu_ec.sign.SignUpDelegate;
 
 public class ProjectActivity extends ProxyActivity {
 
     @Override
     public XiaoXuDelegate setRootDelegate() {
 
-        return new LauncherScrollDelegate();
+        return new SignUpDelegate();
 
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        testRestClient();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
     }
 
     /* @Override
