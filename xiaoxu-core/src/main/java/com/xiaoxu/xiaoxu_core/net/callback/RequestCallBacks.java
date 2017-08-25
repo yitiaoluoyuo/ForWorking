@@ -46,7 +46,7 @@ public class RequestCallBacks implements Callback<String> {
             }
         }
 
-        stopLoader();
+        stopLoading();
 
 
     }
@@ -59,11 +59,11 @@ public class RequestCallBacks implements Callback<String> {
         if (REQUEST != null) {
             REQUEST.onRequestEnd();
         }
-        stopLoader();
+        stopLoading();
     }
 
     //为loader加3秒的延迟
-    private  void stopLoader(){
+    private  void stopLoading(){
         if (LOADERSTYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override
