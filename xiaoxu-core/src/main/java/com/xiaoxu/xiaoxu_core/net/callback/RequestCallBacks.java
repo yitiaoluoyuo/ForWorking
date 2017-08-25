@@ -46,15 +46,9 @@ public class RequestCallBacks implements Callback<String> {
             }
         }
 
-        //为loader加3秒的延迟
-        if (LOADERSTYLE != null) {
-            HANDLER.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    XiaoXuLoader.stopLoading();
-                }
-            }, 3000);
-        }
+        stopLoader();
+
+
     }
 
     @Override
@@ -64,6 +58,19 @@ public class RequestCallBacks implements Callback<String> {
         }
         if (REQUEST != null) {
             REQUEST.onRequestEnd();
+        }
+        stopLoader();
+    }
+
+    //为loader加3秒的延迟
+    private  void stopLoader(){
+        if (LOADERSTYLE != null) {
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    XiaoXuLoader.stopLoading();
+                }
+            }, 3000);
         }
     }
 }
