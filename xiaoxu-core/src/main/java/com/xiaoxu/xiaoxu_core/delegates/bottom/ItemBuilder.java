@@ -10,23 +10,23 @@ import java.util.LinkedHashMap;
 
 public final class ItemBuilder {
 
-    private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
+    private final LinkedHashMap<ItemTabBean, ItemDelegate> ITEMS = new LinkedHashMap<>();
 
     static ItemBuilder builder() {
         return new ItemBuilder();
     }
 
-    public final ItemBuilder addItem(BottomTabBean bean, BottomItemDelegate delegate) {
+    public final ItemBuilder addItem(ItemTabBean bean, ItemDelegate delegate) {
         ITEMS.put(bean, delegate);
         return this;
     }
 
-    public final ItemBuilder addItems(LinkedHashMap<BottomTabBean, BottomItemDelegate> items) {
+    public final ItemBuilder addItems(LinkedHashMap<ItemTabBean, ItemDelegate> items) {
         ITEMS.putAll(items);
         return this;
     }
 
-    public final LinkedHashMap<BottomTabBean, BottomItemDelegate> build() {
+    public final LinkedHashMap<ItemTabBean, ItemDelegate> build() {
         return ITEMS;
     }
 }

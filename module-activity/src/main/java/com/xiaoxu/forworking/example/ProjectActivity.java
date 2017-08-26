@@ -10,6 +10,7 @@ import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_ec.launcher.ILauncherListener;
 import com.xiaoxu.xiaoxu_ec.launcher.LauncherDelegate;
 import com.xiaoxu.xiaoxu_ec.launcher.LauncherFinishedTag;
+import com.xiaoxu.xiaoxu_ec.main_delegates.IndexBottomBarDelegate;
 import com.xiaoxu.xiaoxu_ec.sign.ISignSuccessListener;
 import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
@@ -34,7 +35,7 @@ public class ProjectActivity extends ProxyActivity implements
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this,"sign in success callback finished ",Toast.LENGTH_LONG).show();
-        getSupportDelegate().startWithPop(new ExampleDelegate());
+        getSupportDelegate().startWithPop(new IndexBottomBarDelegate());
     }
 
     @Override
@@ -51,7 +52,7 @@ public class ProjectActivity extends ProxyActivity implements
             case SIGNED:
                 //登录成功的处理
                 Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-                getSupportDelegate().startWithPop(new ExampleDelegate());
+                getSupportDelegate().startWithPop(new IndexBottomBarDelegate());
                 break;
             case SIGNED_NON:
                 //没有登录做的处理
