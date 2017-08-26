@@ -27,7 +27,7 @@ import butterknife.OnClick;
 
 public class SignUpDelegate extends XiaoXuDelegate {
 
-    WeakHashMap<String, Object> params = null;
+    private WeakHashMap<String, Object> params = new WeakHashMap<>();
 
     @BindView(R2.id.edit_sign_up_username)
     TextInputEditText mUserName = null;
@@ -43,12 +43,26 @@ public class SignUpDelegate extends XiaoXuDelegate {
     TextInputEditText mProblem = null;
     @BindView(R2.id.edit_sign_up_answer)
     TextInputEditText mAnswer = null;
+    private String userName;
+    private String password;
+    private String rePassword;
+    private String phoneNumber;
+    private String email;
+    private String problem;
+    private String answer;
 
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp(){
         if (checkForm()){
 
-            RestClient
+            params.put("username", userName);
+            params.put("password", password);
+            params.put("email", email);
+            params.put("phone", phoneNumber);
+            params.put("question", problem);
+            params.put("answer", answer);
+
+           RestClient
                     .builder()
                     .url("/user/register.do")
                     .params(params)
@@ -61,56 +75,59 @@ public class SignUpDelegate extends XiaoXuDelegate {
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-
+                            Toast.makeText(getContext(),"error",Toast.LENGTH_LONG).show();
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-
+                            Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
                         }
                     })
                     .build()
                     .post();
 
-            //Toast.makeText(getContext(),"验证通过",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(),"验证通过"+userName,Toast.LENGTH_LONG).show();
+
 
 
         }
     }
 
+    @OnClick(R2.id.tv_link_sign_in)
+    void onClickLink() {
+        getSupportDelegate().start(new SignInDelegate());
+    }
+
     private boolean checkForm() {
-        final String userName = mUserName.getText().toString();
-        final String pasword = mPassword.getText().toString();
-        final String rePassword = mRePassword.getText().toString();
-        final String phoneNumber = mPhoneNumber.getText().toString();
-        final String email = mEmail.getText().toString();
-        final String problem = mProblem.getText().toString();
-        final String answer = mAnswer.getText().toString();
+        userName = mUserName.getText().toString();
+        password = mPassword.getText().toString();
+        rePassword = mRePassword.getText().toString();
+        phoneNumber = mPhoneNumber.getText().toString();
+        email = mEmail.getText().toString();
+        problem = mProblem.getText().toString();
+        answer = mAnswer.getText().toString();
 
         boolean isPass = true;
 
         if (userName.isEmpty()) {
             mUserName.setError(getString(R.string.username_is_empty));
             isPass = false;
-        } else if (userName.length() < 6) {
-            mUserName.setError("用户名太短");
-            isPass = false;
         } else {
             mUserName.setError(null);
         }
 
-        if (pasword.isEmpty()) {
+        if (password.isEmpty()) {
             mPassword.setError("不设置密码怎么登录？");
             isPass = false;
-        } else if (pasword.length() < 6) {
+        } else if (password.length() < 6) {
             mPassword.setError("请填写至少6位数密码");
             isPass = false;
         } else {
             mPassword.setError(null);
         }
 
-        if (rePassword.isEmpty() || rePassword.length()<6 || !rePassword.equals(pasword)) {
+        if (rePassword.isEmpty() || rePassword.length()<6 || !rePassword.equals(password)) {
             mRePassword.setError("密码验证错误");
             isPass = false;
         } else {
@@ -144,16 +161,6 @@ public class SignUpDelegate extends XiaoXuDelegate {
             isPass = false;
         } else {
             mAnswer.setError(null);
-        }
-
-        if (isPass){
-            params.put("username",userName);
-            params.put("password",pasword);
-            params.put("email",email);
-            params.put("phone",phoneNumber);
-            params.put("question",problem);
-            params.put("answer",answer);
-
         }
 
         return isPass;

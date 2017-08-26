@@ -21,6 +21,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
     compile project(':xiaoxu-ec')
     //annotationProcessor官方推荐的新版注解解析器（apt为老版）
     annotationProcessor project(':xiaoxu-compiler')
