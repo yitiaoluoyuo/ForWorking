@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
-import com.xiaoxu.xiaoxu_ec.database.UserProfile;
 
 import java.util.WeakHashMap;
 
@@ -30,7 +28,7 @@ import butterknife.OnClick;
  * 登录业务
  */
 
-public class SignInDelegate extends XiaoXuDelegate implements ISignSuccessListener{
+public class SignInDelegate extends XiaoXuDelegate {
 
     public static final String TAG = "tag";
     private WeakHashMap<String, Object> params = new WeakHashMap<>();
@@ -70,7 +68,7 @@ public class SignInDelegate extends XiaoXuDelegate implements ISignSuccessListen
 
                             //通过服务器返回的状态码对注册状态进行判断并处理
                             if (statusCode == 0) {
-                                UserProfile userProfile = SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
+                                //UserProfile userProfile = SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
 
                                 /*Toast.makeText(getContext(), "欢迎 " +
                                         userProfile.getUserName()+
@@ -146,14 +144,5 @@ public class SignInDelegate extends XiaoXuDelegate implements ISignSuccessListen
 
     }
 
-    @Override
-    public void onSignInSuccess() {
-        Log.d(TAG, "onSignInSuccess: insert greenDao success");
-        //Toast.makeText(getContext(),"insert greenDao success",Toast.LENGTH_LONG).show();
-    }
 
-    @Override
-    public void onSignUpSuccess() {
-
-    }
 }

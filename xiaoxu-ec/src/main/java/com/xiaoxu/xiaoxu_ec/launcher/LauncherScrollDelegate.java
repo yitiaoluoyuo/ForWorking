@@ -1,11 +1,14 @@
 package com.xiaoxu.xiaoxu_ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.xiaoxu.xiaoxu_core.application.AccountManager;
+import com.xiaoxu.xiaoxu_core.application.IUserChecker;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherHolderCreator;
 import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherScrollTag;
@@ -23,7 +26,7 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
 
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
-    //private ILauncherListener mILauncherListener = null;
+    private ILauncherListener mILauncherListener = null;
 
     private void initBanner() {
         INTEGERS.add(R.mipmap.launcher_01);
@@ -42,13 +45,15 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
                 .setCanLoop(false);
     }
 
-   /* @Override
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (activity instanceof ILauncherListener) {
             mILauncherListener = (ILauncherListener) activity;
         }
-    }*/
+    }
+
+
 
     @Override
     public Object setLayout() {
@@ -67,21 +72,21 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
         if (position == INTEGERS.size() - 1) {
             XiaoXuPreference.setAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name(), true);
             //检查用户是否已经登录
-           /* AccountManager.checkAccount(new IUserChecker() {
-                @Override
-                public void onSignInSuccess() {
-                    if (mILauncherListener != null) {
-                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
-                    }
-                }
+           AccountManager.checkAccount(new IUserChecker() {
+               @Override
+               public void onSignIn() {
+                   if (mILauncherListener != null){
+                       mILauncherListener.onLauncherFinished(LauncherFinishedTag.SIGNED);
+                   }
+               }
 
-                @Override
-                public void onNotSignIn() {
-                    if (mILauncherListener != null) {
-                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
-                    }
-                }
-            });*/
+               @Override
+               public void onNonSignIn() {
+                    mILauncherListener.onLauncherFinished(LauncherFinishedTag.SIGNED_NON);
+               }
+
+
+            });
         }
     }
 

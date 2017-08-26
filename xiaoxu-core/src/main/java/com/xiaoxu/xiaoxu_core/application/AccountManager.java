@@ -24,7 +24,8 @@ public class AccountManager {
     }
 
     public static void checkAccount(IUserChecker checker){
-        if (isSignIn()){
+        //isSignIn()
+        if (false){
             checker.onSignIn();
         }else {
             checker.onNonSignIn();

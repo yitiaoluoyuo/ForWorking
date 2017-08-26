@@ -1,6 +1,7 @@
 package com.xiaoxu.xiaoxu_ec.sign;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xiaoxu.xiaoxu_core.application.AccountManager;
 import com.xiaoxu.xiaoxu_ec.database.UserProfile;
 
 /**
@@ -27,7 +28,7 @@ public class SignStatueHandler {
         //DatabaseManager.getInstance().getDao().insert(profile);
 
         //已经注册并登录成功了
-        //AccountManager.setSignInState(true);
+        AccountManager.setSignInState(false);
 
         //在projectActivity中实现的接口，处理业务
         // （页面跳转，计时）
@@ -53,6 +54,6 @@ public class SignStatueHandler {
         //已经注册并登录成功了
         //AccountManager.setSignInState(true);
         //注册成功后的回调处理
-        //signListener.onSignUpSuccess();
+        signListener.onSignUpSuccess();
     }
 }

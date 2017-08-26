@@ -90,7 +90,7 @@ public class SignUpDelegate extends XiaoXuDelegate {
 
                             if (statusCode == 0){
                                 Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
-                                //SignHandler.onSignUpSuccess(response,mSignListener);
+                                SignStatueHandler.onSignUpSuccess(response,mSignSuccessListener);
                             }else if (statusCode == 1){
                                 Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
                             }

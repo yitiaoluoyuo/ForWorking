@@ -1,13 +1,14 @@
 package com.xiaoxu.xiaoxu_ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.xiaoxu.xiaoxu_core.application.AccountManager;
+import com.xiaoxu.xiaoxu_core.application.IUserChecker;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
-import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherScrollTag;
-import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
 import com.xiaoxu.xiaoxu_core.util.timer.BaseTimerTask;
 import com.xiaoxu.xiaoxu_core.util.timer.ITimerListener;
 import com.xiaoxu.xiaoxu_ec.R;
@@ -31,7 +32,7 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
 
     private Timer mTimer = null;
     private int mCount = 10;
-   // private ILauncherListener mILauncherListener = null;
+    private ILauncherListener mILauncherListener = null;
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
@@ -48,14 +49,16 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
         mTimer.schedule(task, 0, 1000);
     }
 
-    /*@Override
+    @Override
     public void onAttach(Activity activity) {
+        super.onAttach(activity);
         super.onAttach(activity);
         if (activity instanceof ILauncherListener) {
             mILauncherListener = (ILauncherListener) activity;
         }
     }
-*/
+
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_launcher;
@@ -65,34 +68,33 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
         initTimer();
     }
-/*
-    @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        initTimer();
-    }*/
 
    //判断是否显示滑动启动页
     private void checkIsShowScroll() {
         //判断是否是第一次运行APP
-        if (!XiaoXuPreference.getAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name())) {
+        //!XiaoXuPreference.getAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name())
+        if (true) {
             getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录了APP
-            /*AccountManager.checkAccount(new IUserChecker() {
+            AccountManager.checkAccount(new IUserChecker() {
                 @Override
-                public void onSignInSuccess() {
+                public void onSignIn() {
                     if (mILauncherListener != null) {
-                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                        //登录成功后的回调处理
+                        mILauncherListener.onLauncherFinished(LauncherFinishedTag.SIGNED);
                     }
                 }
 
                 @Override
-                public void onNotSignIn() {
+                public void onNonSignIn() {
                     if (mILauncherListener != null) {
-                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                        //登录不成功做的回调处理
+                        mILauncherListener.onLauncherFinished(LauncherFinishedTag.SIGNED_NON);
                     }
                 }
-            });*/
+
+            });
         }
     }
 
