@@ -32,6 +32,7 @@ public abstract class ProxyActivity extends SupportActivity {
         setContentView(contentFrameLayout);
         if (savedInstanceState == null){
             //加载根Fragment, 即Activity内的第一个Fragment 或 Fragment内的第一个子Fragment
+            //第一个参数必须为ID文件生成的
             loadRootFragment(R.id.delegate_container,setRootDelegate());
         }
     }

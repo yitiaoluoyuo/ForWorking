@@ -6,12 +6,13 @@ import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
-import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 
@@ -37,8 +38,8 @@ public class SignInDelegate extends XiaoXuDelegate {
     private String password;
 
     @OnClick(R2.id.btn_sign_in)
-    void onClickSignUp(){
-        if (checkForm()){
+    void onClickSignUp() {
+        if (checkForm()) {
 
             params.put("username", userName);
             params.put("password", password);
@@ -49,27 +50,54 @@ public class SignInDelegate extends XiaoXuDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
-                            XiaoXuLogger.json("/user/login.do",response);
+                            JSONObject jsonData = JSON.parseObject(response);
+                            final int statusCode = jsonData.getInteger("status");
+
+                            final JSONObject profileJson = jsonData.getJSONObject("data");
+                            final long id = profileJson.getLong("id");
+                            final String username = profileJson.getString("username");
+                            final String email = profileJson.getString("email");
+                            final String phone = profileJson.getString("phone");
+                            final int role = profileJson.getInteger("role");
+                            final long createTime = profileJson.getLong("createTime");
+                            final long updateTime = profileJson.getLong("createTime");
+
+                            //通过服务器返回的状态码对注册状态进行判断并处理
+                            if (statusCode == 0) {
+
+                                Toast.makeText(getContext(), "欢迎 " +
+                                        username + "," +
+                                        id + "," +
+                                        email + "," +
+                                        phone + "," +
+                                        role + "," +
+                                        createTime + "," +
+                                        updateTime + "," +
+                                        " 访问", Toast.LENGTH_LONG).show();
+
+                                //SignHandler.onSignUp(response,mSignListener);
+                                //XiaoXuLogger.json("/user/login.do",response);
+                            } else if (statusCode == 1) {
+
+                                Toast.makeText(getContext(), (String) jsonData.get("msg"), Toast.LENGTH_LONG).show();
+                            }
+
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            Toast.makeText(getContext(),"error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "error", Toast.LENGTH_LONG).show();
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "failure", Toast.LENGTH_LONG).show();
                         }
                     })
                     .build()
                     .post();
-
-            //Toast.makeText(getContext(),"验证通过"+userName,Toast.LENGTH_LONG).show();
-
 
 
         }

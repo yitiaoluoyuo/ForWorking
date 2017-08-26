@@ -13,54 +13,70 @@ import org.greenrobot.greendao.annotation.Generated;
 public class UserProfile {
 
         @Id
-        private long userId = 0;
-        private String name = null;
-        private String avatar = null;
-        private String gender = null;
-        private String address = null;
+        private long id = 0;
+        private String userName = null;
+        private String email = null;
+        private String phone = null;
+        private int role = 0;
+        private long createTime = 0;
+        private long updateTime = 0;
 
-        @Generated(hash = 1202698052)
-        public UserProfile(long userId, String name, String avatar, String gender,
-                String address) {
-            this.userId = userId;
-            this.name = name;
-            this.avatar = avatar;
-            this.gender = gender;
-            this.address = address;
+
+        @Generated(hash = 1018577266)
+        public UserProfile(long id, String userName, String email, String phone,
+                int role, long createTime, long updateTime) {
+            this.id = id;
+            this.userName = userName;
+            this.email = email;
+            this.phone = phone;
+            this.role = role;
+            this.createTime = createTime;
+            this.updateTime = updateTime;
         }
         @Generated(hash = 968487393)
         public UserProfile() {
         }
-        public long getUserId() {
-            return this.userId;
+        public long getId() {
+            return this.id;
         }
-        public void setUserId(long userId) {
-            this.userId = userId;
+        public void setId(long id) {
+            this.id = id;
         }
-        public String getName() {
-            return this.name;
+        public String getUserName() {
+            return this.userName;
         }
-        public void setName(String name) {
-            this.name = name;
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
-        public String getAvatar() {
-            return this.avatar;
+        public String getEmail() {
+            return this.email;
         }
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
+        public void setEmail(String email) {
+            this.email = email;
         }
-        public String getGender() {
-            return this.gender;
+        public String getPhone() {
+            return this.phone;
         }
-        public void setGender(String gender) {
-            this.gender = gender;
+        public void setPhone(String phone) {
+            this.phone = phone;
         }
-        public String getAddress() {
-            return this.address;
+        public int getRole() {
+            return this.role;
         }
-        public void setAddress(String address) {
-            this.address = address;
+        public void setRole(int role) {
+            this.role = role;
         }
-
+        public long getCreateTime() {
+            return this.createTime;
+        }
+        public void setCreateTime(long createTime) {
+            this.createTime = createTime;
+        }
+        public long getUpdateTime() {
+            return this.updateTime;
+        }
+        public void setUpdateTime(long updateTime) {
+            this.updateTime = updateTime;
+        }
 
 }

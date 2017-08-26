@@ -1,5 +1,6 @@
 package com.xiaoxu.xiaoxu_ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -7,6 +8,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
@@ -51,6 +54,16 @@ public class SignUpDelegate extends XiaoXuDelegate {
     private String problem;
     private String answer;
 
+    private ISignSuccessListener mSignListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignSuccessListener){
+            mSignListener = (ISignSuccessListener) activity;
+        }
+    }
+
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp(){
         if (checkForm()){
@@ -69,8 +82,19 @@ public class SignUpDelegate extends XiaoXuDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
-                            //SignHandler.onSignUp(response);
+                            JSONObject jsonData = JSON.parseObject(response);
+                            //通过服务器返回的状态码对注册状态进行判断并处理
+                            final int statusCode = jsonData.getInteger("status");
+                            final String msg = jsonData.getString("msg");
+
+                            if (statusCode == 0){
+                                Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
+                                //SignHandler.onSignUp(response,mSignListener);
+                            }else if (statusCode == 1){
+                                Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
+                            }
+
+
                         }
                     })
                     .error(new IError() {
