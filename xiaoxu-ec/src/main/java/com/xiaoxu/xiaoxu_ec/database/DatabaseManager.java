@@ -6,6 +6,7 @@ import org.greenrobot.greendao.database.Database;
 
 /**
  * Created by xiaoxu on 2017/8/26.
+ *
  * DatabaseManager
  */
 
@@ -31,6 +32,7 @@ public class DatabaseManager {
     }
 
     private void initDao(Context context) {
+
         final ReleaseOpenHelper helper = new ReleaseOpenHelper(context, "xiaoxu_for_working.db");
         final Database db = helper.getWritableDb();
         mDaoSession = new DaoMaster(db).newSession();

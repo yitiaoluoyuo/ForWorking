@@ -1,8 +1,10 @@
 package com.xiaoxu.xiaoxu_ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.database.UserProfile;
@@ -27,8 +30,9 @@ import butterknife.OnClick;
  * 登录业务
  */
 
-public class SignInDelegate extends XiaoXuDelegate {
+public class SignInDelegate extends XiaoXuDelegate implements ISignSuccessListener{
 
+    public static final String TAG = "tag";
     private WeakHashMap<String, Object> params = new WeakHashMap<>();
 
     @BindView(R2.id.edit_sign_in_username)
@@ -40,8 +44,16 @@ public class SignInDelegate extends XiaoXuDelegate {
 
     private ISignSuccessListener mSignSuccessListener;
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignSuccessListener){
+            mSignSuccessListener = (ISignSuccessListener) activity;
+        }
+    }
+
     @OnClick(R2.id.btn_sign_in)
-    void onClickSignUp() {
+    void onClickSignIn() {
         if (checkForm()) {
 
             params.put("username", userName);
@@ -60,12 +72,12 @@ public class SignInDelegate extends XiaoXuDelegate {
                             if (statusCode == 0) {
                                 UserProfile userProfile = SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
 
-                                Toast.makeText(getContext(), "欢迎 " +
+                                /*Toast.makeText(getContext(), "欢迎 " +
                                         userProfile.getUserName()+
-                                        " 访问", Toast.LENGTH_LONG).show();
+                                        " 访问", Toast.LENGTH_SHORT).show();*/
+                                SignStatueHandler.onSignInSuccess(responseJsonData,mSignSuccessListener);
 
-                                //SignHandler.onSignUpSuccess(response,mSignListener);
-                                //XiaoXuLogger.json("/user/login.do",response);
+                                XiaoXuLogger.json("/user/login.do",response);
                             } else if (statusCode == 1) {
 
                                 Toast.makeText(getContext(), (String) responseJsonData.get("msg"), Toast.LENGTH_LONG).show();
@@ -131,6 +143,17 @@ public class SignInDelegate extends XiaoXuDelegate {
 
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+
+    }
+
+    @Override
+    public void onSignInSuccess() {
+        Log.d(TAG, "onSignInSuccess: insert greenDao success");
+        //Toast.makeText(getContext(),"insert greenDao success",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSignUpSuccess() {
 
     }
 }

@@ -1,7 +1,8 @@
 package com.xiaoxu.xiaoxu_ec.database;
 
+import android.support.annotation.Nullable;
+
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -9,18 +10,18 @@ import org.greenrobot.greendao.annotation.Generated;
  * user entity
  */
 
-@Entity(nameInDb = "user_profile")
+@Entity(nameInDb = "user_profile02")
 public class UserProfile {
 
-        @Id
+        @Nullable
         private long id = 0;
+        @Nullable
         private String userName = null;
         private String email = null;
         private String phone = null;
         private int role = 0;
         private long createTime = 0;
         private long updateTime = 0;
-
 
         @Generated(hash = 1018577266)
         public UserProfile(long id, String userName, String email, String phone,
@@ -78,5 +79,10 @@ public class UserProfile {
         public void setUpdateTime(long updateTime) {
             this.updateTime = updateTime;
         }
+
+
+
+
+
 
 }

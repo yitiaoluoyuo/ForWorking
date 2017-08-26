@@ -10,7 +10,7 @@ import com.xiaoxu.xiaoxu_ec.database.UserProfile;
 
 public class SignStatueHandler {
 
-    public static UserProfile onSignInSuccess(JSONObject responseJsonData, ISignSuccessListener signListener) {
+    public static UserProfile onSignInSuccess(JSONObject responseJsonData, ISignSuccessListener signSuccessListener) {
 
         final JSONObject profileJson = responseJsonData.getJSONObject("data");
         final long id = profileJson.getLong("id");
@@ -31,7 +31,7 @@ public class SignStatueHandler {
 
         //在projectActivity中实现的接口，处理业务
         // （页面跳转，计时）
-        //signListener.onSignInSuccess();
+        signSuccessListener.onSignInSuccess();
 
         return profile;
     }

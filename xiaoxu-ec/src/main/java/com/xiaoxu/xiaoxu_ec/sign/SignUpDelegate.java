@@ -54,13 +54,14 @@ public class SignUpDelegate extends XiaoXuDelegate {
     private String problem;
     private String answer;
 
-    private ISignSuccessListener mSignListener;
+    private ISignSuccessListener mSignSuccessListener;
 
+    // TODO: 2017/8/26 ??????   sign in  need
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (activity instanceof ISignSuccessListener){
-            mSignListener = (ISignSuccessListener) activity;
+            mSignSuccessListener = (ISignSuccessListener) activity;
         }
     }
 
