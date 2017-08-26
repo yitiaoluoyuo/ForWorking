@@ -70,6 +70,7 @@ public class SignUpDelegate extends XiaoXuDelegate {
                         @Override
                         public void onSuccess(String response) {
                             Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                            //SignHandler.onSignUp(response);
                         }
                     })
                     .error(new IError() {

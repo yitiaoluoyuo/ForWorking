@@ -5,6 +5,7 @@ import android.app.Application;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.xiaoxu.xiaoxu_core.application.XiaoXu;
 import com.xiaoxu.xiaoxu_core.interceptors.DebugInterceptor;
+import com.xiaoxu.xiaoxu_ec.database.DatabaseManager;
 import com.xiaoxu.xiaoxu_ec.icon.FontXiaoXuModule;
 
 /**
@@ -23,6 +24,8 @@ public class MyApplication extends Application {
                 .withIcon(new FontXiaoXuModule())
                 .withInterceptor(new DebugInterceptor("index",R.raw.testjson))
                 .configure();
+
+        DatabaseManager.getInstance().init(this);
 
     }
 }
