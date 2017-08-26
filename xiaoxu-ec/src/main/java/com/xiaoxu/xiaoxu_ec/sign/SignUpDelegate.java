@@ -89,33 +89,26 @@ public class SignUpDelegate extends XiaoXuDelegate {
 
                             if (statusCode == 0){
                                 Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
-                                //SignHandler.onSignUp(response,mSignListener);
+                                //SignHandler.onSignUpSuccess(response,mSignListener);
                             }else if (statusCode == 1){
                                 Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
                             }
-
-
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            Toast.makeText(getContext(),"error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"sign up error",Toast.LENGTH_LONG).show();
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"sign up failure",Toast.LENGTH_LONG).show();
                         }
                     })
                     .build()
                     .post();
-
-            //Toast.makeText(getContext(),"验证通过"+userName,Toast.LENGTH_LONG).show();
-
-
-
         }
     }
 

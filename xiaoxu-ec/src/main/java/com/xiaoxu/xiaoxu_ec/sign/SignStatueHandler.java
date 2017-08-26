@@ -1,6 +1,5 @@
 package com.xiaoxu.xiaoxu_ec.sign;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_ec.database.UserProfile;
 
@@ -11,9 +10,9 @@ import com.xiaoxu.xiaoxu_ec.database.UserProfile;
 
 public class SignStatueHandler {
 
-    public static void onSignIn(String response, ISignSuccessListener signListener) {
-        //请求成功后解析并获取，返会的json字符串"data"里的数据
-        final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
+    public static UserProfile onSignInSuccess(JSONObject responseJsonData, ISignSuccessListener signListener) {
+
+        final JSONObject profileJson = responseJsonData.getJSONObject("data");
         final long id = profileJson.getLong("id");
         final String username = profileJson.getString("username");
         final String email = profileJson.getString("email");
@@ -22,18 +21,23 @@ public class SignStatueHandler {
         final long createTime = profileJson.getLong("createTime");
         final long updateTime = profileJson.getLong("createTime");
 
-
         final UserProfile profile = new UserProfile(id, username, email, phone, role,createTime,updateTime);
 
+        //把UserProfile中的数据插入数据库
         //DatabaseManager.getInstance().getDao().insert(profile);
 
         //已经注册并登录成功了
         //AccountManager.setSignInState(true);
+
+        //在projectActivity中实现的接口，处理业务
+        // （页面跳转，计时）
         //signListener.onSignInSuccess();
+
+        return profile;
     }
 
 
-    public static void onSignUp(String response, ISignSuccessListener signListener) {
+    public static void onSignUpSuccess(String response, ISignSuccessListener signListener) {
 
        /* final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");

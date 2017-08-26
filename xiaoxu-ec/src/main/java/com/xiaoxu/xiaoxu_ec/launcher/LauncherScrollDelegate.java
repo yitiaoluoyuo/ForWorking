@@ -69,7 +69,7 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
             //检查用户是否已经登录
            /* AccountManager.checkAccount(new IUserChecker() {
                 @Override
-                public void onSignIn() {
+                public void onSignInSuccess() {
                     if (mILauncherListener != null) {
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
                     }

@@ -80,7 +80,7 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
             //检查用户是否登录了APP
             /*AccountManager.checkAccount(new IUserChecker() {
                 @Override
-                public void onSignIn() {
+                public void onSignInSuccess() {
                     if (mILauncherListener != null) {
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
                     }

@@ -15,6 +15,7 @@ import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+import com.xiaoxu.xiaoxu_ec.database.UserProfile;
 
 import java.util.WeakHashMap;
 
@@ -37,6 +38,8 @@ public class SignInDelegate extends XiaoXuDelegate {
     private String userName;
     private String password;
 
+    private ISignSuccessListener mSignSuccessListener;
+
     @OnClick(R2.id.btn_sign_in)
     void onClickSignUp() {
         if (checkForm()) {
@@ -50,36 +53,22 @@ public class SignInDelegate extends XiaoXuDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            JSONObject jsonData = JSON.parseObject(response);
-                            final int statusCode = jsonData.getInteger("status");
-
-                            final JSONObject profileJson = jsonData.getJSONObject("data");
-                            final long id = profileJson.getLong("id");
-                            final String username = profileJson.getString("username");
-                            final String email = profileJson.getString("email");
-                            final String phone = profileJson.getString("phone");
-                            final int role = profileJson.getInteger("role");
-                            final long createTime = profileJson.getLong("createTime");
-                            final long updateTime = profileJson.getLong("createTime");
+                            JSONObject responseJsonData = JSON.parseObject(response);
+                            final int statusCode = responseJsonData.getInteger("status");
 
                             //通过服务器返回的状态码对注册状态进行判断并处理
                             if (statusCode == 0) {
+                                UserProfile userProfile = SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
 
                                 Toast.makeText(getContext(), "欢迎 " +
-                                        username + "," +
-                                        id + "," +
-                                        email + "," +
-                                        phone + "," +
-                                        role + "," +
-                                        createTime + "," +
-                                        updateTime + "," +
+                                        userProfile.getUserName()+
                                         " 访问", Toast.LENGTH_LONG).show();
 
-                                //SignHandler.onSignUp(response,mSignListener);
+                                //SignHandler.onSignUpSuccess(response,mSignListener);
                                 //XiaoXuLogger.json("/user/login.do",response);
                             } else if (statusCode == 1) {
 
-                                Toast.makeText(getContext(), (String) jsonData.get("msg"), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), (String) responseJsonData.get("msg"), Toast.LENGTH_LONG).show();
                             }
 
                         }
@@ -87,13 +76,13 @@ public class SignInDelegate extends XiaoXuDelegate {
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            Toast.makeText(getContext(), "error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "sign in error", Toast.LENGTH_LONG).show();
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            Toast.makeText(getContext(), "failure", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "sign in failure", Toast.LENGTH_LONG).show();
                         }
                     })
                     .build()
