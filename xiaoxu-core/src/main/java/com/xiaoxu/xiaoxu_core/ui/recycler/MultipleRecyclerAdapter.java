@@ -46,7 +46,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         return new MultipleRecyclerAdapter(data);
     }
 
-    private static MultipleRecyclerAdapter create(DataConverter converter){
+    public static MultipleRecyclerAdapter create(DataConverter converter){
         return new MultipleRecyclerAdapter(converter.convert());
     }
 
@@ -84,7 +84,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         final String name;
         final String subtitle;
         final String mainImage;
-        final double price = item.getField(MultipleFields.PRICE);
+        final float price = item.getField(MultipleFields.PRICE);
         final int status = item.getField(MultipleFields.STATUS);
         final String imageHost;
 

@@ -37,6 +37,14 @@ public class IndexDataConverter extends DataConverter {
             final int status = data.getInteger("status");
             final String imageHost = data.getString("imageHost");
 
+            //int type = 3;
+            /*if (imageHost == null && subtitle != null) {
+                type = ItemType.TEXT;
+            } else if (imageHost != null && subtitle == null) {
+                type = ItemType.IMAGE;
+            } else if (imageHost != null) {
+                type = ItemType.TEXT_IMAGE;
+            }*/
 
 
             final MultipleItemEntity entity = MultipleItemEntity
@@ -49,6 +57,8 @@ public class IndexDataConverter extends DataConverter {
                     .setField(MultipleFields.PRICE,price)
                     .setField(MultipleFields.STATUS,status)
                     .setField(MultipleFields.IMAGE_HOST,imageHost)
+                    .setField(MultipleFields.SPAN_SIZE,2)
+                    .setField(MultipleFields.ITEM_TYPE,3)
                     .build();
             ENTITIES_LIST.add(entity);
         }

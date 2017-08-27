@@ -2,7 +2,7 @@
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="170dp"
     android:background="@android:color/white"
     android:orientation="vertical">
 
@@ -22,7 +22,7 @@
         android:background="@android:color/white"
         android:gravity="center"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="8sp"
         android:textStyle="bold" />
 
 </android.support.v7.widget.LinearLayoutCompat>
