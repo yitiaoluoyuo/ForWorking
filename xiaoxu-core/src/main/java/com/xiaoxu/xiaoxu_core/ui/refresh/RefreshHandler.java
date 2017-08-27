@@ -1,8 +1,13 @@
 package com.xiaoxu.xiaoxu_core.ui.refresh;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.widget.Toast;
 
 import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.net.RestClient;
+import com.xiaoxu.xiaoxu_core.net.callback.IError;
+import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
+import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 
 /**
  * Created by xiaoxu on 2017/8/27.
@@ -33,5 +38,30 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener {
                 REFRESH_LAYOUT.setRefreshing(false);
             }
         },5000);
+    }
+
+    public static void firstPage(String url){
+        RestClient.builder()
+                .url(url)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Toast.makeText(XiaoXu.getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        Toast.makeText(XiaoXu.getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(XiaoXu.getApplicationContext(),"failure",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .build()
+                .get();
     }
 }

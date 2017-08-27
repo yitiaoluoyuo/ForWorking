@@ -57,7 +57,7 @@ public class ProjectActivity extends ProxyActivity implements
             case SIGNED_NON:
                 //没有登录做的处理
                 Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();
-                getSupportDelegate().startWithPop(new SignInDelegate());
+                getSupportDelegate().startWithPop(new IndexBottomBarDelegate());
                 break;
             default:
                 break;
