@@ -1,6 +1,7 @@
 package com.xiaoxu.xiaoxu_core.application;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.HashMap;
 
@@ -30,5 +31,9 @@ public final class XiaoXu {
 
     public static Context getApplicationContext(){
         return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT);
+    }
+
+    public static Handler getHandler(){
+        return (Handler) getConfigurations().get(ConfigKeys.HANDLER);
     }
 }
