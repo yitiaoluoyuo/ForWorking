@@ -21,11 +21,13 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
+        app:layout_behavior="com.xiaoxu.xiaoxu_ec.main_delegates.index.TranslucentBehavior"
         android:background="@android:color/transparent"
         >
 
         <android.support.v7.widget.LinearLayoutCompat
+            android:layout_marginTop="18dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -40,18 +42,20 @@
                 android:paddingRight="10dp"
                 android:text="{icon-scan}"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/et_search_view"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="4"
-                android:background="@android:color/white"
+                android:layout_weight="7"
+                android:background="#c4ffffff"
                 android:gravity="center_vertical"
                 android:hint="搜索"
-                android:paddingLeft="20dp" />
+                android:textSize="12sp"
+                android:paddingLeft="15dp"
+                />
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_message"
@@ -63,7 +67,7 @@
                 android:paddingLeft="10dp"
                 android:text="{fa-bullhorn}"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="15sp" />
 
         </android.support.v7.widget.LinearLayoutCompat>
 

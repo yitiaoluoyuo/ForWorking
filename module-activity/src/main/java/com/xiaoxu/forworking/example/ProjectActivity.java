@@ -10,9 +10,11 @@ import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_ec.launcher.ILauncherListener;
 import com.xiaoxu.xiaoxu_ec.launcher.LauncherDelegate;
 import com.xiaoxu.xiaoxu_ec.launcher.LauncherFinishedTag;
-import com.xiaoxu.xiaoxu_ec.main_delegates.IndexBottomBarDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.BottomBarDelegate;
 import com.xiaoxu.xiaoxu_ec.sign.ISignSuccessListener;
 import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
+
+import qiu.niorgai.StatusBarCompat;
 
 public class ProjectActivity extends ProxyActivity implements
         ISignSuccessListener,ILauncherListener {
@@ -30,12 +32,13 @@ public class ProjectActivity extends ProxyActivity implements
         if (actionBar != null) {
             actionBar.hide();
         }
+        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this,"sign in success callback finished ",Toast.LENGTH_LONG).show();
-        getSupportDelegate().startWithPop(new IndexBottomBarDelegate());
+        getSupportDelegate().startWithPop(new BottomBarDelegate());
     }
 
     @Override
@@ -52,12 +55,12 @@ public class ProjectActivity extends ProxyActivity implements
             case SIGNED:
                 //登录成功的处理
                 Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-                getSupportDelegate().startWithPop(new IndexBottomBarDelegate());
+                getSupportDelegate().startWithPop(new BottomBarDelegate());
                 break;
             case SIGNED_NON:
                 //没有登录做的处理
-                Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();
-                getSupportDelegate().startWithPop(new IndexBottomBarDelegate());
+                //Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();
+                getSupportDelegate().startWithPop(new BottomBarDelegate());
                 break;
             default:
                 break;

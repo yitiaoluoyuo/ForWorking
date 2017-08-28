@@ -61,7 +61,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         //打开加载的动画效果
         openLoadAnimation();
         //设置多此执行动画
-        isFirstOnly(true);
+        isFirstOnly(false);
     }
 
 

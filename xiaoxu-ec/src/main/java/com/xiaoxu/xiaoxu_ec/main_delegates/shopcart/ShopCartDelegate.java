@@ -14,7 +14,7 @@ import com.xiaoxu.xiaoxu_ec.R;
 public class ShopCartDelegate extends ItemDelegate {
     @Override
     public Object setLayout() {
-        return R.layout.delegate_index;
+        return R.layout.delegate_shop_cart;
     }
 
     @Override

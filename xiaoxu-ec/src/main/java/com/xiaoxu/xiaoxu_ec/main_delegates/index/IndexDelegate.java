@@ -2,6 +2,7 @@ package com.xiaoxu.xiaoxu_ec.main_delegates.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,9 +12,11 @@ import android.view.View;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.ItemDelegate;
+import com.xiaoxu.xiaoxu_core.ui.recycler.BaseDividerItemDecoration;
 import com.xiaoxu.xiaoxu_core.ui.refresh.RefreshHandler;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+import com.xiaoxu.xiaoxu_ec.main_delegates.BottomBarDelegate;
 
 import butterknife.BindView;
 
@@ -73,12 +76,16 @@ public class IndexDelegate extends ItemDelegate {
         //设置为网格布局，******************************************把屏幕分为4列
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
-
-       /* mRecyclerView.addItemDecoration
-                (BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
-        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
-        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));*/
+        mRecyclerView.addItemDecoration(
+                BaseDividerItemDecoration.create(
+                        ContextCompat.getColor(getContext(),R.color.colorGrayLight)
+                        ,7));
+        //为父容器添加点击事件，避免bottomBar不跳转的坑
+        final BottomBarDelegate bottomBarDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(bottomBarDelegate));
     }
+
+
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {

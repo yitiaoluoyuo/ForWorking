@@ -14,7 +14,7 @@ import com.xiaoxu.xiaoxu_ec.R;
 public class FindDelegate extends ItemDelegate {
     @Override
     public Object setLayout() {
-        return R.layout.delegate_find;
+        return R.layout.delegate_observe;
     }
 
     @Override

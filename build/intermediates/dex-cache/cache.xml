@@ -2,94 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\disklrucache\4.0.0-RC0\46d23cdc19155c5f0d47ece99ca1c421346c1509\disklrucache-4.0.0-RC0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="46d23cdc19155c5f0d47ece99ca1c421346c1509">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\disklrucache-4.0.0-RC0_d431b0e88a2aef6ebea526a1486941dd35f60fdb.jar" />
+        sha1="180dbb7216cea713429ddbe6c25a820866056a53">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f18d56746afd27625a4ad76ccae042d292a81f05\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\.android\build-cache\1c4d3a891dc16b7614a4aa24c1443c5ae687ca3d\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="62cb017431936cfadeb8cb555f8db6250eddd8e9">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_9d540cfe2c21b8bcf806bffc1c836d61363b9963.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\annotations\4.0.0-RC0\d5dd0afc50069b7fa0fc12ac85f91efa8df4db67\annotations-4.0.0-RC0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d5dd0afc50069b7fa0fc12ac85f91efa8df4db67">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\annotations-4.0.0-RC0_ddf1868d5ced6cb9228d771934fba85168b595ed.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\ForWorking\ForWorking\xiaoxu-ec\build\intermediates\bundles\default\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4f42a70d5c3ffa57c8c06065786826317236780e">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\ForWorking\ForWorking\xiaoxu-core\build\intermediates\bundles\default\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9d122d657666e1691ca4ce8a19e17ced9aceb908">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_9b9a7514d43eda7240f7e121d66a35fbb05da75c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\ForWorking\ForWorking\xiaoxu-annotations\build\libs\xiaoxu-annotations.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="283cdd36bb15698b345abc25da80ad0c50673ea0">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\.android\build-cache\35a4bd5b0956c938c822601823bee8cdcb94d76e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3be6aa4b849485deaeff0848f67c30bb127e3572">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_377784039f6f7942a8158e878ab21f762dbdcb6a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\4.0.0-RC0\eb86cd1d96acc30dcebf338abaf2c62ca28bf355\glide-4.0.0-RC0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="eb86cd1d96acc30dcebf338abaf2c62ca28bf355">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\glide-4.0.0-RC0_0590895e7d3811f6541ad13143cb094561c680fd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\gifdecoder\4.0.0-RC0\c64f5d4805b528de434a5a8bb9a8091b6f9cd1a7\gifdecoder-4.0.0-RC0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c64f5d4805b528de434a5a8bb9a8091b6f9cd1a7">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\gifdecoder-4.0.0-RC0_045747ae56ae2940f709cebf36260d0e5e5daa68.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator\.android\build-cache\8ea2793827d84382f1480921d262fe0b7cbeb1a8\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b7219f056e3abdba2d60d235b2593dff1928c3ae">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d432b5976ab1df9451343db8b1dba265055f02f1.jar" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b50f2cd90fa8e5748605d013a813747459180d32\classes.dex" />
     </item>
 
 </items>

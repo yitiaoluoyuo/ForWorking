@@ -52,7 +52,7 @@ public abstract class BaseMainDelegate extends XiaoXuDelegate implements View.On
 
     @Override
     public Object setLayout() {
-        return R.layout.delegate_bottom;
+        return R.layout.delegate_index_main;
     }
 
     @Override
@@ -101,9 +101,9 @@ public abstract class BaseMainDelegate extends XiaoXuDelegate implements View.On
         for (int i = 0; i < count; i++) {
             final RelativeLayout item = (RelativeLayout) mTabMainContainer.getChildAt(i);
             final IconTextView itemTabIcon = (IconTextView) item.getChildAt(0);
-            itemTabIcon.setTextColor(Color.GRAY);
+            itemTabIcon.setTextColor(getResources().getColor(R.color.colorGrayLight));
             final AppCompatTextView itemTabTitle = (AppCompatTextView) item.getChildAt(1);
-            itemTabTitle.setTextColor(Color.GRAY);
+            itemTabTitle.setTextColor(getResources().getColor(R.color.colorGrayLight));
         }
     }
 
