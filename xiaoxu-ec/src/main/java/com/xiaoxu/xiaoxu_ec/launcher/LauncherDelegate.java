@@ -31,16 +31,16 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
     AppCompatTextView mTvTimer = null;
 
     private Timer mTimer = null;
-    private int mCount = 10;
+    private int mCount = 15;
     private ILauncherListener mILauncherListener = null;
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
-        if (mTimer != null) {
+        /*if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
             checkIsShowScroll();
-        }
+        }*/
     }
 
     private void initTimer() {

@@ -2,22 +2,31 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-annotations\build\libs\xiaoxu-annotations.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="180dbb7216cea713429ddbe6c25a820866056a53">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f18d56746afd27625a4ad76ccae042d292a81f05\classes.dex" />
+        sha1="e16d0c60c12dd9122c8c13946fdc29735f32bc45">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-ec\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b50f2cd90fa8e5748605d013a813747459180d32\classes.dex" />
+        sha1="c06906d820472a820f72a24f918a43d81dfe1b24">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-core\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0854dd816d42eca19b32e1e9b27a9c334d9f120a">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_9b9a7514d43eda7240f7e121d66a35fbb05da75c.jar" />
     </item>
 
 </items>

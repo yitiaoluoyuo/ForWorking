@@ -29,11 +29,11 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
     private ILauncherListener mILauncherListener = null;
 
     private void initBanner() {
-        INTEGERS.add(R.mipmap.launcher_01);
-        INTEGERS.add(R.mipmap.launcher_02);
-        INTEGERS.add(R.mipmap.launcher_03);
-        INTEGERS.add(R.mipmap.launcher_04);
-        INTEGERS.add(R.mipmap.launcher_05);
+        INTEGERS.add(R.mipmap.launcher02);
+        INTEGERS.add(R.mipmap.launcher03);
+        INTEGERS.add(R.mipmap.launcher04);
+        INTEGERS.add(R.mipmap.launcher05);
+        INTEGERS.add(R.mipmap.launcher06);
         mConvenientBanner
                 .setPages(new LauncherHolderCreator(), INTEGERS)
                 //设置指示点
@@ -70,6 +70,7 @@ public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClic
     public void onItemClick(int position) {
         //如果点击的是最后一个
         if (position == INTEGERS.size() - 1) {
+            INTEGERS.clear();
             XiaoXuPreference.setAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name(), true);
             //检查用户是否已经登录
            AccountManager.checkAccount(new IUserChecker() {
