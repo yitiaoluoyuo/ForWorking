@@ -17,12 +17,22 @@ import java.util.List;
 /**
  * Created by xiaoxu on 2017/8/27.
  *
+ *
+ *      createViewHolder(ViewGroup parent , int ViewType)
+ *
+ *      bindViewHolder(VH holder, int position)
+ *
+ *      getItemCount()
+ *
+ *      getItemViewType(int position)
+ *
+ *
  * 适配多布局
  */
 // TODO: 2017/8/27 不传入泛型时强制实现onBindView方法的原理？
 
-public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleItemEntity,MultipleViewHolder>
-    implements BaseQuickAdapter.SpanSizeLookup,OnItemClickListener{
+public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
+        implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener {
 
 
     //确保初始化一次Banner，防止重复Item加载
@@ -42,16 +52,16 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
     }
 
     //工厂模式处理
-    private static MultipleRecyclerAdapter create(List<MultipleItemEntity> data){
+    private static MultipleRecyclerAdapter create(List<MultipleItemEntity> data) {
         return new MultipleRecyclerAdapter(data);
     }
 
-    public static MultipleRecyclerAdapter create(DataConverter converter){
+    public static MultipleRecyclerAdapter create(DataConverter converter) {
         return new MultipleRecyclerAdapter(converter.convert());
     }
 
     //设置不同的item布局
-    private void init(){
+    private void init() {
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);
         addItemType(ItemType.IMAGE, R.layout.item_multiple_image);
         addItemType(ItemType.TEXT_IMAGE, R.layout.item_multiple_image_text);
@@ -65,19 +75,42 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
     }
 
 
-
+    /**
+     * 网格布局时使用
+     *
+     * @param gridLayoutManager
+     * @param position
+     * @return
+     */
     @Override
     public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
         return getData().get(position).getField(MultipleFields.SPAN_SIZE);
     }
 
+
+    /**
+     * RecyclerAdapter steep  01
+     * 创建ViewHolder
+     * 视图绑定
+     */
+
     @Override
     protected MultipleViewHolder createBaseViewHolder(View view) {
+        //MultipleViewHolder 继承BaseViewHolder，做了简单工厂封装
         return MultipleViewHolder.crate(view);
     }
 
+    /**
+     * To bind different types of holder and solve different the bind events
+     *
+     * @param holder
+     * @param positions
+     * @see #getDefItemViewType(int)
+     */
+    //todo 继承自哪个类？？？？？？？？？？？？？？？？？？？
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity item) {
+
 
         final int id = item.getField(MultipleFields.ID);
         final int categoryId = item.getField(MultipleFields.CATEGORY_ID);
@@ -88,16 +121,16 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         final int status = item.getField(MultipleFields.STATUS);
         final String imageHost;
 
-        switch (holder.getItemViewType()){
+        switch (holder.getItemViewType()) {
             case ItemType.TEXT:
                 name = item.getField(MultipleFields.NAME);
-                holder.setText(R.id.item_tv_single,name);
+                holder.setText(R.id.item_tv_single, name);
                 break;
             case ItemType.IMAGE:
                 imageHost = item.getField(MultipleFields.IMAGE_HOST);
                 mainImage = item.getField(MultipleFields.MAIN_IMAGE);
                 Glide.with(mContext)
-                        .load(imageHost+mainImage)
+                        .load(imageHost + mainImage)
                         .apply(RECYCLER_OPTIONS)
                         .into((ImageView) holder.getView(R.id.item_img_multiple));
                 break;
@@ -106,10 +139,14 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 mainImage = item.getField(MultipleFields.MAIN_IMAGE);
                 subtitle = item.getField(MultipleFields.SUBTITLE);
                 Glide.with(mContext)
-                        .load(imageHost+mainImage)
+                        .load(imageHost + mainImage)
                         .apply(RECYCLER_OPTIONS)
                         .into((ImageView) holder.getView(R.id.item_img_multiple));
-                holder.setText(R.id.item_tv_multiple,subtitle);
+                /**
+                 * RecyclerAdapter steep  01
+                 * ViewHolder视图绑定
+                 */
+                holder.setText(R.id.item_tv_multiple, subtitle);
                 break;
             case ItemType.BANNER:
                 if (!mIsInitBanner) {
@@ -124,7 +161,6 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
             default:
                 break;
         }
-
 
 
     }

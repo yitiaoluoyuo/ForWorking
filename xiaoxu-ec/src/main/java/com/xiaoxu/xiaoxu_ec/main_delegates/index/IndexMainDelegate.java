@@ -45,21 +45,17 @@ public class IndexMainDelegate extends ItemMainDelegate {
     }*/
 
 
+
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+
+        /**
+         * RecyclerAdapter steep  02
+         *
+         * 绑定视图 ？？？
+         */
         mRefreshHandler = RefreshHandler
                 .create(mRefreshLayout,mRecyclerView,new IndexDataConverter());
-        //设置图片加载策略
-        /*final RequestOptions RECYCLER_OPTIONS =
-                new RequestOptions()
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .dontAnimate();
-
-        Glide.with(getContext())
-                .load("http://img.happymmall.com/173335a4-5dce-4afd-9f18-a10623724c4e.jpeg")
-                .apply(RECYCLER_OPTIONS)
-                .into((ImageView) MultipleViewHolder.crate(mRecyclerView).getView(com.xiaoxu.xiaoxu_core.R.id.item_img_single));*/
 
     }
 
@@ -72,10 +68,19 @@ public class IndexMainDelegate extends ItemMainDelegate {
         mRefreshLayout.setProgressViewOffset(true, 120, 300);
     }
 
+    /**
+     * RecycleView steep 1
+     *      初始化RecycleView
+     */
     private void initRecycleView(){
-        //设置为网格布局，******************************************把屏幕分为4列
+        /**
+         * RecycleView steep 2
+         *      设置布局管理器
+         */
+        //设置布局管理器**网格布局，**********************************把屏幕分为4列
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
+
         mRecyclerView.addItemDecoration(
                 BaseDividerItemDecoration.create(
                         ContextCompat.getColor(getContext(),R.color.colorGrayLight)
@@ -92,6 +97,11 @@ public class IndexMainDelegate extends ItemMainDelegate {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
         initRecycleView();
+
+        /**
+         * RecycleView steep 3
+         *      获取数据源
+         */
         mRefreshHandler.firstPage("/product/list.do?keyword&categoryId=100001&orderBy=price_desc");
     }
 

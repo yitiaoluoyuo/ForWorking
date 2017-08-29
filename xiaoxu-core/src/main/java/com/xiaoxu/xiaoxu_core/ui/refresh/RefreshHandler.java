@@ -19,6 +19,13 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleRecyclerAdapter;
  * Created by xiaoxu on 2017/8/27.
  */
 
+
+
+/**
+ * RecyclerAdapter steep  02
+ *
+ * 绑定视图
+ */
 public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
         BaseQuickAdapter.RequestLoadMoreListener{
 
@@ -70,6 +77,11 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
         },5000);
     }
 
+
+    /**
+     * RecycleView steep 3
+     *      获取数据源
+     */
     public void firstPage(String url){
         BEAN.setDelayed(3000);
         RestClient.builder()
