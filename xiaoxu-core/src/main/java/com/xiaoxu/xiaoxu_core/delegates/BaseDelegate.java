@@ -10,6 +10,7 @@ import com.xiaoxu.xiaoxu_core.activities.ProxyActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportFragmentDelegate;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
@@ -20,6 +21,7 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 public abstract class BaseDelegate extends SwipeBackFragment {
 
     private Unbinder mUnbinder;
+    private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
 
     public abstract Object setLayout();
     public abstract void onBinderView(@Nullable Bundle savedInstanceState,View rootView);
@@ -42,8 +44,14 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     }
 
     public final ProxyActivity getProxyActivity() {
+
         return (ProxyActivity) _mActivity;
     }
+
+   /* @Override
+    public SupportFragmentDelegate getSupportDelegate() {
+        return DELEGATE;
+    }*/
 
     @Override
     public void onDestroy() {

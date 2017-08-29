@@ -87,7 +87,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                         RECYCLERVIEW.setAdapter(mRecycleViewAdapter);
                         //加一页
                         BEAN.addIndex();
-                        Toast.makeText(XiaoXu.getApplicationContext(),"欢迎 大美女【吴聪】 光临！",Toast.LENGTH_LONG).show();
+                        Toast.makeText(XiaoXu.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {

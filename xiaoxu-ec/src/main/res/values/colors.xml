@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorGrayLight">#c9c9c9</color>
+    <color name="item_back_ground">#f1f1f1</color>
+    <color name="we_chat_gray">#323232</color>
+    <color name="app_main">@android:color/holo_orange_dark</color>
+
 </resources>

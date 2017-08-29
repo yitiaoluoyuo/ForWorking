@@ -122,7 +122,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 }
                 break;
             default:
-
+                break;
         }
 
 

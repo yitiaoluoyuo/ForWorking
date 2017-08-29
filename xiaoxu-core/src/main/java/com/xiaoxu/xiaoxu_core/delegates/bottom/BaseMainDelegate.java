@@ -31,8 +31,8 @@ public abstract class BaseMainDelegate extends XiaoXuDelegate implements View.On
     //所有子fragment的container
     private final ArrayList<ItemTabBean> ITEM_TAB_BEANS = new ArrayList<>();
     //
-    private final ArrayList<ItemDelegate> ITEM_DELEGATES = new ArrayList<>();
-    private final LinkedHashMap<ItemTabBean, ItemDelegate> ITEMS_TAB_AND_DELEGATE = new LinkedHashMap<>();
+    private final ArrayList<ItemMainDelegate> ITEM_DELEGATES = new ArrayList<>();
+    private final LinkedHashMap<ItemTabBean, ItemMainDelegate> ITEMS_TAB_AND_DELEGATE = new LinkedHashMap<>();
     private int mCurrentDelegate = 0;
     private int mIndexDelegate = 0;
     private int mClickedColor = Color.RED;
@@ -40,7 +40,7 @@ public abstract class BaseMainDelegate extends XiaoXuDelegate implements View.On
     @BindView(R2.id.tab_main_container_bottom)
     LinearLayoutCompat mTabMainContainer = null;
 
-    public abstract LinkedHashMap<ItemTabBean, ItemDelegate> setItems(ItemBuilder builder);
+    public abstract LinkedHashMap<ItemTabBean, ItemMainDelegate> setItems(ItemBuilder builder);
 
     @ColorInt
     public abstract int setClickedColor();
@@ -118,11 +118,11 @@ public abstract class BaseMainDelegate extends XiaoXuDelegate implements View.On
         }
 
         final ItemBuilder builder = ItemBuilder.builder();
-        final LinkedHashMap<ItemTabBean, ItemDelegate> items = setItems(builder);
+        final LinkedHashMap<ItemTabBean, ItemMainDelegate> items = setItems(builder);
         ITEMS_TAB_AND_DELEGATE.putAll(items);
-        for (Map.Entry<ItemTabBean, ItemDelegate> item : ITEMS_TAB_AND_DELEGATE.entrySet()) {
+        for (Map.Entry<ItemTabBean, ItemMainDelegate> item : ITEMS_TAB_AND_DELEGATE.entrySet()) {
             final ItemTabBean key = item.getKey();
-            final ItemDelegate value = item.getValue();
+            final ItemMainDelegate value = item.getValue();
             ITEM_TAB_BEANS.add(key);
             ITEM_DELEGATES.add(value);
         }
