@@ -55,11 +55,11 @@ public class SortListDelegate extends XiaoXuDelegate {
         //添加测试数据
         final ArrayList<MultipleItemEntity> dataList = new ArrayList<>();
         int categoryId = 100001;
-        StringBuilder categoryName = new StringBuilder("分类");
+        String categoryName = "分类";
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 30; i++) {
             categoryId += i;
-            categoryName.append(i);
+            categoryName += i+1;
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ID,categoryId)
                     .setField(MultipleFields.NAME,categoryName)
@@ -67,9 +67,11 @@ public class SortListDelegate extends XiaoXuDelegate {
                     .setField(MultipleFields.TAG,false)
                     .build();
             dataList.add(entity);
-            categoryName.deleteCharAt(2);
-        }
+            categoryName=categoryName.substring(0,2);
 
+        }
+        //设置第一个分类标签为选中状态
+        dataList.get(0).setField(MultipleFields.TAG,true);
 
         final SortDelegateBottom parentDelegate = new SortDelegateBottom();
         final SortListRecycleAdapter adapter = new SortListRecycleAdapter(dataList,parentDelegate);

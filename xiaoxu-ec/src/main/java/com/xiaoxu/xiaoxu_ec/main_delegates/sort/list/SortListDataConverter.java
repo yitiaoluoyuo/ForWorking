@@ -48,11 +48,11 @@ public class SortListDataConverter extends DataConverter {
 
 
         int categoryId = 100001;
-        StringBuilder categoryName = new StringBuilder("分类");
+        int categoryName = 1;
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 30; i++) {
             categoryId += i;
-            categoryName.append(i);
+            categoryName += i;
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ID,categoryId)
                     .setField(MultipleFields.NAME,categoryName)
@@ -60,7 +60,7 @@ public class SortListDataConverter extends DataConverter {
                     .setField(MultipleFields.TAG,false)
                     .build();
             dataList.add(entity);
-            categoryName.deleteCharAt(2);
+
         }
         //设置第一个分类标签为选中状态
         dataList.get(0).setField(MultipleFields.TAG,true);

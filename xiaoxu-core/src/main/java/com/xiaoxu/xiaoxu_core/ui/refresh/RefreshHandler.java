@@ -17,6 +17,8 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleRecyclerAdapter;
 
 /**
  * Created by xiaoxu on 2017/8/27.
+ *
+ * 下拉刷新小助手
  */
 
 
@@ -45,6 +47,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
         this.RECYCLERVIEW = recyclerView;
         this.CONVERTER = converter;
         this.BEAN = bean;
+        //下拉监听事件
         REFRESH_LAYOUT.setOnRefreshListener(this);
     }
 
@@ -66,6 +69,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
     }
 
     private void refresh(){
+        //should show refresh progress
         REFRESH_LAYOUT.setRefreshing(true);
         // TODO: 2017/8/27 全局handler的调用
         XiaoXu.getHandler().postDelayed(new Runnable() {
@@ -74,7 +78,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                 //进行网络请求，在请求返回的回调里，把 refresh progress 关闭
                 REFRESH_LAYOUT.setRefreshing(false);
             }
-        },5000);
+        },2000);
     }
 
 

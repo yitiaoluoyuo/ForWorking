@@ -8,7 +8,7 @@ import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomTabBean;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.main_delegates.find.FindMainDelegateBottom;
-import com.xiaoxu.xiaoxu_ec.main_delegates.index.IndexMainDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.index.IndexDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.mine.MineMainDelegateBottom;
 import com.xiaoxu.xiaoxu_ec.main_delegates.shopcart.ShopCartMainDelegateBottom;
 import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateBottom;
@@ -26,7 +26,7 @@ public class BottomBarDelegate extends BaseBottomDelegate {
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
         //本质是用tag绑定tab和delegate（根据tag设置设置tab的颜色和要显示的delegate）
-        items.put(new BottomTabBean("{fa-home}", getString(R.string.index)), new IndexMainDelegateBottom());
+        items.put(new BottomTabBean("{fa-home}", getString(R.string.index)), new IndexDelegate());
         items.put(new BottomTabBean("{fa-sort}", "分类"), new SortDelegateBottom());
         items.put(new BottomTabBean("{fa-compass}", "发现"), new FindMainDelegateBottom());
         items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new ShopCartMainDelegateBottom());

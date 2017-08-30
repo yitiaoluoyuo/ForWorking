@@ -2,7 +2,7 @@ package com.xiaoxu.xiaoxu_core.application;
 
 /**
  * Created by xiaoxu on 2017/8/24.
- * 枚举类：唯一的单例，只能被初始化一次
+ * todo 枚举类：唯一的单例，只能被初始化一次
  */
 
 public enum ConfigKeys {
