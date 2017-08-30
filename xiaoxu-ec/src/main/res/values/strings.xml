@@ -11,4 +11,5 @@
     <string name="username_is_empty">请输入用户名</string>
     <string name="sign_in">登录</string>
     <string name="sign_up">注册</string>
+    <string name="index">主页</string>
 </resources>

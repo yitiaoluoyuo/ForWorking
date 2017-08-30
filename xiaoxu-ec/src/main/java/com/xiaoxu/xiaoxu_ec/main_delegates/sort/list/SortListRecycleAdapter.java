@@ -11,7 +11,7 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleRecyclerAdapter;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleViewHolder;
 import com.xiaoxu.xiaoxu_ec.R;
-import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateBottom;
 
 import java.util.List;
 
@@ -22,12 +22,12 @@ import java.util.List;
 
 public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
-    private final SortDelegate SORT_DELEGATE;
+    private final SortDelegateBottom SORT_DELEGATE;
 
     private int mPrePosition = 0;
 
     // TODO: 2017/8/28 此处深入理解继承的奥妙 （*基础*）
-    protected SortListRecycleAdapter(List<MultipleItemEntity> data, SortDelegate delegate) {
+    protected SortListRecycleAdapter(List<MultipleItemEntity> data, SortDelegateBottom delegate) {
         super(data);
         this.SORT_DELEGATE = delegate;
         //添加垂直菜单布局

@@ -12,7 +12,7 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
-import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateBottom;
 
 import java.util.ArrayList;
 
@@ -71,7 +71,7 @@ public class SortListDelegate extends XiaoXuDelegate {
         }
 
 
-        final SortDelegate parentDelegate = new SortDelegate();
+        final SortDelegateBottom parentDelegate = new SortDelegateBottom();
         final SortListRecycleAdapter adapter = new SortListRecycleAdapter(dataList,parentDelegate);
         mRecycleView.setAdapter(adapter);
         //Toast.makeText(getContext()," qingqiu chenggong ",Toast.LENGTH_LONG).show();

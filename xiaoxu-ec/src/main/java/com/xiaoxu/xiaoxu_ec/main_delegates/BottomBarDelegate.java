@@ -2,15 +2,16 @@ package com.xiaoxu.xiaoxu_ec.main_delegates;
 
 import android.graphics.Color;
 
-import com.xiaoxu.xiaoxu_core.delegates.bottom.BaseMainDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.bottom.BaseBottomDelegate;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.ItemBuilder;
-import com.xiaoxu.xiaoxu_core.delegates.bottom.ItemMainDelegate;
-import com.xiaoxu.xiaoxu_core.delegates.bottom.ItemTabBean;
-import com.xiaoxu.xiaoxu_ec.main_delegates.find.FindMainDelegate;
-import com.xiaoxu.xiaoxu_ec.main_delegates.index.IndexMainDelegate;
-import com.xiaoxu.xiaoxu_ec.main_delegates.mine.MineMainDelegate;
-import com.xiaoxu.xiaoxu_ec.main_delegates.shopcart.ShopCartMainDelegate;
-import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomTabBean;
+import com.xiaoxu.xiaoxu_ec.R;
+import com.xiaoxu.xiaoxu_ec.main_delegates.find.FindMainDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.index.IndexMainDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.mine.MineMainDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.shopcart.ShopCartMainDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateBottom;
 
 import java.util.LinkedHashMap;
 
@@ -19,17 +20,18 @@ import java.util.LinkedHashMap;
  *
  */
 
-public class BottomBarDelegate extends BaseMainDelegate {
+public class BottomBarDelegate extends BaseBottomDelegate {
 
     @Override
-    public LinkedHashMap<ItemTabBean, ItemMainDelegate> setItems(ItemBuilder builder) {
-        final LinkedHashMap<ItemTabBean, ItemMainDelegate> itemsTabAndDelegate = new LinkedHashMap<>();
-        itemsTabAndDelegate.put(new ItemTabBean("{fa-home}", "主页"), new IndexMainDelegate());
-        itemsTabAndDelegate.put(new ItemTabBean("{fa-sort}", "分类"), new SortDelegate());
-        itemsTabAndDelegate.put(new ItemTabBean("{fa-compass}", "发现"), new FindMainDelegate());
-        itemsTabAndDelegate.put(new ItemTabBean("{fa-shopping-cart}", "购物车"), new ShopCartMainDelegate());
-        itemsTabAndDelegate.put(new ItemTabBean("{fa-user}", "我的"), new MineMainDelegate());
-        return builder.addItems(itemsTabAndDelegate).build();
+    public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder) {
+        final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
+        //本质是用tag绑定tab和delegate（根据tag设置设置tab的颜色和要显示的delegate）
+        items.put(new BottomTabBean("{fa-home}", getString(R.string.index)), new IndexMainDelegateBottom());
+        items.put(new BottomTabBean("{fa-sort}", "分类"), new SortDelegateBottom());
+        items.put(new BottomTabBean("{fa-compass}", "发现"), new FindMainDelegateBottom());
+        items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new ShopCartMainDelegateBottom());
+        items.put(new BottomTabBean("{fa-user}", "我的"), new MineMainDelegateBottom());
+        return builder.addItems(items).build();
     }
 
 
