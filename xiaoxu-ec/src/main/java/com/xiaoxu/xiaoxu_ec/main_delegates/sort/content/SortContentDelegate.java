@@ -7,17 +7,16 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.application.XiaoXu;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
-import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleRecyclerAdapter;
-import com.xiaoxu.xiaoxu_core.ui.refresh.RefreshHandler;
+import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -28,6 +27,9 @@ import butterknife.BindView;
  */
 
 public class SortContentDelegate extends XiaoXuDelegate {
+
+    private SectionAdapter mSectionAdapter = null;
+    private ArrayList<SectionHeadEntity> mData = null;
 
     @BindView(R2.id.sort_rv_list_content)
     RecyclerView mRecycleView = null;
@@ -76,16 +78,12 @@ public class SortContentDelegate extends XiaoXuDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        final JSONObject object = JSON.parseObject(response);
 
+                        mData = new SectionDataConverter().convertToEntityList(response);
+                        mSectionAdapter = new SectionAdapter
+                                (R.layout.item_section_content,R.layout.item_section_header,mData);
+                        mRecycleView.setAdapter(mSectionAdapter);
 
-                        mRecycleViewAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
-                        //todo **********************************??????????????????*******
-                        mRecycleViewAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
-                        //设置Adapter
-                        RECYCLERVIEW.setAdapter(mRecycleViewAdapter);
-                        //加一页
-                        BEAN.addIndex();
                         Toast.makeText(XiaoXu.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
                     }
                 })

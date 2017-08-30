@@ -21,10 +21,10 @@ public class SectionDataConverter {
         //本地加入head数据
         String titleData = "标题";
         ArrayList<String> titleList = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 10; i++) {
             titleData += i + 1;
             titleList.add(titleData);
-            titleData.substring(0, 2);
+            titleData = titleData.substring(0, 2);
         }
 
 

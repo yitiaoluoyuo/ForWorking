@@ -1,8 +1,6 @@
 package com.xiaoxu.xiaoxu_ec.main_delegates.sort.list;
 
 import com.xiaoxu.xiaoxu_core.ui.recycler.DataConverter;
-import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
-import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
@@ -46,11 +44,11 @@ public class SortListDataConverter extends DataConverter {
          *  测试数据
          */
 
-
+/*
         int categoryId = 100001;
         int categoryName = 1;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             categoryId += i;
             categoryName += i;
             final MultipleItemEntity entity = MultipleItemEntity.builder()
@@ -63,7 +61,7 @@ public class SortListDataConverter extends DataConverter {
 
         }
         //设置第一个分类标签为选中状态
-        dataList.get(0).setField(MultipleFields.TAG,true);
+        dataList.get(0).setField(MultipleFields.TAG,true);*/
         return dataList;
     }
 }

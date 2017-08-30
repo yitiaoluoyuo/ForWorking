@@ -59,8 +59,8 @@ public class SortListDelegate extends XiaoXuDelegate {
         int categoryId = 100001;
         String categoryName = "分类";
 
-        for (int i = 0; i < 30; i++) {
-            categoryId += i;
+        for (int i = 0; i < 4; i++) {
+            categoryId += i+1;
             categoryName += i+1;
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ID,categoryId)

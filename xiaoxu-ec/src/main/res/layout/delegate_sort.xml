@@ -29,7 +29,7 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.ContentFrameLayout
-            android:id="@+id/sort_vertical_list_container"
+            android:id="@+id/sort_list_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
