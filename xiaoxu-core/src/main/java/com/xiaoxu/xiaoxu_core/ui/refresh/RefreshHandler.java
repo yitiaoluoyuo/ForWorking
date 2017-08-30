@@ -51,15 +51,10 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
         REFRESH_LAYOUT.setOnRefreshListener(this);
     }
 
-    public static RefreshHandler create(
-            SwipeRefreshLayout swipeRefreshLayout,
-            RecyclerView recyclerView,
-            DataConverter converter) {
-        return new RefreshHandler(
-                swipeRefreshLayout,
-                recyclerView,
-                converter,
-                new PagingBean());
+    public static RefreshHandler create
+            (SwipeRefreshLayout swipeRefreshLayout, RecyclerView recyclerView, DataConverter converter) {
+        return new RefreshHandler
+                (swipeRefreshLayout, recyclerView, converter, new PagingBean());
     }
 
 
@@ -94,12 +89,15 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                     @Override
                     public void onSuccess(String response) {
                         final JSONObject object = JSON.parseObject(response);
+
                        /* BEAN.setTotal(object.getInteger("total"))
                                 .setPageSize(object.getInteger("page_size"));*/
-                        //设置Adapter
+
+
                         mRecycleViewAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
                         //todo **********************************??????????????????*******
                         mRecycleViewAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
+                        //设置Adapter
                         RECYCLERVIEW.setAdapter(mRecycleViewAdapter);
                         //加一页
                         BEAN.addIndex();

@@ -4,6 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -27,9 +28,9 @@ import java.util.List;
  *      getItemViewType(int position)
  *
  *
- * 适配多布局
+ * 适配多布局 需要传入Entity和ViewHolder
  */
-// TODO: 2017/8/27 不传入泛型时强制实现onBindView方法的原理？
+// TODO: 2017/8/27 强制实现带参数的构造方法的原理？
 
 public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
         implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener {
@@ -57,10 +58,10 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
     }
 
     public static MultipleRecyclerAdapter create(DataConverter converter) {
-        return new MultipleRecyclerAdapter(converter.convert());
+        return new MultipleRecyclerAdapter(converter.convertToEntityList());
     }
 
-    //设置不同的item布局
+    //设置不同的ItemType
     private void init() {
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);
         addItemType(ItemType.IMAGE, R.layout.item_multiple_image);
@@ -71,7 +72,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         //打开加载的动画效果
         openLoadAnimation();
         //设置多此执行动画
-        isFirstOnly(false);
+        isFirstOnly(true);
     }
 
 
@@ -151,11 +152,11 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
             case ItemType.BANNER:
                 if (!mIsInitBanner) {
                     //需要传入图片ListArray<string> urls 资源
-                    /*bannerImages = entity.getField(MultipleFields.BANNERS);
+                   /* bannerImages = entity.getField(MultipleFields.BANNERS);
                     final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
-                    BannerCreator.setDefault(convenientBanner, bannerImages, this);
+                    BannerCreator.setDefault(convenientBanner, bannerImages, this);*/
                     //设置初始化成功
-                    mIsInitBanner = true;*/
+                    mIsInitBanner = true;
                 }
                 break;
             default:

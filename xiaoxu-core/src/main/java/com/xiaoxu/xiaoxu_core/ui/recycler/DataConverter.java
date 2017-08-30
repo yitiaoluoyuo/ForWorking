@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 /**
  * Created by xiaoxu on 2017/8/27.
+ *
  * 数据的转换处理 entity的一个基类
  */
 
 public abstract class DataConverter {
 
-    //设置只有子类可以引用的权限,子类中实现了抽象方法给 ENTITIES_LIST赋值，才能调用，防止产生异常。
+    //设置只有子类可以引用的权限,子类中实现了抽象方法给 ENTITIES赋值，防止产生异常。
     protected final ArrayList<MultipleItemEntity> ENTITIES_LIST = new ArrayList<>();
     private String mJsonData = null;
 
-    //约束子类必须给 ENTITIES_LIST 赋值
-    public abstract ArrayList<MultipleItemEntity> convert();
+    //约束子类必须给 ENTITIES 赋值
+    public abstract ArrayList<MultipleItemEntity> convertToEntityList();
 
     public DataConverter setJsonData(String json) {
         this.mJsonData = json;

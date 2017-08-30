@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class IndexDataConverter extends DataConverter {
 
     @Override
-    public ArrayList<MultipleItemEntity> convert() {
+    public ArrayList<MultipleItemEntity> convertToEntityList() {
         //*******************************************拿到json数据**
         final JSONArray dataArray = JSON.parseObject(getJsonData()).getJSONObject("data").getJSONArray("list");
         final int size = dataArray.size();
@@ -37,7 +37,7 @@ public class IndexDataConverter extends DataConverter {
             final int status = data.getInteger("status");
             final String imageHost = data.getString("imageHost");
 
-            //int type = 3;
+            //int type = 0;
             /*if (imageHost == null && subtitle != null) {
                 type = ItemType.TEXT;
             } else if (imageHost != null && subtitle == null) {

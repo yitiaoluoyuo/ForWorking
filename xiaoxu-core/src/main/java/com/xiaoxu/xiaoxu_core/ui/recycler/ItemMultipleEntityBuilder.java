@@ -35,7 +35,7 @@ public class ItemMultipleEntityBuilder {
 
     public final MultipleItemEntity build() {
 
-        // TODO: 2017/8/30 构建者模式构建完成之后，返回构建的值 
+        // TODO: 2017/8/30 构建者模式构建完成之后，返回构建的值
         return new MultipleItemEntity(FIELDS);
     }
 }

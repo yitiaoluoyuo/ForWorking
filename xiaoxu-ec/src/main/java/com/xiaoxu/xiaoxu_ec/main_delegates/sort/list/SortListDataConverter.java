@@ -15,7 +15,7 @@ public class SortListDataConverter extends DataConverter {
 
 
     @Override
-    public ArrayList<MultipleItemEntity> convert() {
+    public ArrayList<MultipleItemEntity> convertToEntityList() {
 
         final ArrayList<MultipleItemEntity> dataList = new ArrayList<>();
         /**

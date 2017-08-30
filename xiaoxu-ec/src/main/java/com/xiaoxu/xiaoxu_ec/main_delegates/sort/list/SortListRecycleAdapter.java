@@ -36,7 +36,7 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
     @Override
     protected void convert(final MultipleViewHolder holder, final MultipleItemEntity entity) {
-        //super.convert(holder, entity);
+        //super.convertToEntityList(holder, entity);
         switch (holder.getItemViewType()) {
             case ItemType.VERTICAL_MENU_LIST:
                 final String name = entity.getField(MultipleFields.NAME);

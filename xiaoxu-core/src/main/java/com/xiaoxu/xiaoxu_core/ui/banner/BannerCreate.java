@@ -18,12 +18,13 @@ public class BannerCreate {
                                   ArrayList<String> banners,
                                   OnItemClickListener clickListener) {
 
+        //banner实现
         convenientBanner
-                .setPages(new HolderCreator(), banners)
-                .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
+                .setPages(new HolderCreator(), banners)//设置viewHolder和URLList
+                .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})//设置 导航点
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .setOnItemClickListener(clickListener)
-                .setPageTransformer(new DefaultTransformer())
+                .setOnItemClickListener(clickListener)//监听item点击
+                .setPageTransformer(new DefaultTransformer())//自定义翻页动画效果
                 .startTurning(3000)
                 .setCanLoop(true);
 
