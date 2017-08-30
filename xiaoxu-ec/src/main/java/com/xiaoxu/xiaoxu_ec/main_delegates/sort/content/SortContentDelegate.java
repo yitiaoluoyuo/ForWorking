@@ -2,22 +2,42 @@ package com.xiaoxu.xiaoxu_ec.main_delegates.sort.content;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.xiaoxu.xiaoxu_core.application.XiaoXu;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.net.RestClient;
+import com.xiaoxu.xiaoxu_core.net.callback.IError;
+import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
+import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
+import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleRecyclerAdapter;
+import com.xiaoxu.xiaoxu_core.ui.refresh.RefreshHandler;
+import com.xiaoxu.xiaoxu_ec.R2;
+
+import butterknife.BindView;
 
 /**
  * Created by xiaoxu on 2017/8/28.
- * 展示分类商品
+ * 展示分类商品,点击sortList改变ContentDelegate的内容
+ * 创建ContentDelegate时需要传入分类ID
  */
 
 public class SortContentDelegate extends XiaoXuDelegate {
+
+    @BindView(R2.id.sort_rv_list_content)
+    RecyclerView mRecycleView = null;
 
     private static final String ARG_CATEGORY_ID = "CATEGORY_ID";
     private int mCategoryId = -1;
 
     //实例化时就传入categoryId fragment之间传递值非常实用的方法
-    public static final SortContentDelegate instance(int categoryId) {
+    //设置CategoryId
+    public static final SortContentDelegate newInstance(int categoryId) {
         final Bundle args = new Bundle();
         args.putInt(ARG_CATEGORY_ID, categoryId);
         final SortContentDelegate delegate = new SortContentDelegate();
@@ -25,6 +45,8 @@ public class SortContentDelegate extends XiaoXuDelegate {
         return delegate;
     }
 
+
+    //接收CategoryId
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +63,47 @@ public class SortContentDelegate extends XiaoXuDelegate {
 
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+
+        final StaggeredGridLayoutManager manager =
+                new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        mRecycleView.setLayoutManager(manager);
+        initData(mCategoryId);
+    }
+
+    private void initData(int categoryId) {
+        RestClient.builder()
+                .url("/product/list.do?keyword&categoryId="+categoryId+"&orderBy=price_desc")
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        final JSONObject object = JSON.parseObject(response);
+
+
+                        mRecycleViewAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
+                        //todo **********************************??????????????????*******
+                        mRecycleViewAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
+                        //设置Adapter
+                        RECYCLERVIEW.setAdapter(mRecycleViewAdapter);
+                        //加一页
+                        BEAN.addIndex();
+                        Toast.makeText(XiaoXu.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        Toast.makeText(XiaoXu.getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(XiaoXu.getApplicationContext(),"failure",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .build()
+                .get();
+
 
     }
 }

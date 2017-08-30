@@ -11,9 +11,12 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleRecyclerAdapter;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleViewHolder;
 import com.xiaoxu.xiaoxu_ec.R;
-import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateParent;
+import com.xiaoxu.xiaoxu_ec.main_delegates.sort.content.SortContentDelegate;
 
 import java.util.List;
+
+import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * Created by xiaoxu on 2017/8/28.
@@ -22,16 +25,16 @@ import java.util.List;
 
 public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
-    private final SortDelegateBottom SORT_DELEGATE;
+    private final SortDelegateParent SORT_DELEGATE_PARENT;
 
     private int mPrePosition = 0;
 
     // TODO: 2017/8/28 此处深入理解继承的奥妙 （*基础*）
-    protected SortListRecycleAdapter(List<MultipleItemEntity> data, SortDelegateBottom delegate) {
+    protected SortListRecycleAdapter(List<MultipleItemEntity> data, SortDelegateParent delegate) {
         super(data);
-        this.SORT_DELEGATE = delegate;
+        this.SORT_DELEGATE_PARENT = delegate;
         //添加垂直菜单布局
-        addItemType(ItemType.VERTICAL_MENU_LIST, R.layout.item_sort_vertical_list);
+        addItemType(ItemType.VERTICAL_MENU_LIST, R.layout.item_sort_list);
     }
 
     @Override
@@ -40,10 +43,12 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
         switch (holder.getItemViewType()) {
             case ItemType.VERTICAL_MENU_LIST:
                 final String name = entity.getField(MultipleFields.NAME);
+                final int categoryId = entity.getField(MultipleFields.ID);
                 final boolean isClick = entity.getField(MultipleFields.TAG);
-                final AppCompatTextView textView = holder.getView(R.id.sort_tv_list_item_name);
+                final AppCompatTextView textView = holder.getView(R.id.sort_tv_list_name);
                 final View line = holder.getView(R.id.sort_view_line);
                 final View itemView = holder.itemView;
+
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -59,6 +64,8 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
                             notifyItemChanged(currentPosition);
                             mPrePosition = currentPosition;
                             final int clickedItemId = getData().get(currentPosition).getField(MultipleFields.ID);
+                            showContent(categoryId);
+
                         }
                     }
                 });
@@ -74,10 +81,28 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
                     line.setBackgroundColor(ContextCompat.getColor(mContext, R.color.app_main));
                     itemView.setBackgroundColor(Color.WHITE);
                 }
-                holder.setText(R.id.sort_tv_list_item_name, name);
+                holder.setText(R.id.sort_tv_list_name, name);
                 break;
             default:
                 break;
         }
     }
+
+
+    private void showContent(int categoryId) {
+        final SortContentDelegate delegate = SortContentDelegate.newInstance(categoryId);
+        switchContent(delegate);
+    }
+
+    private void switchContent(SortContentDelegate delegate) {
+        final SortContentDelegate contentDelegate =
+                SupportHelper.findFragment(SORT_DELEGATE_PARENT.getChildFragmentManager(), SortContentDelegate.class);
+        if (contentDelegate != null) {
+            contentDelegate.getSupportDelegate().replaceFragment(delegate, false);
+        }
+    }
+
+
+
+
 }

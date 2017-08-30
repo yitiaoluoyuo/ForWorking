@@ -50,7 +50,7 @@ public class SortListDataConverter extends DataConverter {
         int categoryId = 100001;
         int categoryName = 1;
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 5; i++) {
             categoryId += i;
             categoryName += i;
             final MultipleItemEntity entity = MultipleItemEntity.builder()

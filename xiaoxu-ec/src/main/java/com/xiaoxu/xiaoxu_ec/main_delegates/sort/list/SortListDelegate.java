@@ -12,7 +12,7 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
-import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateParent;
 
 import java.util.ArrayList;
 
@@ -27,12 +27,12 @@ public class SortListDelegate extends XiaoXuDelegate {
 
 
 
-    @BindView(R2.id.sort_rv_vertical_menu_list)
+    @BindView(R2.id.sort_rv_list)
     RecyclerView mRecycleView = null;
 
     @Override
     public Object setLayout() {
-        return R.layout.delegate_sort_vertical_list;
+        return R.layout.delegate_sort_list;
     }
 
     private void initRecycleView(){
@@ -51,6 +51,8 @@ public class SortListDelegate extends XiaoXuDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+
+
 
         //添加测试数据
         final ArrayList<MultipleItemEntity> dataList = new ArrayList<>();
@@ -73,7 +75,7 @@ public class SortListDelegate extends XiaoXuDelegate {
         //设置第一个分类标签为选中状态
         dataList.get(0).setField(MultipleFields.TAG,true);
 
-        final SortDelegateBottom parentDelegate = new SortDelegateBottom();
+        final SortDelegateParent parentDelegate = new SortDelegateParent();
         final SortListRecycleAdapter adapter = new SortListRecycleAdapter(dataList,parentDelegate);
         mRecycleView.setAdapter(adapter);
         //Toast.makeText(getContext()," qingqiu chenggong ",Toast.LENGTH_LONG).show();
