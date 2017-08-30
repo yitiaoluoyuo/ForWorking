@@ -18,6 +18,7 @@ import java.util.List;
 public class SectionAdapter extends BaseSectionQuickAdapter<SectionHeadEntity,BaseViewHolder> {
 
     private static final RequestOptions OPTIONS = new RequestOptions()
+            .centerCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .dontAnimate();
 
@@ -54,6 +55,7 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionHeadEntity,Ba
         final AppCompatImageView imageView = helper.getView(R.id.iv_section);
         Glide.with(mContext)
                 .load(imageHost+mainImage)
+                .apply(OPTIONS)
                 .into(imageView);
     }
 }

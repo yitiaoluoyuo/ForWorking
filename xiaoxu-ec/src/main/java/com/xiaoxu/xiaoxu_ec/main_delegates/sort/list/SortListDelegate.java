@@ -66,19 +66,21 @@ public class SortListDelegate extends XiaoXuDelegate {
                     .setField(MultipleFields.ID,categoryId)
                     .setField(MultipleFields.NAME,categoryName)
                     .setField(MultipleFields.ITEM_TYPE, ItemType.VERTICAL_MENU_LIST)
-                    .setField(MultipleFields.TAG,false)
+                        .setField(MultipleFields.TAG,false)
                     .build();
             dataList.add(entity);
             categoryName=categoryName.substring(0,2);
 
+            //设置第一个分类标签为选中状态
+            dataList.get(0).setField(MultipleFields.TAG,true);
+
         }
-        //设置第一个分类标签为选中状态
-        dataList.get(0).setField(MultipleFields.TAG,true);
+
 
         final SortDelegateParent parentDelegate = new SortDelegateParent();
         final SortListRecycleAdapter adapter = new SortListRecycleAdapter(dataList,parentDelegate);
         mRecycleView.setAdapter(adapter);
-        //Toast.makeText(getContext()," qingqiu chenggong ",Toast.LENGTH_LONG).show();
+
 
 
 

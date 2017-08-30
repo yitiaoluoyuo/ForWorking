@@ -40,7 +40,8 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
     @Override
     protected void convert(final MultipleViewHolder holder, final MultipleItemEntity entity) {
-        //super.convertToEntityList(holder, entity);
+        //super.convert(holder, entity);
+
         switch (holder.getItemViewType()) {
             case ItemType.VERTICAL_MENU_LIST:
                 final String name = entity.getField(MultipleFields.NAME);
@@ -54,7 +55,7 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
                     @Override
                     public void onClick(View v) {
                         //点击事件处理
-                        final int currentPosition = holder.getAdapterPosition();
+                        int currentPosition = holder.getAdapterPosition();
                         if (mPrePosition != currentPosition) {
                             //还原上一个
                             getData().get(mPrePosition).setField(MultipleFields.TAG, false);
@@ -64,8 +65,8 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
                             entity.setField(MultipleFields.TAG, true);
                             notifyItemChanged(currentPosition);
                             mPrePosition = currentPosition;
-                            final int clickedItemId = getData().get(currentPosition).getField(MultipleFields.ID);
-                            showContent(categoryId);
+                            final int categoryId = getData().get(currentPosition).getField(MultipleFields.ID);
+                            //showContent(categoryId);
 
                         }
                     }

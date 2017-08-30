@@ -26,18 +26,19 @@ public class IndexDataConverter extends DataConverter {
         /*
                 单一格式的数据处理
          */
-        for (int i = 0; i < size; i++) {
-            final JSONObject data = dataArray.getJSONObject(i);
-            final int id = data.getInteger("id");
-            final int categoryId = data.getInteger("categoryId");
-            final String name = data.getString("name");
-            final String subtitle = data.getString("subtitle");
-            final String mainImage = data.getString("mainImage");
-            final float price = data.getFloat("price");
-            final int status = data.getInteger("status");
-            final String imageHost = data.getString("imageHost");
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < size; i++) {
+                final JSONObject data = dataArray.getJSONObject(i);
+                final int id = data.getInteger("id");
+                final int categoryId = data.getInteger("categoryId");
+                final String name = data.getString("name");
+                final String subtitle = data.getString("subtitle");
+                final String mainImage = data.getString("mainImage");
+                final float price = data.getFloat("price");
+                final int status = data.getInteger("status");
+                final String imageHost = data.getString("imageHost");
 
-            //int type = 0;
+                //int type = 0;
             /*if (imageHost == null && subtitle != null) {
                 type = ItemType.TEXT;
             } else if (imageHost != null && subtitle == null) {
@@ -47,21 +48,24 @@ public class IndexDataConverter extends DataConverter {
             }*/
 
 
-            final MultipleItemEntity entity = MultipleItemEntity
-                    .builder()
-                    .setField(MultipleFields.ID,id)
-                    .setField(MultipleFields.CATEGORY_ID,categoryId)
-                    .setField(MultipleFields.NAME,name)
-                    .setField(MultipleFields.SUBTITLE,subtitle)
-                    .setField(MultipleFields.MAIN_IMAGE,mainImage)
-                    .setField(MultipleFields.PRICE,price)
-                    .setField(MultipleFields.STATUS,status)
-                    .setField(MultipleFields.IMAGE_HOST,imageHost)
-                    .setField(MultipleFields.SPAN_SIZE,2)
-                    .setField(MultipleFields.ITEM_TYPE,3)
-                    .build();
-            ENTITIES_LIST.add(entity);
+                final MultipleItemEntity entity = MultipleItemEntity
+                        .builder()
+                        .setField(MultipleFields.ID,id)
+                        .setField(MultipleFields.CATEGORY_ID,categoryId)
+                        .setField(MultipleFields.NAME,name)
+                        .setField(MultipleFields.SUBTITLE,subtitle)
+                        .setField(MultipleFields.MAIN_IMAGE,mainImage)
+                        .setField(MultipleFields.PRICE,price)
+                        .setField(MultipleFields.STATUS,status)
+                        .setField(MultipleFields.IMAGE_HOST,imageHost)
+                        .setField(MultipleFields.SPAN_SIZE,2)
+                        .setField(MultipleFields.ITEM_TYPE,3)
+                        .build();
+                ENTITIES_LIST.add(entity);
+            }
+
         }
+
 
 
 
