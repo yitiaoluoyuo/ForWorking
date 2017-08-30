@@ -6,7 +6,8 @@
     <color name="colorGrayLight">#c9c9c9</color>
     <color name="item_back_ground">#f1f1f1</color>
     <color name="we_chat_gray">#323232</color>
-    <color name="app_main">@android:color/holo_orange_dark</color>
+    <color name="app_main">#FFFD8701</color>
+    <color name="app_orange">#FFFD8701</color>
     <color name="app_background">#1111</color>
     <color name="we_chat_black">#323232</color>
     <color name="item_background">#F1F1F1</color>
