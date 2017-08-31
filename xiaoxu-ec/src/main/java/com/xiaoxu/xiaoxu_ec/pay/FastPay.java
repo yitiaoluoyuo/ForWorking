@@ -11,9 +11,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
+import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 
@@ -83,6 +83,7 @@ public class FastPay implements View.OnClickListener{
                         XiaoXuLogger.d("PAY_SIGN", paySign);
                         //必须是异步的调用客户端支付接口
                         final PayAsyncTask payAsyncTask = new PayAsyncTask(mActivity, mIALPayResultListener);
+                        //多线程同时支付
                         payAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, paySign);
                     }
                 })

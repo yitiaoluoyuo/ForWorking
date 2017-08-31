@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 
 import com.alipay.sdk.app.PayTask;
+import com.xiaoxu.xiaoxu_core.ui.loader.XiaoXuLoader;
 import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 
 /**
@@ -41,7 +42,7 @@ public class PayAsyncTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        LatteLoader.stopLoading();
+        XiaoXuLoader.stopLoading();
         final PayResult payResult = new PayResult(result);
         // 支付宝返回此次支付结构及加签，建议对支付宝签名信息拿签约是支付宝提供的公钥做验签
         final String resultInfo = payResult.getResult();
