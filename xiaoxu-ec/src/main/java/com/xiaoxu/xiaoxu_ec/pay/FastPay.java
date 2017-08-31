@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 
 /**
@@ -79,7 +80,7 @@ public class FastPay implements View.OnClickListener{
                     @Override
                     public void onSuccess(String response) {
                         final String paySign = JSON.parseObject(response).getString("result");
-                        LatteLogger.d("PAY_SIGN", paySign);
+                        XiaoXuLogger.d("PAY_SIGN", paySign);
                         //必须是异步的调用客户端支付接口
                         final PayAsyncTask payAsyncTask = new PayAsyncTask(mActivity, mIALPayResultListener);
                         payAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, paySign);
@@ -89,7 +90,7 @@ public class FastPay implements View.OnClickListener{
                 .post();
     }
 
-    private void weChatPay(int orderId) {
+    /*private void weChatPay(int orderId) {
         LatteLoader.stopLoading();
         final String weChatPrePayUrl = "你的服务端微信预支付地址" + orderId;
         LatteLogger.d("WX_PAY", weChatPrePayUrl);
@@ -125,16 +126,17 @@ public class FastPay implements View.OnClickListener{
                 })
                 .build()
                 .post();
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        // TODO: 2017/8/31 library 不能使用switch case
         if (id == R.id.btn_dialog_pay_alpay) {
             alPay(mOrderID);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_wechat) {
-            weChatPay(mOrderID);
+            //weChatPay(mOrderID);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_cancel) {
             mDialog.cancel();
