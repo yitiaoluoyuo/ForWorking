@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
+import android.widget.Toast;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
@@ -29,7 +30,7 @@ import butterknife.OnClick;
  * Created by xiaoxu on 2017/8/26.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
 
     private ShopCartAdapter mAdapter = null;
     //
@@ -64,6 +65,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
             mAdapter.setIsSelectedAll(false);
             mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
         }
+        checkItemCount();
     }
 
 
@@ -107,7 +109,6 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
     }
 
 
-
     @Override
     public Object setLayout() {
         return R.layout.delegate_shop_cart;
@@ -147,7 +148,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
         final String productMainImage = "dbf30c59-2178-4257-a22c-a03704c32863.png";
         final double productPrice = 60.253;
 
-        for (int i = 0; i <20 ; i++) {
+        for (int i = 0; i < 20; i++) {
             MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.MAIN_IMAGE, productMainImage)
                     .setField(MultipleFields.SUBTITLE, i)
@@ -155,13 +156,12 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
                     .setField(MultipleFields.QUANTITY, quantity)
                     .setField(MultipleFields.PRICE, productPrice)
                     .setField(MultipleFields.PRODUCT_ID, productId)
-                    .setField(MultipleFields.ITEM_TYPE,6)
-                    .setField(MultipleFields.IS_SELECTED,false)
-                    .setField(MultipleFields.POSITION,i)
+                    .setField(MultipleFields.ITEM_TYPE, 6)
+                    .setField(MultipleFields.IS_SELECTED, false)
+                    .setField(MultipleFields.POSITION, i)
                     .build();
             dataList.add(entity);
         }
-
 
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -170,7 +170,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
         mRecyclerView.setAdapter(mAdapter);
 
 
-
+        checkItemCount();
     }
 
 
@@ -178,7 +178,8 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
     private void checkItemCount() {
         final int count = mAdapter.getItemCount();
         if (count == 0) {
-           /* final View stubView = mStubNoItem.inflate();
+            // TODO: 2017/8/31 API
+            final View stubView = mStubNoItem.inflate();
             final AppCompatTextView tvToBuy =
                     (AppCompatTextView) stubView.findViewById(R.id.tv_stub_to_buy);
             tvToBuy.setOnClickListener(new View.OnClickListener() {
@@ -187,9 +188,9 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
                     Toast.makeText(getContext(), "你该购物啦！", Toast.LENGTH_SHORT).show();
                 }
             });
-            mRecyclerView.setVisibility(View.GONE);*/
+            mRecyclerView.setVisibility(View.GONE);
         } else {
-          /*  mRecyclerView.setVisibility(View.VISIBLE);*/
+            mRecyclerView.setVisibility(View.VISIBLE);
         }
     }
 }
