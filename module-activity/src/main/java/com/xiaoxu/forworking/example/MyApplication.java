@@ -19,7 +19,7 @@ public class MyApplication extends Application {
         super.onCreate();
         XiaoXu.init(this)
                 .withApiHost("http://happymmall.com/")
-                .withLoaderDelayed(5000)
+                .withLoaderDelayed(100)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontXiaoXuModule())
                 .withInterceptor(new DebugInterceptor("index",R.raw.testjson))

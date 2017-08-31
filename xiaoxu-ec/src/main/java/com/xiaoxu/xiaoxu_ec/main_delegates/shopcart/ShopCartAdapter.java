@@ -11,6 +11,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.net.RestClient;
+import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
@@ -34,6 +36,10 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     //设置CartItemListener
     public interface ICartItemListener {
         void onItemClick(double itemTotalPrice);
+    }
+
+    public void setCartItemListener(ICartItemListener listener) {
+        this.mCartItemListener = listener;
     }
 
     private static final RequestOptions OPTIONS = new RequestOptions()
@@ -121,6 +127,62 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         }
                     }
                 });
+
+                //添加加减事件
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = item.getField(MultipleFields.QUANTITY);
+                        if (Integer.parseInt(textViewCount.getText().toString()) > 1) {
+                            RestClient.builder()
+                                    .url("/product/list.do?keyword&categoryId=100004&orderBy=price_desc")
+                                    .loader(mContext)
+                                    //.params("count", currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            int countNum = Integer.parseInt(textViewCount.getText().toString());
+                                            countNum--;
+                                            textViewCount.setText(String.valueOf(countNum));
+                                            if (mCartItemListener != null) {
+                                                mTotalPrice = mTotalPrice - price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemListener.onItemClick(itemTotal);
+                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .get();
+                        }
+                    }
+                });
+
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = item.getField(MultipleFields.QUANTITY);
+                        RestClient.builder()
+                                .url("/product/list.do?keyword&categoryId=100004&orderBy=price_desc")
+                                .loader(mContext)
+                                //.params("count", currentCount)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        int countNum = Integer.parseInt(textViewCount.getText().toString());
+                                        countNum++;
+                                        textViewCount.setText(String.valueOf(countNum));
+                                        if (mCartItemListener != null) {
+                                            mTotalPrice = mTotalPrice + price;
+                                            final double itemTotal = countNum * price;
+                                            mCartItemListener.onItemClick(itemTotal);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .get();
+                    }
+                });
+
 
 
 

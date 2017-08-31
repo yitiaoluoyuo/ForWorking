@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * Created by xiaoxu on 2017/8/26.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess ,ShopCartAdapter.ICartItemListener{
 
     private ShopCartAdapter mAdapter = null;
     //
@@ -166,6 +166,9 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mAdapter = new ShopCartAdapter(dataList);
+
+        mAdapter.setCartItemListener(this);
+
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -192,5 +195,11 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
         } else {
             mRecyclerView.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onItemClick(double itemTotalPrice) {
+
+        mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
     }
 }
