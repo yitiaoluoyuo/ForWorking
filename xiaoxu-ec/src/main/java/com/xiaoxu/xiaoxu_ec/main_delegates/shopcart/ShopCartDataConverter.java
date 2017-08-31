@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xiaoxu.xiaoxu_core.ui.recycler.DataConverter;
+import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 
@@ -50,6 +51,9 @@ public class ShopCartDataConverter extends DataConverter {
                     .setField(MultipleFields.QUANTITY, quantity)
                     .setField(MultipleFields.PRICE, productPrice)
                     .setField(MultipleFields.PRODUCT_ID, productId)
+                    .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_SHOP_CART)
+                    .setField(MultipleFields.IS_SELECTED,false)
+                    .setField(MultipleFields.POSITION,i)
                     .build();
             dataList.add(entity);
 

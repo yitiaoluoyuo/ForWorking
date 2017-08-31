@@ -29,6 +29,6 @@ public enum MultipleFields {
     /**
      * shop cart
      */
-    QUANTITY
+    QUANTITY,IS_SELECTED,POSITION
 
 }
