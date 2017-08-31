@@ -3,18 +3,17 @@ package com.xiaoxu.xiaoxu_ec.pay;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
+import com.xiaoxu.xiaoxu_core.application.XiaoXu;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
-import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 
 /**
@@ -75,20 +74,21 @@ public class FastPay implements View.OnClickListener{
         final String singUrl = "你的服务端支付地址" + orderId;
         //获取签名字符串
         RestClient.builder()
-                .url(singUrl)
+                .url("HTTPS://QR.ALIPAY.COM/FKX03091M5YHG2LERT2E80")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        final String paySign = JSON.parseObject(response).getString("result");
+                       /* final String paySign = JSON.parseObject(response).getString("result");
                         XiaoXuLogger.d("PAY_SIGN", paySign);
                         //必须是异步的调用客户端支付接口
                         final PayAsyncTask payAsyncTask = new PayAsyncTask(mActivity, mIALPayResultListener);
                         //多线程同时支付
-                        payAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, paySign);
+                        payAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, paySign);*/
+                        Toast.makeText(XiaoXu.getApplicationContext(),response+"pay finished",Toast.LENGTH_LONG).show();
                     }
                 })
                 .build()
-                .post();
+                .get();
     }
 
     /*private void weChatPay(int orderId) {

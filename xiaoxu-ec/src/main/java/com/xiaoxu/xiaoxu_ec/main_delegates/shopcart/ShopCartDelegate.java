@@ -116,7 +116,7 @@ public class ShopCartDelegate extends BottomItemDelegate
 
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
-        //createOrder();
+        createOrder();
     }
 
     //创建订单，注意，和支付是没有关系的
@@ -125,7 +125,7 @@ public class ShopCartDelegate extends BottomItemDelegate
         final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
         //加参数
         RestClient.builder()
-                .url("HTTPS://QR.ALIPAY.COM/FKX03091M5YHG2LERT2E80")
+                .url(orderUrl)
                 .loader(getContext())
                 //.params(orderParams)
                 .success(new ISuccess() {
