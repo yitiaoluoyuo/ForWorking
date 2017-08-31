@@ -11,17 +11,20 @@ import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -109,6 +112,38 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess ,Sh
     }
 
 
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay() {
+        createOrder();
+    }
+
+    //创建订单，注意，和支付是没有关系的
+    private void createOrder() {
+        final String orderUrl = "/product/list.do?keyword&categoryId=100004&orderBy=price_desc";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        //加参数
+        RestClient.builder()
+                .url(orderUrl)
+                .loader(getContext())
+                //.params(orderParams)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+                        XiaoXuLogger.d("ORDER", response);
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.create(ShopCartDelegate.this)
+                                .setPayResultListener(ShopCartDelegate.this)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
+                    }
+                })
+                .build()
+                .get();
+
+    }
+
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_shop_cart;
@@ -171,6 +206,8 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess ,Sh
 
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
 
 
         checkItemCount();
