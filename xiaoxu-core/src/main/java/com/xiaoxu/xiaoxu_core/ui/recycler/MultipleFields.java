@@ -12,17 +12,23 @@ public enum MultipleFields {
     IMAGE_URL,
     BANNERS,
     SPAN_SIZE,
+    TAG,
 
+    /**
+     * users
+     */
 
-    ID,
-    CATEGORY_ID,
-    NAME,
-    SUBTITLE,
-    MAIN_IMAGE,
-    PRICE,
-    STATUS,
-    IMAGE_HOST,
+    USER_ID,
 
-    TAG
+    /**
+     * products
+     */
+    ID, CATEGORY_ID,PRODUCT_ID, NAME,
+    SUBTITLE, MAIN_IMAGE, PRICE, STATUS, IMAGE_HOST,PRODUCT_STATUS,PRODUCT_STOCK,
+
+    /**
+     * shop cart
+     */
+    QUANTITY
 
 }
