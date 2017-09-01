@@ -66,7 +66,7 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
                             notifyItemChanged(currentPosition);
                             mPrePosition = currentPosition;
                             final int categoryId = getData().get(currentPosition).getField(MultipleFields.ID);
-                            //showContent(categoryId);
+                            showContent(categoryId);
 
                         }
                     }
@@ -100,7 +100,7 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
         final XiaoXuDelegate contentDelegate =
                 SupportHelper.findFragment(SORT_DELEGATE_PARENT.getChildFragmentManager(), SortContentDelegate.class);
         if (contentDelegate != null) {
-            contentDelegate.getSupportDelegate().replaceFragment(delegate, false);
+            contentDelegate.getSupportDelegate().replaceFragment(delegate, false);//是否加入回退栈
         }
     }
 

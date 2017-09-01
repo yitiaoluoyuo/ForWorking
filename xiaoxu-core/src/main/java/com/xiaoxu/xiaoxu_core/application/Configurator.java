@@ -1,5 +1,6 @@
 package com.xiaoxu.xiaoxu_core.application;
 
+import android.app.Activity;
 import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -103,11 +104,11 @@ public class Configurator {
         return this;
     }*/
 
-    /*public final Configurator withActivity(Activity activity) {
+    public final Configurator withActivity(Activity activity) {
         XiaoXu_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
         return this;
     }
-*/
+
    /* public Configurator withJavascriptInterface(@NonNull String name) {
         XiaoXu_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
         return this;

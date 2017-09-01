@@ -2,6 +2,15 @@
 <items version="2" >
 
     <item
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a84fb9f1339c95775cf203dcc6a7ddf7b0738dd6">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f18d56746afd27625a4ad76ccae042d292a81f05\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="D:\ForWorking\ForWorking\xiaoxu-ec\build\intermediates\bundles\default\classes.jar"
         jumboMode="false"
@@ -9,6 +18,15 @@
         revision="25.0.0"
         sha1="c337d48431c4107f7f1aa30e8450a78793e966bf">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\module-activity\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b50f2cd90fa8e5748605d013a813747459180d32\classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -36,6 +54,15 @@
         revision="25.0.0"
         sha1="b1bea11bfd279aa6efacf8b9cf531a79891114f2">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\alipaySdk-20161222_8f396ee2b6e30104f015775ebf71f72dde73b026.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\xiaoxu-ec\build\intermediates\bundles\default\libs\alipaySdk-20161222.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b1bea11bfd279aa6efacf8b9cf531a79891114f2">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\8\alipaySdk-20161222_8f396ee2b6e30104f015775ebf71f72dde73b026\classes.dex" />
     </item>
 
 </items>

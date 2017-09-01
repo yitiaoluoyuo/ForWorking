@@ -7,4 +7,6 @@ package com.xiaoxu.xiaoxu_core.delegates;
 
 public abstract class PermissionCheckerDelegate extends BaseDelegate {
 
+
+
 }

@@ -12,6 +12,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * Created by xiaoxu on 2017/8/28.
+ *
  */
 
 public class GoodsDetailDelegate extends XiaoXuDelegate {
