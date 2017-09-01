@@ -26,7 +26,7 @@ import me.yokeyword.fragmentation.SupportHelper;
 
 public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
-    private final SortDelegateParent SORT_DELEGATE_PARENT;
+            private final SortDelegateParent SORT_DELEGATE_PARENT;
 
     private int mPrePosition = 0;
 
@@ -92,22 +92,22 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
 
     private void showContent(int categoryId) {
-        final SortContentDelegate delegate = SortContentDelegate.newInstance(categoryId);
-        switchContent(delegate);
+        final SortContentDelegate delegateNew = SortContentDelegate.newInstance(categoryId);
+        switchContent(delegateNew);
     }
 
-    private void switchContent(SortContentDelegate delegate) {
-        if (delegate.isAdded()){
+    private void switchContent(SortContentDelegate delegateNew) {
+        if (!delegateNew.isAdded()) {
             final XiaoXuDelegate contentDelegate =
                     SupportHelper.findFragment(SORT_DELEGATE_PARENT.getChildFragmentManager(), SortContentDelegate.class);
             if (contentDelegate != null) {
 
-                contentDelegate.getSupportDelegate().replaceFragment(delegate, false);//是否加入回退栈
+                contentDelegate.getSupportDelegate().replaceFragment(delegateNew, false);//是否加入回退栈
             }
+        } else {
+
         }
-
     }
-
 
 
 
