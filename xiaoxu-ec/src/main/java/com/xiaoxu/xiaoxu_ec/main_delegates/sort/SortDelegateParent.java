@@ -27,7 +27,11 @@ public class SortDelegateParent extends BottomItemDelegate {
         //把左边的sortListDelegate加载到SortDelegateBParent
         getSupportDelegate().loadRootFragment(R.id.sort_list_container,listDelegate);
         //默认显示分类  100001
-        getSupportDelegate().loadRootFragment(R.id.sort_content_container, SortContentDelegate.newInstance(100001));
+        final SortContentDelegate sortContentDelegate = SortContentDelegate.newInstance(100001);
+        if(!sortContentDelegate.isAdded()){
+            getSupportDelegate().loadRootFragment(R.id.sort_content_container,sortContentDelegate );
+        }
+
 
     }
 

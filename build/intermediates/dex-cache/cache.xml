@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-annotations\build\libs\xiaoxu-annotations.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ab0c593a491d4a89add2a9f77393c2639c8458c5">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-ec\build\intermediates\bundles\default\libs\alipaySdk-20161222.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b1bea11bfd279aa6efacf8b9cf531a79891114f2">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\alipaySdk-20161222_8f396ee2b6e30104f015775ebf71f72dde73b026.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-ec\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b1b8725804b4d464dd3a9da666d58d2ea0cd846">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-core\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="adec8b118f2a24ad761745ff313eaf63b10014fa">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_9b9a7514d43eda7240f7e121d66a35fbb05da75c.jar" />
+    </item>
+
+</items>

@@ -13,4 +13,8 @@ public class ItemType {
     public static final int BANNER = 4;
     public static final int VERTICAL_MENU_LIST = 5;
     public static final int ITEM_SHOP_CART = 6;
+    public static final int ITEM_NORMAL = 7;
+    public static final int ITEM_AVATAR = 8;
+    public static final int ITEM_SWITCH = 9;
+
 }

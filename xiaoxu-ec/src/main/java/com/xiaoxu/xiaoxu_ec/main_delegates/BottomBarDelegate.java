@@ -9,7 +9,7 @@ import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomTabBean;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.main_delegates.find.FindMainDelegateBottom;
 import com.xiaoxu.xiaoxu_ec.main_delegates.index.IndexDelegate;
-import com.xiaoxu.xiaoxu_ec.main_delegates.mine.MineMainDelegateBottom;
+import com.xiaoxu.xiaoxu_ec.main_delegates.mine.MineDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.shopcart.ShopCartDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.sort.SortDelegateParent;
 
@@ -30,7 +30,7 @@ public class BottomBarDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{fa-sort}", "分类"), new SortDelegateParent());
         items.put(new BottomTabBean("{fa-compass}", "发现"), new FindMainDelegateBottom());
         items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new ShopCartDelegate());
-        items.put(new BottomTabBean("{fa-user}", "我的"), new MineMainDelegateBottom());
+        items.put(new BottomTabBean("{fa-user}", "我的"), new MineDelegate());
         return builder.addItems(items).build();
     }
 
