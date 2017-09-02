@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.main_delegates.mine.List.ListAdapter;
@@ -36,6 +37,8 @@ public class UserProfileDelegate extends XiaoXuDelegate {
 
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+
+        XiaoXuLogger.d("CacheDir:  "+getContext().getCacheDir());
 
         final ListBean image = new ListBean.Builder()
                 .setItemType(ItemType.ITEM_AVATAR)

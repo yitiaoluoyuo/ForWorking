@@ -9,6 +9,7 @@ import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -109,6 +110,11 @@ public class Configurator {
 
     public final Configurator withActivity(Activity activity) {
         XiaoXu_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+        return this;
+    }
+
+    public final Configurator withCacheDir(File cacheDir) {
+        XiaoXu_CONFIGS.put(ConfigKeys.CACHE_DIR, cacheDir);
         return this;
     }
 

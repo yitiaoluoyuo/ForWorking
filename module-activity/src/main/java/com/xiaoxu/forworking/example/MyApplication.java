@@ -14,6 +14,8 @@ import com.xiaoxu.xiaoxu_ec.icon.FontXiaoXuModule;
 
 public class MyApplication extends Application {
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();

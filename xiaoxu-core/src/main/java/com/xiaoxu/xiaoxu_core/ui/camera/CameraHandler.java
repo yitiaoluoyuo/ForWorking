@@ -1,13 +1,16 @@
 package com.xiaoxu.xiaoxu_core.ui.camera;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -26,7 +29,9 @@ import java.io.File;
  * 照片处理类
  */
 
-public class CameraHandler  implements View.OnClickListener {
+public class CameraHandler implements View.OnClickListener {
+
+
 
     private final AlertDialog DIALOG;
     private final PermissionCheckerDelegate DELEGATE;
@@ -63,34 +68,48 @@ public class CameraHandler  implements View.OnClickListener {
 
     private void takePhoto() {
         final String currentPhotoName = getPhotoName();
+        Uri CONTENT_URI = null;
+        File tempFile = null;
 
         final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         //利用工具类创建相册文件
-        final File tempFile = new File(FileUtilByXiaoXu.CAMERA_PHOTO_DIR, currentPhotoName);
+        //判断SD卡是否挂载
+        if (TextUtils.equals(Environment.getExternalStorageState(),Environment.MEDIA_MOUNTED)){
+             tempFile = new File(FileUtilByXiaoXu.CAMERA_PHOTO_DIR, currentPhotoName);
+             CONTENT_URI=MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            XiaoXuLogger.d("tempFile   sd:"+tempFile+",    CONTENT_URI  sd:"+ CONTENT_URI);
+        }else{
+            //The content:// style URI for the internal storage.
+            CONTENT_URI=MediaStore.Images.Media.INTERNAL_CONTENT_URI;
+            @SuppressLint("SdCardPath")
+            String a = "/data/user/0/com.xiaoxu.forworking.example/files";
+            tempFile = new File(a, currentPhotoName);
+            XiaoXuLogger.d("tempFile  in :"+tempFile+",   CONTENT_URI  in:"+CONTENT_URI);
+        }
+
+
         //兼容7.0及以上的写法
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
             final ContentValues contentValues = new ContentValues(1);
             contentValues.put(MediaStore.Images.Media.DATA, tempFile.getPath());
             final Uri uri = DELEGATE.getContext().getContentResolver().
-                    insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                    insert(CONTENT_URI, contentValues);
             //需要将Uri路径转化为实际路径
             final File realFile =
                     FileUtils.getFileByPath(FileUtilByXiaoXu.getRealFilePath(DELEGATE.getContext(), uri));
+            XiaoXuLogger.d("realFile :"+realFile+",   CONTENT_URI:"+CONTENT_URI);
             final Uri realUri = Uri.fromFile(realFile);
 
             CameraImageBean.getInstance().setPath(realUri);
-
+            // TODO: 2017/9/2
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 
         } else {
             final Uri fileUri = Uri.fromFile(tempFile);
             CameraImageBean.getInstance().setPath(fileUri);
-
             String name= MediaStore.EXTRA_OUTPUT;
-            XiaoXuLogger.d("110",name);
-
             intent.putExtra(name, fileUri);
         }
         DELEGATE.startActivityForResult(intent, RequestCodes.TAKE_PHOTO);
