@@ -3,7 +3,7 @@ package com.xiaoxu.xiaoxu_core.interceptors;
 import android.support.annotation.NonNull;
 import android.support.annotation.RawRes;
 
-import com.xiaoxu.xiaoxu_core.util.file.FileUtil;
+import com.xiaoxu.xiaoxu_core.util.file.FileUtilByXiaoXu;
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ public class DebugInterceptor extends BaseInterceptor {
     }
 
     private Response debugResponse(Chain chain, @RawRes int rawId) {
-        final String json = FileUtil.getRawFile(rawId);
+        final String json = FileUtilByXiaoXu.getRawFile(rawId);
         return getResponse(chain, json);
     }
 

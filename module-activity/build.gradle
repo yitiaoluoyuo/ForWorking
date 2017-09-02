@@ -28,4 +28,5 @@ dependencies {
     compile project(':xiaoxu-ec')
     //annotationProcessor官方推荐的新版注解解析器（apt为老版）
     annotationProcessor project(':xiaoxu-compiler')
+    compile project(':xiaoxu-annotations')
 }

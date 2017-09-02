@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import com.xiaoxu.xiaoxu_core.application.XiaoXu;
 import com.xiaoxu.xiaoxu_core.net.callback.IRequest;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
-import com.xiaoxu.xiaoxu_core.util.file.FileUtil;
+import com.xiaoxu.xiaoxu_core.util.file.FileUtilByXiaoXu;
 
 import java.io.File;
 import java.io.InputStream;
@@ -42,9 +42,9 @@ public class SaveFileTask extends AsyncTask<Object,Void,File> {
             extension = "";
         }
         if (name == null) {
-            return FileUtil.writeToDisk(is, downloadDir, extension.toUpperCase(), extension);
+            return FileUtilByXiaoXu.writeToDisk(is, downloadDir, extension.toUpperCase(), extension);
         } else {
-            return FileUtil.writeToDisk(is, downloadDir, name);
+            return FileUtilByXiaoXu.writeToDisk(is, downloadDir, name);
         }
     }
 
@@ -63,7 +63,7 @@ public class SaveFileTask extends AsyncTask<Object,Void,File> {
     //如果下载的是apk文件则自动安装
     // TODO: 2017/8/25 需要加入dialog询问是否需要安装 
     private void autoInstallApk(File file) {
-        if (FileUtil.getExtension(file.getPath()).equals("apk")) {
+        if (FileUtilByXiaoXu.getExtension(file.getPath()).equals("apk")) {
             final Intent install = new Intent();
             install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             install.setAction(Intent.ACTION_VIEW);

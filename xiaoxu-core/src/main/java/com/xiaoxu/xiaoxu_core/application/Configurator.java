@@ -3,6 +3,7 @@ package com.xiaoxu.xiaoxu_core.application;
 import android.app.Activity;
 import android.os.Handler;
 
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -48,11 +49,13 @@ public class Configurator {
 
     //配置完成时调用
     public final void configure() {
+
         //配置完成时，进行字体图标的初始化
         initIcons();
         Logger.addLogAdapter(new AndroidLogAdapter());
         XiaoXu_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
-        //Utils.init(Latte.getApplicationContext());
+        //必须在CONFIG_READY之后执行
+        Utils.init(XiaoXu.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {
