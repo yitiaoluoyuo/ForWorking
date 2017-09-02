@@ -43,7 +43,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="5837710f5473a358f3923ed26d508bcaf2395d2a">
+        sha1="79c2255096ab549ea69b0849b8595f2e2233bbe7">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
     </item>
     <item
@@ -52,7 +52,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="75bfb2a434f0d99d5854fecb85192127e10fe8f4">
+        sha1="86e8db22ad78fa094a6f7913ba6b5cac11e2af4a">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_9b9a7514d43eda7240f7e121d66a35fbb05da75c.jar" />
     </item>
     <item

@@ -164,6 +164,11 @@ public class RestClient {
         request(HttpMethod.DELETE);
     }
 
+
+    public final void upload(){
+        request(HttpMethod.UPLOAD);
+    }
+
     public final void download() {
         new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME,
                 SUCCESS, FAILURE, ERROR)

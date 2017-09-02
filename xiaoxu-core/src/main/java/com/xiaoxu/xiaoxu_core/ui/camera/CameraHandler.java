@@ -17,6 +17,7 @@ import com.blankj.utilcode.util.FileUtils;
 import com.xiaoxu.xiaoxu_core.R;
 import com.xiaoxu.xiaoxu_core.delegates.PermissionCheckerDelegate;
 import com.xiaoxu.xiaoxu_core.util.file.FileUtilByXiaoXu;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 
 import java.io.File;
 
@@ -86,7 +87,11 @@ public class CameraHandler  implements View.OnClickListener {
         } else {
             final Uri fileUri = Uri.fromFile(tempFile);
             CameraImageBean.getInstance().setPath(fileUri);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+            String name= MediaStore.EXTRA_OUTPUT;
+            XiaoXuLogger.d("110",name);
+
+            intent.putExtra(name, fileUri);
         }
         DELEGATE.startActivityForResult(intent, RequestCodes.TAKE_PHOTO);
     }

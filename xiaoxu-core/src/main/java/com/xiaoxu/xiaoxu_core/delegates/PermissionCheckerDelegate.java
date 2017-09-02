@@ -11,6 +11,10 @@ import android.widget.Toast;
 import com.xiaoxu.xiaoxu_core.ui.camera.CameraImageBean;
 import com.xiaoxu.xiaoxu_core.ui.camera.RequestCodes;
 import com.xiaoxu.xiaoxu_core.ui.camera.XiaoXuCamera;
+import com.xiaoxu.xiaoxu_core.util.callback.CallbackManager;
+import com.xiaoxu.xiaoxu_core.util.callback.CallbackType;
+import com.xiaoxu.xiaoxu_core.util.callback.IGlobalCallback;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.yalantis.ucrop.UCrop;
 
 import permissions.dispatcher.NeedsPermission;
@@ -28,7 +32,7 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public abstract class PermissionCheckerDelegate extends BaseDelegate {
 
-    //不是直接调用方法
+    //不是直接调用方法,通过此方法和注解生成下部分代码
     @NeedsPermission(Manifest.permission.CAMERA)
     void startCamera() {
         XiaoXuCamera.start(this);
@@ -97,8 +101,10 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                 case RequestCodes.TAKE_PHOTO:
                     //取出传入CameraImageBean中的URI
                     final Uri resultUri = CameraImageBean.getInstance().getPath();
+                    XiaoXuLogger.d("110",resultUri);
+                    //*******图片位置**剪裁过的位置**相同则覆盖原图
                     UCrop.of(resultUri, resultUri)
-                            .withMaxResultSize(400, 400)
+                            .withMaxResultSize(400, 400)//最大剪裁尺寸
                             .start(getContext(), this);
                     break;
                 case RequestCodes.PICK_PHOTO:
@@ -114,13 +120,13 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                 case RequestCodes.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
-                   /* @SuppressWarnings("unchecked")
+                   @SuppressWarnings("unchecked")
                     final IGlobalCallback<Uri> callback = CallbackManager
                             .getInstance()
                             .getCallback(CallbackType.ON_CROP);
                     if (callback != null) {
                         callback.executeCallback(cropUri);
-                    }*/
+                    }
                     break;
                 case RequestCodes.CROP_ERROR:
                     Toast.makeText(getContext(), "剪裁出错", Toast.LENGTH_SHORT).show();

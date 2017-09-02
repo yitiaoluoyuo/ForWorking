@@ -1,14 +1,21 @@
 package com.xiaoxu.xiaoxu_ec.main_delegates.mine.profile;
 
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.ui.date.DateDialogUtil;
+import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.util.callback.CallbackManager;
+import com.xiaoxu.xiaoxu_core.util.callback.CallbackType;
+import com.xiaoxu.xiaoxu_core.util.callback.IGlobalCallback;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.main_delegates.mine.List.ListBean;
 
@@ -34,29 +41,31 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case 1:
                 //开始照相机或选择图片
-                /*CallbackManager.getInstance()
+                // TODO: 2017/9/2 global callback 的使用
+                CallbackManager.getInstance()
                         .addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
                             @Override
                             public void executeCallback(Uri args) {
-                                LatteLogger.d("ON_CROP", args);
+                                XiaoXuLogger.d("ON_CROP", args);
                                 final ImageView avatar = (ImageView) view.findViewById(R.id.img_arrow_avatar);
                                 Glide.with(DELEGATE)
                                         .load(args)
                                         .into(avatar);
 
-                                RestClient.builder()
-                                        .url(UploadConfig.UPLOAD_IMG)
+                                //上传图片到服务器
+                               /* RestClient.builder()
+                                        .url("上传图像的url")
                                         .loader(DELEGATE.getContext())
                                         .file(args.getPath())
                                         .success(new ISuccess() {
                                             @Override
                                             public void onSuccess(String response) {
-                                                LatteLogger.d("ON_CROP_UPLOAD", response);
+                                                XiaoXuLogger.d("ON_CROP_UPLOAD", response);
                                                 final String path = JSON.parseObject(response).getJSONObject("result")
-                                                        .getString("path");
+                                                        .getString("path");*/
 
                                                 //通知服务器更新信息
-                                                RestClient.builder()
+                                                /*RestClient.builder()
                                                         .url("user_profile.php")
                                                         .params("avatar", path)
                                                         .loader(DELEGATE.getContext())
@@ -72,9 +81,9 @@ public class UserProfileClickListener extends SimpleClickListener {
                                             }
                                         })
                                         .build()
-                                        .upload();
+                                        .upload();*/
                             }
-                        });*/
+                        });
                 DELEGATE.startCameraWithCheck();
                 break;
             case 2:
