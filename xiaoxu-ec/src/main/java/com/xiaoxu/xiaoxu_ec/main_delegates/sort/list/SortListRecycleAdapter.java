@@ -97,15 +97,11 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
     }
 
     private void switchContent(SortContentDelegate delegateNew) {
-        if (!delegateNew.isAdded()) {
-            final XiaoXuDelegate contentDelegate =
-                    SupportHelper.findFragment(SORT_DELEGATE_PARENT.getChildFragmentManager(), SortContentDelegate.class);
-            if (contentDelegate != null) {
+        final XiaoXuDelegate contentDelegate =
+                SupportHelper.findFragment(SORT_DELEGATE_PARENT.getChildFragmentManager(), SortContentDelegate.class);
+        if (contentDelegate != null) {
 
-                contentDelegate.getSupportDelegate().replaceFragment(delegateNew, false);//是否加入回退栈
-            }
-        } else {
-
+            contentDelegate.getSupportDelegate().replaceFragment(delegateNew, false);//是否加入回退栈
         }
     }
 

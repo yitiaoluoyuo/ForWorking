@@ -35,4 +35,6 @@ dependencies {
     //编译生成R2文件
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     compile files('libs/alipaySdk-20161222.jar')
+    //圆形图片
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

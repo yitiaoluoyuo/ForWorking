@@ -23,12 +23,13 @@ public class SortDelegateParent extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        final SortListDelegate listDelegate = new SortListDelegate();
-        //把左边的sortListDelegate加载到SortDelegateBParent
-        getSupportDelegate().loadRootFragment(R.id.sort_list_container,listDelegate);
-        //默认显示分类  100001
-        final SortContentDelegate sortContentDelegate = SortContentDelegate.newInstance(100001);
-        if(!sortContentDelegate.isAdded()){
+
+        if(savedInstanceState == null){
+            final SortListDelegate listDelegate = new SortListDelegate();
+            //把左边的sortListDelegate加载到SortDelegateBParent
+            getSupportDelegate().loadRootFragment(R.id.sort_list_container,listDelegate);
+            //默认显示分类  100001
+            final SortContentDelegate sortContentDelegate = SortContentDelegate.newInstance(100001);
             getSupportDelegate().loadRootFragment(R.id.sort_content_container,sortContentDelegate );
         }
 

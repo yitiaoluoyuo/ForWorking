@@ -3,11 +3,20 @@
 
     <item
         is-multidex="false"
+        jar="D:\ForWorking\ForWorking\xiaoxu-ui\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c897b9f87d173da64b35f62a7b8ee9a42c147cb5">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_fcfbe2d9f050dc57b6585859cb6f1d2a3dd6e32d.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\ForWorking\ForWorking\xiaoxu-annotations\build\libs\xiaoxu-annotations.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="ab0c593a491d4a89add2a9f77393c2639c8458c5">
+        sha1="22567ba6f83399a20144fef8315c3cb5aaf4b2c2">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942.jar" />
     </item>
     <item
@@ -25,7 +34,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="a982cf7e7f6bf3013b567a5daf0f5d1663acdb51">
+        sha1="0602660020940866d11cb8a8e65a6a1f7c9312dd">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
     </item>
     <item

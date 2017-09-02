@@ -13,6 +13,7 @@ import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.main_delegates.mine.List.ListAdapter;
 import com.xiaoxu.xiaoxu_ec.main_delegates.mine.List.ListBean;
 import com.xiaoxu.xiaoxu_ec.main_delegates.mine.List.order.OrderListDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.mine.profile.UserProfileDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +43,10 @@ public class MineDelegate extends BottomItemDelegate {
         startOrderListByType();
     }
 
-    //@OnClick(R2.id.img_user_avatar)
-    /*void onClickAvatar() {
+    @OnClick(R2.id.img_user_avatar)
+    void onClickAvatar() {
         getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
-    }*/
+    }
 
     public void startOrderListByType() {
         final OrderListDelegate delegate = new OrderListDelegate();

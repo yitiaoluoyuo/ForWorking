@@ -1,1 +1,1 @@
-include ':module-activity', ':xiaoxu-annotations', ':xiaoxu-compiler', ':xiaoxu-core', ':xiaoxu-ec'
+include ':module-activity', ':xiaoxu-annotations', ':xiaoxu-compiler', ':xiaoxu-core', ':xiaoxu-ec', ':xiaoxu-ui'
