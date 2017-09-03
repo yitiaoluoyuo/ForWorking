@@ -6,7 +6,7 @@ package com.xiaoxu.xiaoxu_core.ui.recycler;
 
 public enum MultipleFields {
 
-    ITEM_TYPE,
+    ID,ITEM_TYPE,
     TITLE,
     TEXT,
     IMAGE_URL,
@@ -23,7 +23,7 @@ public enum MultipleFields {
     /**
      * products
      */
-    ID, CATEGORY_ID,PRODUCT_ID, NAME,
+     CATEGORY_ID,PRODUCT_ID, NAME,
     SUBTITLE, MAIN_IMAGE, PRICE, STATUS, IMAGE_HOST,PRODUCT_STATUS,PRODUCT_STOCK,
 
     /**
@@ -37,4 +37,9 @@ public enum MultipleFields {
 
     ,TIME
 
+    /**
+     * order
+     */
+
+    ,ADDRESS,PHONE
 }
