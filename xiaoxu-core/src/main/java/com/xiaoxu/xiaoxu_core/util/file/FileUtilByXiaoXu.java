@@ -15,7 +15,7 @@ import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -253,12 +253,12 @@ public class FileUtilByXiaoXu {
     private static void refreshDCIM() {
         if (Build.VERSION.SDK_INT >= 19) {
             //兼容android4.4版本，只扫描存放照片的目录
-            MediaScannerConnection.scanFile(XiaoXu.getApplicationContext(),
+            MediaScannerConnection.scanFile(ConfigureUtil.getApplicationContext(),
                     new String[]{Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath()},
                     null, null);
         } else {
             //扫描整个SD卡来更新系统图库，当文件很多时用户体验不佳，且不适合4.4以上版本
-            XiaoXu.getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" +
+            ConfigureUtil.getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" +
                     Environment.getExternalStorageDirectory())));
         }
     }
@@ -267,7 +267,7 @@ public class FileUtilByXiaoXu {
      * 读取raw目录中的文件,并返回为字符串
      */
     public static String getRawFile(int id) {
-        final InputStream is = XiaoXu.getApplicationContext().getResources().openRawResource(id);
+        final InputStream is = ConfigureUtil.getApplicationContext().getResources().openRawResource(id);
         final BufferedInputStream bis = new BufferedInputStream(is);
         final InputStreamReader isr = new InputStreamReader(bis);
         final BufferedReader br = new BufferedReader(isr);
@@ -294,7 +294,7 @@ public class FileUtilByXiaoXu {
 
 
     public static void setIconFont(String path, TextView textView) {
-        final Typeface typeface = Typeface.createFromAsset(XiaoXu.getApplicationContext().getAssets(), path);
+        final Typeface typeface = Typeface.createFromAsset(ConfigureUtil.getApplicationContext().getAssets(), path);
         textView.setTypeface(typeface);
     }
 
@@ -307,7 +307,7 @@ public class FileUtilByXiaoXu {
         InputStreamReader isr = null;
         BufferedReader br = null;
         StringBuilder stringBuilder = null;
-        final AssetManager assetManager = XiaoXu.getApplicationContext().getAssets();
+        final AssetManager assetManager = ConfigureUtil.getApplicationContext().getAssets();
         try {
             is = assetManager.open(name);
             bis = new BufferedInputStream(is);

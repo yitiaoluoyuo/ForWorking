@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
@@ -107,7 +107,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 //根据数据状态显示左侧勾勾
                 if (isSelected) {
                     iconIsSelected.setTextColor
-                            (ContextCompat.getColor(XiaoXu.getApplicationContext(), R.color.app_main));
+                            (ContextCompat.getColor(ConfigureUtil.getApplicationContext(), R.color.app_main));
                 } else {
                     iconIsSelected.setTextColor(Color.GRAY);
                 }
@@ -122,7 +122,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                             item.setField(MultipleFields.IS_SELECTED, false);
                         } else {
                             iconIsSelected.setTextColor
-                                    (ContextCompat.getColor(XiaoXu.getApplicationContext(), R.color.app_main));
+                                    (ContextCompat.getColor(ConfigureUtil.getApplicationContext(), R.color.app_main));
                             item.setField(MultipleFields.IS_SELECTED, true);
                         }
                     }

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 import com.xiaoxu.xiaoxu_core.net.callback.IRequest;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.util.file.FileUtilByXiaoXu;
@@ -68,7 +68,7 @@ public class SaveFileTask extends AsyncTask<Object,Void,File> {
             install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             install.setAction(Intent.ACTION_VIEW);
             install.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            XiaoXu.getApplicationContext().startActivity(install);
+            ConfigureUtil.getApplicationContext().startActivity(install);
         }
     }
 }

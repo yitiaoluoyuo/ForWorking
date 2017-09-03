@@ -1,7 +1,7 @@
 package com.xiaoxu.xiaoxu_core.net;
 
 import com.xiaoxu.xiaoxu_core.application.ConfigKeys;
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;
@@ -45,7 +45,7 @@ public class RestCreator {
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 60;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
-        private static final ArrayList<Interceptor> INTERCEPTORS = XiaoXu.getConfiguration(ConfigKeys.INTERCEPTOR);
+        private static final ArrayList<Interceptor> INTERCEPTORS = ConfigureUtil.getConfiguration(ConfigKeys.INTERCEPTOR);
 
         private static OkHttpClient.Builder addInterceptor() {
             if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
@@ -65,7 +65,7 @@ public class RestCreator {
      * 构建全局Retrofit客户端
      */
     private static final class RetrofitHolder {
-        private static final String BASE_URL = XiaoXu.getConfiguration(ConfigKeys.API_HOST);
+        private static final String BASE_URL = ConfigureUtil.getConfiguration(ConfigKeys.API_HOST);
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)

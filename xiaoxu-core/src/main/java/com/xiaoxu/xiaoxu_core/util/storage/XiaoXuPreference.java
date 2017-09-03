@@ -5,7 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 
 
 /**
@@ -21,7 +21,7 @@ public class XiaoXuPreference {
      * Context.getSharedPreferences(String name,int mode)生成name.xml
      */
     private static final SharedPreferences PREFERENCES =
-            PreferenceManager.getDefaultSharedPreferences(XiaoXu.getApplicationContext());
+            PreferenceManager.getDefaultSharedPreferences(ConfigureUtil.getApplicationContext());
     private static final String APP_PREFERENCES_KEY = "profile";
 
     private static SharedPreferences getAppPreference() {

@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
@@ -84,7 +84,7 @@ public class FastPay implements View.OnClickListener{
                         final PayAsyncTask payAsyncTask = new PayAsyncTask(mActivity, mIALPayResultListener);
                         //多线程同时支付
                         payAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, paySign);*/
-                        Toast.makeText(XiaoXu.getApplicationContext(),response+"pay finished",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),response+"pay finished",Toast.LENGTH_LONG).show();
                     }
                 })
                 .build()

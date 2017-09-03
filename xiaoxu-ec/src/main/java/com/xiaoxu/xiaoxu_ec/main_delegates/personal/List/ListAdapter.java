@@ -1,5 +1,6 @@
 package com.xiaoxu.xiaoxu_ec.main_delegates.personal.List;
 
+import android.support.v7.widget.SwitchCompat;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -29,7 +30,7 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean,BaseViewHold
         super(data);
         addItemType(ItemType.ITEM_NORMAL, R.layout.arrow_item_layout);
         addItemType(ItemType.ITEM_AVATAR, R.layout.arrow_item_avatar);
-        //addItemType(ItemType.ITEM_SWITCH,R.layout.arrow_switch_layout);
+        addItemType(ItemType.ITEM_SWITCH,R.layout.arrow_switch_layout);
     }
 
     @Override
@@ -46,10 +47,10 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean,BaseViewHold
                         .into((ImageView) helper.getView(R.id.img_arrow_avatar));
                 break;
             case ItemType.ITEM_SWITCH:
-                //helper.setText(R.id.tv_arrow_switch_text,item.getText());
-                //final SwitchCompat switchCompat = helper.getView(R.id.list_item_switch);
-                //switchCompat.setChecked(true);
-                //switchCompat.setOnCheckedChangeListener(item.getmOnCheckedChangeListener());
+                helper.setText(R.id.tv_arrow_switch_text,item.getText());
+                final SwitchCompat switchCompat = helper.getView(R.id.list_item_switch);
+                switchCompat.setChecked(true);
+                switchCompat.setOnCheckedChangeListener(item.getmOnCheckedChangeListener());
                 break;
             default:
                 break;

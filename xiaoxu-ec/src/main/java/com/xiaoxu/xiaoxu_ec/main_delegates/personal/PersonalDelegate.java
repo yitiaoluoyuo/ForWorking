@@ -21,6 +21,7 @@ import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListBean;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.order.OrderListDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.address.AddressDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.profile.UserProfileDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.personal.settings.SettingsDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         final ListBean system = new ListBean.Builder()
                 .setItemType(ItemType.ITEM_NORMAL)
                 .setId(2)
-                //.setDelegate(new SettingsDelegate())
+                .setDelegate(new SettingsDelegate())
                 .setText("系统设置")
                 .build();
 

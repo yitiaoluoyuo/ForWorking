@@ -56,7 +56,7 @@ public class Configurator {
         Logger.addLogAdapter(new AndroidLogAdapter());
         XiaoXu_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
         //必须在CONFIG_READY之后执行
-        Utils.init(XiaoXu.getApplicationContext());
+        Utils.init(ConfigureUtil.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {

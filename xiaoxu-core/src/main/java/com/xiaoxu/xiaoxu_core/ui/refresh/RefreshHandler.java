@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
@@ -67,7 +67,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
         //should show refresh progress
         REFRESH_LAYOUT.setRefreshing(true);
         // TODO: 2017/8/27 全局handler的调用
-        XiaoXu.getHandler().postDelayed(new Runnable() {
+        ConfigureUtil.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 //进行网络请求，在请求返回的回调里，把 refresh progress 关闭
@@ -101,19 +101,19 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                         RECYCLERVIEW.setAdapter(mRecycleViewAdapter);
                         //加一页
                         BEAN.addIndex();
-                        Toast.makeText(XiaoXu.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-                        Toast.makeText(XiaoXu.getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),"error",Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-                        Toast.makeText(XiaoXu.getApplicationContext(),"failure",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),"failure",Toast.LENGTH_LONG).show();
                     }
                 })
                 .build()

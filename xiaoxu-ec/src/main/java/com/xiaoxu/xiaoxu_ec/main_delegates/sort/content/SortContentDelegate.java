@@ -7,7 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
@@ -84,19 +84,19 @@ public class SortContentDelegate extends XiaoXuDelegate {
                                 (R.layout.item_section_content,R.layout.item_section_header,mData);
                         mRecycleView.setAdapter(mSectionAdapter);
 
-                        Toast.makeText(XiaoXu.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-                        Toast.makeText(XiaoXu.getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),"error",Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-                        Toast.makeText(XiaoXu.getApplicationContext(),"failure",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),"failure",Toast.LENGTH_LONG).show();
                     }
                 })
                 .build()

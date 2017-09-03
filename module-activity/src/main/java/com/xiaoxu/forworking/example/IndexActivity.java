@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.xiaoxu.xiaoxu_core.activities.ProxyActivity;
-import com.xiaoxu.xiaoxu_core.application.XiaoXu;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_ec.launcher.ILauncherListener;
 import com.xiaoxu.xiaoxu_ec.launcher.LauncherFinishedTag;
@@ -33,7 +33,7 @@ public class IndexActivity extends ProxyActivity implements
         if (actionBar != null) {
             actionBar.hide();
         }
-        XiaoXu.getConfigurator().withActivity(this);
+        ConfigureUtil.getConfigurator().withActivity(this);
         StatusBarCompat.translucentStatusBar(this,true);
     }
 
