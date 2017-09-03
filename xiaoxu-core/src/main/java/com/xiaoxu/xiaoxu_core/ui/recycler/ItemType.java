@@ -17,5 +17,7 @@ public class ItemType {
     public static final int ITEM_AVATAR = 8;
     public static final int ITEM_SWITCH = 9;
     public static final int ITEM_ADDRESS = 10;
+    public static final int SINGLE_BIG_IMAGE = 11;
+
 
 }

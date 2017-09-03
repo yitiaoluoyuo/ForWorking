@@ -11,8 +11,9 @@ import android.util.AttributeSet;
 
 /**
  * Created by xiaoxu on 2017/9/3.
+ *
  */
-
+// TODO: 2017/9/3 自定义控件之 CircleTextView
 public class CircleTextView extends AppCompatTextView {
 
     private final Paint PAINT;

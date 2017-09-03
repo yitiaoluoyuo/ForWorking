@@ -7,7 +7,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="c897b9f87d173da64b35f62a7b8ee9a42c147cb5">
+        sha1="1aab0ba135c13adbf0852a388c897a55626bfe21">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_fcfbe2d9f050dc57b6585859cb6f1d2a3dd6e32d.jar" />
     </item>
     <item
@@ -16,7 +16,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="6807edeba3de647a4ec7e0c89ad7bdee0da4a19e">
+        sha1="f1e967588ba8d9dd2953f25d2be3424b12b4c830">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942.jar" />
     </item>
     <item
@@ -34,7 +34,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="5727c143a456d129d4dded06d6038a86fee5fa47">
+        sha1="b891cb878657049a49a0a32d4c3153bb2750f5cb">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105.jar" />
     </item>
     <item
@@ -43,7 +43,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="ed0167255b6b6eb0d0782a76e6bf3273d010eb6f">
+        sha1="9834bd5a8dd8b3739a7792e090a22f8b18961b96">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\pre-dexed\debug\classes_9b9a7514d43eda7240f7e121d66a35fbb05da75c.jar" />
     </item>
 
