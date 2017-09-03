@@ -10,6 +10,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //极光推送
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "26a34a494a1d5dc03b133b241",
+                JPUSH_CHANNEL: "developer-default",
+        ]
     }
     buildTypes {
         release {
@@ -29,4 +35,7 @@ dependencies {
     //annotationProcessor官方推荐的新版注解解析器（apt为老版）
     annotationProcessor project(':xiaoxu-compiler')
     compile project(':xiaoxu-annotations')
+    //极光推送
+    compile 'cn.jiguang.sdk:jpush:3.0.1'
+    compile 'cn.jiguang.sdk:jcore:1.1.0'
 }

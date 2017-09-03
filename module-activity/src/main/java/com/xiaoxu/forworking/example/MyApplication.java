@@ -8,6 +8,8 @@ import com.xiaoxu.xiaoxu_core.interceptors.DebugInterceptor;
 import com.xiaoxu.xiaoxu_ec.database.DatabaseManager;
 import com.xiaoxu.xiaoxu_ec.icon.FontXiaoXuModule;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by xiaoxu on 2017/8/24.
  */
@@ -28,6 +30,10 @@ public class MyApplication extends Application {
                 .configure();
 
         DatabaseManager.getInstance().init(this);
+
+        //开启极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
     }
 }
