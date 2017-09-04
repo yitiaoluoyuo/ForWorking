@@ -1,6 +1,6 @@
 package com.xiaoxu.xiaoxu_ec.sign;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -17,6 +17,7 @@ import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+import com.xiaoxu.xiaoxu_ec.database.UserBean;
 
 import java.util.WeakHashMap;
 
@@ -30,7 +31,6 @@ import butterknife.OnClick;
 
 public class SignInDelegate extends XiaoXuDelegate {
 
-    public static final String TAG = "tag";
     private WeakHashMap<String, Object> params = new WeakHashMap<>();
 
     @BindView(R2.id.edit_sign_in_username)
@@ -43,12 +43,13 @@ public class SignInDelegate extends XiaoXuDelegate {
     private ISignSuccessListener mSignSuccessListener;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ISignSuccessListener){
-            mSignSuccessListener = (ISignSuccessListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (_mActivity instanceof ISignSuccessListener){
+            mSignSuccessListener = (ISignSuccessListener) _mActivity;
         }
     }
+
 
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
@@ -68,12 +69,11 @@ public class SignInDelegate extends XiaoXuDelegate {
 
                             //通过服务器返回的状态码对注册状态进行判断并处理
                             if (statusCode == 0) {
-                                //UserProfile userProfile = SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
+                                UserBean userBean = SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
 
-                                /*Toast.makeText(getContext(), "欢迎 " +
-                                        userProfile.getUserName()+
-                                        " 访问", Toast.LENGTH_SHORT).show();*/
-                                SignStatueHandler.onSignInSuccess(responseJsonData,mSignSuccessListener);
+                                Toast.makeText(getContext(), "欢迎 " +
+                                        userBean.getUserName()+
+                                        " 访问", Toast.LENGTH_SHORT).show();
 
                                 XiaoXuLogger.json("/user/login.do",response);
                             } else if (statusCode == 1) {
@@ -121,12 +121,9 @@ public class SignInDelegate extends XiaoXuDelegate {
         }
 
         if (password.isEmpty()) {
-            mPassword.setError("不设置密码怎么登录？");
+            mPassword.setError("密码为空");
             isPass = false;
-        } else if (password.length() < 6) {
-            mPassword.setError("请填写至少6位数密码");
-            isPass = false;
-        } else {
+        }  else {
             mPassword.setError(null);
         }
 

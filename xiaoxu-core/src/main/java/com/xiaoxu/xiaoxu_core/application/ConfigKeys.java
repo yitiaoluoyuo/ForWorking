@@ -19,4 +19,6 @@ public enum ConfigKeys {
     HANDLER,
     JAVASCRIPT_INTERFACE,
     CACHE_DIR
+
+    ,COOK_SET
 }

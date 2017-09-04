@@ -9,6 +9,8 @@ import android.view.View;
 import com.xiaoxu.xiaoxu_core.application.AccountManager;
 import com.xiaoxu.xiaoxu_core.application.IUserChecker;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherScrollTag;
+import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
 import com.xiaoxu.xiaoxu_core.util.timer.BaseTimerTask;
 import com.xiaoxu.xiaoxu_core.util.timer.ITimerListener;
 import com.xiaoxu.xiaoxu_ec.R;
@@ -72,8 +74,7 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
    //判断是否显示滑动启动页
     private void checkIsShowScroll() {
         //判断是否是第一次运行APP
-        //!XiaoXuPreference.getAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name())
-        if (true) {
+        if (!XiaoXuPreference.getAppFlag(LauncherScrollTag.HAS_FIRST_LAUNCHER_APP.name())) {
             getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录了APP
@@ -89,7 +90,7 @@ public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
                 @Override
                 public void onNonSignIn() {
                     if (mILauncherListener != null) {
-                        //登录不成功做的回调处理
+                        //没有登录做的回调处理
                         mILauncherListener.onLauncherFinished(LauncherFinishedTag.SIGNED_NON);
                     }
                 }

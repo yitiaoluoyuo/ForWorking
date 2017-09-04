@@ -5,7 +5,7 @@ android {
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.xiaoxu.forworking.example"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -40,4 +40,6 @@ dependencies {
     //自高容僕
     compile 'cn.jiguang.sdk:jpush:3.0.1'
     compile 'cn.jiguang.sdk:jcore:1.1.0'
+    compile 'com.facebook.stetho:stetho:1.5.0'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 }

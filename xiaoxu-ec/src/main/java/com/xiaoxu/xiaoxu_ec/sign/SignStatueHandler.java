@@ -2,7 +2,8 @@ package com.xiaoxu.xiaoxu_ec.sign;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.application.AccountManager;
-import com.xiaoxu.xiaoxu_ec.database.UserProfile;
+import com.xiaoxu.xiaoxu_ec.database.DatabaseManager;
+import com.xiaoxu.xiaoxu_ec.database.UserBean;
 
 /**
  * Created by xiaoxu on 2017/8/26.
@@ -11,7 +12,7 @@ import com.xiaoxu.xiaoxu_ec.database.UserProfile;
 
 public class SignStatueHandler {
 
-    public static UserProfile onSignInSuccess(JSONObject responseJsonData, ISignSuccessListener signSuccessListener) {
+    public static UserBean onSignInSuccess(JSONObject responseJsonData, ISignSuccessListener signSuccessListener) {
 
         final JSONObject profileJson = responseJsonData.getJSONObject("data");
         final long id = profileJson.getLong("id");
@@ -22,23 +23,23 @@ public class SignStatueHandler {
         final long createTime = profileJson.getLong("createTime");
         final long updateTime = profileJson.getLong("createTime");
 
-        final UserProfile profile = new UserProfile(id, username, email, phone, role,createTime,updateTime);
+        final UserBean userBean = new UserBean(id, username, email, phone, role,createTime,updateTime);
 
         //把UserProfile中的数据插入数据库
-        //DatabaseManager.getInstance().getDao().insert(profile);
+        DatabaseManager.getInstance().getDao().insert(userBean);
 
-        //已经注册并登录成功了
-        AccountManager.setSignInState(false);
+        //登录成功,存储登录状态
+        AccountManager.setSignInState(true);
 
         //在projectActivity中实现的接口，处理业务
         // （页面跳转，计时）
         signSuccessListener.onSignInSuccess();
 
-        return profile;
+        return userBean;
     }
 
 
-    public static void onSignUpSuccess(String response, ISignSuccessListener signListener) {
+    public static void onSignUpSuccess( ISignSuccessListener signListener) {
 
        /* final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
@@ -51,8 +52,8 @@ public class SignStatueHandler {
         final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
         DatabaseManager.getInstance().getDao().insert(profile);*/
 
-        //已经注册并登录成功了
-        //AccountManager.setSignInState(true);
+        //已经注册并没有登录
+        AccountManager.setSignInState(false);
         //注册成功后的回调处理
         signListener.onSignUpSuccess();
     }

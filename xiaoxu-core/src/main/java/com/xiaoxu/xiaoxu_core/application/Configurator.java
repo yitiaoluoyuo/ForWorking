@@ -2,12 +2,15 @@ package com.xiaoxu.xiaoxu_core.application;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.xiaoxu.xiaoxu_core.delegates.web.event.Event;
+import com.xiaoxu.xiaoxu_core.delegates.web.event.EventManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -118,16 +121,16 @@ public class Configurator {
         return this;
     }
 
-   /* public Configurator withJavascriptInterface(@NonNull String name) {
+   public Configurator withJavascriptInterface(@NonNull String name) {
         XiaoXu_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
         return this;
-    }*/
+    }
 
-   /* public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
         final EventManager manager = EventManager.getInstance();
         manager.addEvent(name, event);
         return this;
-    }*/
+    }
 
     //检查配置是否完成
     private void checkConfiguration() {

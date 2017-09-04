@@ -161,7 +161,7 @@ public class ShopCartDelegate extends BottomItemDelegate
         super.onLazyInitView(savedInstanceState);
         //请求数据
         RestClient.builder()
-                .url("/product/list.do?keyword&categoryId=100004&orderBy=price_desc")
+                .url("/cart/list.do")
                 .loader(getContext())
                 .success(this)
                 .build()
@@ -170,6 +170,8 @@ public class ShopCartDelegate extends BottomItemDelegate
 
     @Override
     public void onSuccess(String response) {
+
+        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
         //转换数据
        /* final ArrayList<MultipleItemEntity> data =
                 new ShopCartDataConverter()

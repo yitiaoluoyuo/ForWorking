@@ -1,6 +1,6 @@
 package com.xiaoxu.xiaoxu_ec.sign;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -56,12 +56,14 @@ public class SignUpDelegate extends XiaoXuDelegate {
 
     private ISignSuccessListener mSignSuccessListener;
 
+
+
     // TODO: 2017/8/26 ??????   sign in  need
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ISignSuccessListener){
-            mSignSuccessListener = (ISignSuccessListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (_mActivity instanceof ISignSuccessListener){
+            mSignSuccessListener = (ISignSuccessListener) _mActivity;
         }
     }
 
@@ -90,7 +92,7 @@ public class SignUpDelegate extends XiaoXuDelegate {
 
                             if (statusCode == 0){
                                 Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
-                                SignStatueHandler.onSignUpSuccess(response,mSignSuccessListener);
+                                SignStatueHandler.onSignUpSuccess(mSignSuccessListener);
                             }else if (statusCode == 1){
                                 Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
                             }
@@ -139,14 +141,11 @@ public class SignUpDelegate extends XiaoXuDelegate {
         if (password.isEmpty()) {
             mPassword.setError("不设置密码怎么登录？");
             isPass = false;
-        } else if (password.length() < 6) {
-            mPassword.setError("请填写至少6位数密码");
-            isPass = false;
         } else {
             mPassword.setError(null);
         }
 
-        if (rePassword.isEmpty() || rePassword.length()<6 || !rePassword.equals(password)) {
+        if (rePassword.isEmpty() || !rePassword.equals(password)) {
             mRePassword.setError("密码验证错误");
             isPass = false;
         } else {
@@ -161,7 +160,7 @@ public class SignUpDelegate extends XiaoXuDelegate {
         }
 
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mEmail.setError(getString(R.string.username_is_empty));
+            mEmail.setError("邮箱格式不正确");
             isPass = false;
         } else {
             mEmail.setError(null);

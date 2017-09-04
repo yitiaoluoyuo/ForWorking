@@ -7,9 +7,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 
+import java.util.HashSet;
+
 
 /**
  * Created by xiaoxu on 2017/8/25.
+ *
  */
 
 public class XiaoXuPreference {
@@ -78,8 +81,19 @@ public class XiaoXuPreference {
                 .apply();
     }
 
+    public static void addCustomAppProfile(String key, HashSet val) {
+        getAppPreference()
+                .edit()
+                .putStringSet(key, val)
+                .apply();
+    }
+
     public static String getCustomAppProfile(String key) {
         return getAppPreference().getString(key, "");
+    }
+
+    public static HashSet<String> getCustomAppProfile(String key,HashSet<String> defValues) {
+        return (HashSet<String>) getAppPreference().getStringSet(key, defValues );
     }
 
 }
