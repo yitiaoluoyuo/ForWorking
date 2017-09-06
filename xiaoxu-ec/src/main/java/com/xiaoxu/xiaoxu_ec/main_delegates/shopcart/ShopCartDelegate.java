@@ -106,8 +106,8 @@ public class ShopCartDelegate extends BottomItemDelegate
         StringBuilder ids = new StringBuilder();
 
         for (MultipleItemEntity entity : totalEntity) {
-            final int isSelected = entity.getField(MultipleFields.PRODUCT_CHECKED);
-            if (isSelected == 1) {
+            final int productChecked = entity.getField(MultipleFields.PRODUCT_CHECKED);
+            if (productChecked == 1) {
                 deleteEntities.add(entity);
                 ids.append(String.valueOf(entity.getField(MultipleFields.PRODUCT_ID))).append(",");
             }
@@ -128,28 +128,61 @@ public class ShopCartDelegate extends BottomItemDelegate
                 }
             }
         }
-        //数据库删除商品
-        RestClient.builder()
-                .url("/cart/delete_product.do")
-                .params("productIds", ids.substring(0, ids.length() - 1))
-                .loader(getContext())
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-                .get();
-        checkItemCount();
+        //判断是否有被选中的商品
+        if(ids.length()!=0){
+            //数据库删除商品
+            RestClient.builder()
+                    .url("/cart/delete_product.do")
+                    .params("productIds", ids.substring(0, ids.length() - 1))
+                    .loader(getContext())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build()
+                    .get();
+            checkItemCount();
+        }else {
+            Toast.makeText(getContext(),"还木有选择要删除的商品",Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 
     @OnClick(R2.id.tv_top_shop_cart_clear)
     void onClickClear() {
-        mAdapter.getData().clear();
-        mAdapter.notifyDataSetChanged();
-        checkItemCount();
+        final List<MultipleItemEntity> totalEntity = mAdapter.getData();
+        //要删除的商品id
+        StringBuilder ids = new StringBuilder();
+
+        //遍历添加全部商品ID
+        for (MultipleItemEntity entity : totalEntity) {
+                ids.append(String.valueOf(entity.getField(MultipleFields.PRODUCT_ID))).append(",");
+        }
+        if(ids.length()!=0) {
+            //数据库删除商品
+            RestClient.builder()
+                    .url("/cart/delete_product.do")
+                    .params("productIds", ids.substring(0, ids.length() - 1))
+                    .loader(getContext())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build()
+                    .get();
+            mAdapter.getData().clear();
+            mAdapter.notifyDataSetChanged();
+            checkItemCount();
+        }else {
+            Toast.makeText(getContext(),"购物车已经是空的了",Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
 

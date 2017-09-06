@@ -35,6 +35,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     private final ShopCartDelegate  DELEGATE;
     private int mIsSelectedAll = 2;
+    private int productChecked = -1;
     private ICartItemListener mCartItemListener = null;
     private double mTotalPrice = 0.00;
     private int mCurrentCount = 0;
@@ -58,13 +59,6 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     protected ShopCartAdapter(List<MultipleItemEntity> data,ShopCartDelegate delegate) {
         super(data);
         this.DELEGATE = delegate;
-        //初始化总价
-       /* for (MultipleItemEntity entity : data) {
-            final double price = entity.getField(MultipleFields.PRICE);
-            final int quantity = entity.getField(MultipleFields.QUANTITY);
-            final double total = price * quantity;
-            mTotalPrice = mTotalPrice + total;
-        }*/
         //添加购物车布局
         addItemType(ItemType.ITEM_SHOP_CART, R.layout.item_shop_cart);
     }
@@ -116,20 +110,19 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
                 switch (mIsSelectedAll){
                     case 0:
-
+                        productChecked =0;
+                        item.setField(MultipleFields.PRODUCT_CHECKED,0);
                         break;
                     case 1:
-
+                        productChecked =1;
+                        item.setField(MultipleFields.PRODUCT_CHECKED,1);
                         break;
                     case 2:
-
+                        productChecked = item.getField(MultipleFields.PRODUCT_CHECKED);
                         break;
 
                 }
 
-
-
-                final int productChecked = item.getField(MultipleFields.PRODUCT_CHECKED);
                 //根据数据状态显示左侧勾勾
                 if (productChecked == 1) {
                     iconIsSelected.setTextColor
