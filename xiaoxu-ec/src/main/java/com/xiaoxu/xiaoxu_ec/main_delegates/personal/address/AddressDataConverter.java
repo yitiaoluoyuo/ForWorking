@@ -18,22 +18,24 @@ public class AddressDataConverter extends DataConverter {
 
     @Override
     public ArrayList<MultipleItemEntity> convertToEntityList() {
-        final JSONArray array = JSON.parseObject(getJsonData()).getJSONArray("data");
+        final JSONArray array = JSON.parseObject(getJsonData()).getJSONObject("data").getJSONArray("list");
         final int size = array.size();
         for (int i = 0; i < size; i++) {
 
             final JSONObject data = array.getJSONObject(i);
             final int id = data.getInteger("id");
-            final String name = data.getString("name");
-            final String phone = data.getString("phone");
-            final String address = data.getString("address");
-            final boolean isDefault = data.getBoolean("default");
+            final String name = data.getString("receiverName");
+            final String phone = data.getString("receiverPhone");
+            final String province = data.getString("receiverProvince");
+            final String city = data.getString("receiverCity");
+            final String address = data.getString("receiverAddress");
 
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setItemType(ItemType.ITEM_ADDRESS)
                     .setField(MultipleFields.ID, id)
                     .setField(MultipleFields.NAME, name)
-                    .setField(MultipleFields.TAG, isDefault)
+                    .setField(MultipleFields.CITY, city)
+                    .setField(MultipleFields.PROVINCE, province)
                     .setField(MultipleFields.ADDRESS, address)
                     .setField(MultipleFields.PHONE, phone)
                     .build();

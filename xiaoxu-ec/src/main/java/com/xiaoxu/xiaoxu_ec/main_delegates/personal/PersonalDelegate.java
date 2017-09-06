@@ -1,19 +1,13 @@
 package com.xiaoxu.xiaoxu_ec.main_delegates.personal;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
-import com.xiaoxu.xiaoxu_core.util.callback.CallbackManager;
-import com.xiaoxu.xiaoxu_core.util.callback.CallbackType;
-import com.xiaoxu.xiaoxu_core.util.callback.IGlobalCallback;
-import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListAdapter;
@@ -104,7 +98,7 @@ public class PersonalDelegate extends BottomItemDelegate {
     @Override
     public void onResume() {
         super.onResume();
-       CallbackManager.getInstance()
+       /*CallbackManager.getInstance()
                 .addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
                     @Override
                     public void executeCallback(Uri args) {
@@ -114,6 +108,6 @@ public class PersonalDelegate extends BottomItemDelegate {
                                 .into(circleImageView);
                     }
 
-                });
+                });*/
     }
 }

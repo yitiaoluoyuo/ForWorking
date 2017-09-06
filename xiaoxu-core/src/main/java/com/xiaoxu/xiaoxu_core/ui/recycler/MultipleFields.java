@@ -41,5 +41,5 @@ public enum MultipleFields {
      * order
      */
 
-    ,ADDRESS,PHONE
+    ,ADDRESS,PHONE,CITY,PROVINCE
 }

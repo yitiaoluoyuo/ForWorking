@@ -31,11 +31,11 @@
                 android:textColor="@color/app_main" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_address_phone"
+                android:id="@+id/tv_address_province_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="电话"
+                android:text="上海  静安区"
                 android:textColor="@color/we_chat_black" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -67,11 +67,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:gravity="center_vertical|left"
+                android:layout_marginRight="20dp"
+                android:gravity="left"
                 android:textColor="@color/we_chat_black"
-                android:textSize="18sp" />
+                android:textSize="15dp"
+                android:text="望山法规的开发，接口连接，价格可垃圾ssdsdf克己奉公空了减肥的"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_address_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:layout_below="@+id/tv_address_address"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/we_chat_black"
+                android:textSize="15dp"
+                android:text="15737635896"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_address_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+               android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginTop="5dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp"
+                android:text="编辑"
+                />
 
         </RelativeLayout>
     </android.support.v7.widget.LinearLayoutCompat>

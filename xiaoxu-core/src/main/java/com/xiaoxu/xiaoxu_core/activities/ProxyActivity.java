@@ -27,7 +27,10 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ACTIVITY_DELEGATE.onCreate(savedInstanceState);
+       ACTIVITY_DELEGATE.onCreate(savedInstanceState);
+        ACTIVITY_DELEGATE.showFragmentStackHierarchyView();
+        ACTIVITY_DELEGATE.logFragmentStackHierarchy("SupportActivityDelegate");
+
         //初始化视图容器
         initContainer(savedInstanceState);
     }

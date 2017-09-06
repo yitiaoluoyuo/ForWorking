@@ -14,6 +14,8 @@ import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
+import com.xiaoxu.xiaoxu_core.net.callback.IError;
+import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
@@ -38,8 +40,7 @@ import butterknife.OnClick;
 public class ShopCartDelegate extends BottomItemDelegate
         implements ISuccess, ShopCartAdapter.ICartItemListener, IALPayResultListener {
 
-    private int refresh = 0;
-
+    private double mTotalPrice = 0.00;
     private ShopCartAdapter mAdapter = null;
 
     @BindView(R2.id.rv_shop_cart)
@@ -54,6 +55,9 @@ public class ShopCartDelegate extends BottomItemDelegate
     AppCompatTextView mTvTotalPrice = null;
 
 
+    /**
+     * 全选/取消全选购物车商品
+     */
     @OnClick(R2.id.icon_shop_cart_select_all)
     void onClickSelectAll() {
         // TODO: 2017/8/31 巧妙的利用View的tag
@@ -69,7 +73,21 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
+                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTvTotalPrice.setText(String.valueOf(mTotalPrice));
                             XiaoXuLogger.d("checkAll","/cart/select_all.do"+ response);
+                        }
+                    })
+                    .error(new IError() {
+                        @Override
+                        public void onError(int code, String msg) {
+                            XiaoXuLogger.d("checkAll","select_all.do ERROR" + msg);
+                        }
+                    })
+                    .failure(new IFailure() {
+                        @Override
+                        public void onFailure() {
+                            XiaoXuLogger.d("checkAll","elect_all.do onFailure" );
                         }
                     })
                     .build()
@@ -86,7 +104,21 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
+                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTvTotalPrice.setText(String.valueOf(mTotalPrice));
                             XiaoXuLogger.d("checkAll","/un_select_all.do" + response);
+                        }
+                    })
+                    .error(new IError() {
+                        @Override
+                        public void onError(int code, String msg) {
+                            XiaoXuLogger.d("checkAll","/un_select_all.do ERROR" + msg);
+                        }
+                    })
+                    .failure(new IFailure() {
+                        @Override
+                        public void onFailure() {
+                            XiaoXuLogger.d("checkAll","/un_select_all.do onFailure" );
                         }
                     })
                     .build()
@@ -94,9 +126,13 @@ public class ShopCartDelegate extends BottomItemDelegate
             mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
         }
         checkItemCount();
+
     }
 
 
+    /**
+     * 删除购物车中被选中的商品
+     */
     @OnClick(R2.id.tv_top_shop_cart_remove_selected)
     void onClickRemoveSelectedItem() {
         final List<MultipleItemEntity> totalEntity = mAdapter.getData();
@@ -112,9 +148,7 @@ public class ShopCartDelegate extends BottomItemDelegate
                 ids.append(String.valueOf(entity.getField(MultipleFields.PRODUCT_ID))).append(",");
             }
         }
-
         int deleteEntityListCount = deleteEntities.size();
-
         for (int i = 0; i < deleteEntityListCount; i++) {
             final int currentPosition = deleteEntities.get(i).getField(MultipleFields.POSITION);
 
@@ -138,6 +172,8 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
+                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTvTotalPrice.setText(String.valueOf(mTotalPrice));
                             Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -151,6 +187,9 @@ public class ShopCartDelegate extends BottomItemDelegate
     }
 
 
+    /**
+     * 清空购物车
+     */
     @OnClick(R2.id.tv_top_shop_cart_clear)
     void onClickClear() {
         final List<MultipleItemEntity> totalEntity = mAdapter.getData();
@@ -170,6 +209,9 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
+                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+                            mIconSelectAll.setTextColor(Color.GRAY);
                             Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -214,7 +256,6 @@ public class ShopCartDelegate extends BottomItemDelegate
                 })
                 .build()
                 .get();
-
     }
 
     void request() {
@@ -240,7 +281,6 @@ public class ShopCartDelegate extends BottomItemDelegate
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        //request();
     }
 
     @Override
@@ -271,7 +311,7 @@ public class ShopCartDelegate extends BottomItemDelegate
             }
 
 
-            double mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
             //转换数据
             final ArrayList<MultipleItemEntity> data = new ShopCartDataConverter().setJsonData(response).convertToEntityList();
 
@@ -299,17 +339,6 @@ public class ShopCartDelegate extends BottomItemDelegate
         final int count = mAdapter.getItemCount();
 
         if (count == 0) {
-
-                /*// TODO: 2017/8/31 API
-               // final View stubView = mStubNoItem.inflate();
-                final AppCompatTextView tvToBuy =
-                        (AppCompatTextView) stubView.findViewById(R.id.tv_stub_to_buy);
-                tvToBuy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getContext(), "你该购物啦！", Toast.LENGTH_SHORT).show();
-                    }
-                });*/
             mTvNoItem.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
 
@@ -319,6 +348,7 @@ public class ShopCartDelegate extends BottomItemDelegate
             mTvNoItem.setVisibility(View.GONE);
 
         }
+
 
     }
 
@@ -349,8 +379,8 @@ public class ShopCartDelegate extends BottomItemDelegate
     }
 
     @Override
-    public void onItemClick(@Nullable double itemTotalPrice, boolean allChecked) {
-        mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
+    public void onItemClick(@Nullable double totalPrice, boolean allChecked) {
+        mTvTotalPrice.setText(String.valueOf(totalPrice));
         if (allChecked) {
             mIconSelectAll.setTextColor
                     (ContextCompat.getColor(getContext(), R.color.app_main));

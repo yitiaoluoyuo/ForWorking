@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_gravity="center"
+    card_view:cardBackgroundColor="@android:color/white"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="3dp"
+    card_view:cardUseCompatPadding="true">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/tv_address_re_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text=""
+                android:textSize="18dp"
+                android:hint="姓名"
+                android:textColor="@color/we_chat_black" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/tv_address_re_province_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text=""
+                android:inputType="textPostalAddress"
+                android:textSize="18dp"
+                android:hint="   省    市"
+                android:textColor="@color/we_chat_black" />
+
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/app_background" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/tv_address_re_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="left"
+                android:textColor="@color/we_chat_black"
+                android:textSize="20dp"
+                android:text="望山法规的开发，接口连接，价格可垃圾ssdsdf克己奉公空了减肥的"
+                android:hint="详细地址"
+                />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/tv_address_re_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:layout_below="@+id/tv_address_re_address"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/we_chat_black"
+                android:textSize="20dp"
+                android:text="15737635896"
+                android:hint="电话"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_address_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+
+                android:layout_marginTop="5dp"
+                android:textColor="@color/app_main"
+                android:textSize="20dp"
+                android:text="确认"
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

@@ -43,7 +43,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     //设置CartItemListener
     public interface ICartItemListener {
-        void onItemClick( @Nullable double itemTotalPrice ,boolean allChecked);
+        void onItemClick( @Nullable double totalPrice ,boolean allChecked);
     }
 
     public void setCartItemListener(ICartItemListener listener) {
@@ -210,7 +210,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                                                 final double itemTotal = (mCurrentCount - 1) * price;
                                                 textViewCount.setText(String.valueOf(mCurrentCount - 1));
                                                 boolean allChecked = JSON.parseObject(response).getJSONObject("data").getBoolean("allChecked");
-                                                mCartItemListener.onItemClick(itemTotal,allChecked);
+                                                mCartItemListener.onItemClick(mTotalPrice,allChecked);
                                             }
                                         }
                                     })
@@ -243,7 +243,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                                                 mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
                                                 final double itemTotal = (mCurrentCount + 1) * price;
                                                 boolean allChecked = JSON.parseObject(response).getJSONObject("data").getBoolean("allChecked");
-                                                mCartItemListener.onItemClick(itemTotal,allChecked);
+                                                mCartItemListener.onItemClick(mTotalPrice,allChecked);
                                                 textViewCount.setText(String.valueOf(mCurrentCount + 1));
                                             }
                                         }
