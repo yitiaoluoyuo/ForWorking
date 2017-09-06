@@ -31,6 +31,7 @@ public class MyApplication extends Application {
         super.onCreate();
         ConfigureUtil.init(this)
                 .withApiHost("http://happymmall.com/")
+                .withImageHost("http://img.happymmall.com/")
                 .withLoaderDelayed(100)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontXiaoXuModule())

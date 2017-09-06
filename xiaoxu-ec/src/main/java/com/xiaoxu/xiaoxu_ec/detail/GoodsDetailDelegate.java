@@ -21,7 +21,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.xiaoxu.ui.widget.CircleTextView;
 import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
@@ -33,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
@@ -62,12 +62,25 @@ public class GoodsDetailDelegate extends XiaoXuDelegate  implements
     //底部
     @BindView(R2.id.icon_favor)
     IconTextView mIconFavor = null;
-    @BindView(R2.id.tv_shopping_cart_amount)
-    CircleTextView mCircleTextView = null;
     @BindView(R2.id.rl_add_shop_cart)
     RelativeLayout mRlAddShopCart = null;
-    @BindView(R2.id.icon_shop_cart)
-    IconTextView mIconShopCart = null;
+
+    @OnClick(R2.id.rl_add_shop_cart)
+    void onClickAddShopCart(){
+        RestClient.builder()
+                .url("/cart/add.do")
+                .params("productId",mGoodsId)
+                .params("count",1)
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Toast.makeText(getContext(),"商品添加购物车成功",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build()
+                .get();
+    }
 
 
     public static GoodsDetailDelegate create(@NonNull int goodsId) {
@@ -98,7 +111,6 @@ public class GoodsDetailDelegate extends XiaoXuDelegate  implements
 
         mCollapsingToolbarLayout.setContentScrimColor(Color.WHITE);
         mAppBar.addOnOffsetChangedListener(this);
-        mCircleTextView.setCircleBackground(Color.RED);
         initData();
         initTabLayout();
     }

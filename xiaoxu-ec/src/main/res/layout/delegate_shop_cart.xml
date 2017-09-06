@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1111"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -57,9 +57,11 @@
         android:id="@+id/rv_shop_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8" />
+        android:layout_weight="4"
+        android:background="@android:color/white"
+        />
 
-    <android.support.v7.widget.ViewStubCompat
+    <!--<android.support.v7.widget.ViewStubCompat
         android:id="@+id/stub_no_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -67,7 +69,22 @@
         android:background="@android:color/white"
         android:layout="@layout/stub_shop_cart_no_item"
         android:minHeight="50dp"
-        android:orientation="horizontal" />
+        android:orientation="horizontal" />-->
+    <TextView
+        android:id="@+id/tv_shop_cart_no_item"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:background="@android:color/white"
+        android:minHeight="50dp"
+        android:textSize="20dp"
+        android:text="购物车啥都木有"
+        android:textColor="@color/app_main"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp"
+        android:gravity="center_horizontal"
+        tools:ignore="HardcodedText,SpUsage" />
+
 
     <!--底部：   android:minHeight="50dp" 防止权重过低时，高度较低-->
     <android.support.v7.widget.LinearLayoutCompat
@@ -94,7 +111,8 @@
                 android:gravity="center"
                 android:text="{fa-check-circle}"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="0dp"
@@ -102,7 +120,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="全选"
-                android:textColor="@color/app_main" />
+                android:textColor="@color/app_main"
+                tools:ignore="HardcodedText" />
         </android.support.v7.widget.LinearLayoutCompat>
         <!--全选部分结束-->
 

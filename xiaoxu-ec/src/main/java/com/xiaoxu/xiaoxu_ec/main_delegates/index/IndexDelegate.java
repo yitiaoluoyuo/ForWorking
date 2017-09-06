@@ -103,7 +103,7 @@ public class IndexDelegate extends BottomItemDelegate {
          * RecycleView steep 3
          *      获取数据源
          */
-        mRefreshHandler.firstPage("/product/list.do?keyword&categoryId=100001&orderBy=price_desc");
+        mRefreshHandler.firstPage("/product/list.do?keyword&categoryId=100002&orderBy=price_desc");
     }
 
     @Override

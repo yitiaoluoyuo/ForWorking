@@ -38,20 +38,18 @@
                 android:id="@+id/icon_index_scan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="left"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingRight="10dp"
                 android:text="{icon-scan}"
                 android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textSize="20dp" />
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/et_search_view"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="7"
+                android:layout_weight="6"
                 android:background="#c4ffffff"
                 android:gravity="center_vertical"
                 android:hint="搜索"
@@ -63,13 +61,11 @@
                 android:id="@+id/icon_index_message"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="10dp"
-                android:text="{fa-bullhorn}"
+                android:text="{icon-ali-message}"
                 android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textSize="20dp" />
 
         </android.support.v7.widget.LinearLayoutCompat>
 

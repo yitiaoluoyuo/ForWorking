@@ -21,4 +21,5 @@ public enum ConfigKeys {
     CACHE_DIR
 
     ,COOK_SET
+    ,IMAGE_HOST
 }

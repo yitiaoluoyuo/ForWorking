@@ -101,7 +101,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                         RECYCLERVIEW.setAdapter(mRecycleViewAdapter);
                         //加一页
                         BEAN.addIndex();
-                        Toast.makeText(ConfigureUtil.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {

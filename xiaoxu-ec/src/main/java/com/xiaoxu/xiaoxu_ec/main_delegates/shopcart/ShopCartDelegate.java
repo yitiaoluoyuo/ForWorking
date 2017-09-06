@@ -7,10 +7,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
@@ -22,6 +22,7 @@ import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.pay.FastPay;
 import com.xiaoxu.xiaoxu_ec.pay.IALPayResultListener;
+import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,20 +36,20 @@ import butterknife.OnClick;
  */
 
 public class ShopCartDelegate extends BottomItemDelegate
-        implements ISuccess ,ShopCartAdapter.ICartItemListener,IALPayResultListener{
+        implements ISuccess, ShopCartAdapter.ICartItemListener, IALPayResultListener {
+
+    private int refresh = 0;
 
     private ShopCartAdapter mAdapter = null;
-    //
-    private int mCurrentCount = 0;
-    private int mTotalCount = 0;
-    private double mTotalPrice = 0.00;
 
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll = null;
-    @BindView(R2.id.stub_no_item)
-    ViewStubCompat mStubNoItem = null;
+    @BindView(R2.id.tv_shop_cart_no_item)
+    AppCompatTextView mTvNoItem = null;
+    /* @BindView(R2.id.stub_no_item)
+     ViewStubCompat mStubNoItem = null;*/
     @BindView(R2.id.tv_shop_cart_total_price)
     AppCompatTextView mTvTotalPrice = null;
 
@@ -61,13 +62,35 @@ public class ShopCartDelegate extends BottomItemDelegate
             mIconSelectAll.setTextColor
                     (ContextCompat.getColor(getContext(), R.color.app_main));
             mIconSelectAll.setTag(1);
-            mAdapter.setIsSelectedAll(true);
+            mAdapter.setIsSelectedAll(1);
+            RestClient.builder()
+                    .url("/cart/select_all.do")
+                    .loader(getContext())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            XiaoXuLogger.d("checkAll","/cart/select_all.do"+ response);
+                        }
+                    })
+                    .build()
+                    .get();
             //更新RecyclerView的显示状态
             mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
         } else {
             mIconSelectAll.setTextColor(Color.GRAY);
             mIconSelectAll.setTag(0);
-            mAdapter.setIsSelectedAll(false);
+            mAdapter.setIsSelectedAll(0);
+            RestClient.builder()
+                    .url("/cart/un_select_all.do")
+                    .loader(getContext())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            XiaoXuLogger.d("checkAll","/un_select_all.do" + response);
+                        }
+                    })
+                    .build()
+                    .get();
             mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
         }
         checkItemCount();
@@ -76,32 +99,48 @@ public class ShopCartDelegate extends BottomItemDelegate
 
     @OnClick(R2.id.tv_top_shop_cart_remove_selected)
     void onClickRemoveSelectedItem() {
-        final List<MultipleItemEntity> data = mAdapter.getData();
-        //mTotalCount = data.size();
+        final List<MultipleItemEntity> totalEntity = mAdapter.getData();
         //要删除的数据
         final List<MultipleItemEntity> deleteEntities = new ArrayList<>();
-        for (MultipleItemEntity entity : data) {
-            final boolean isSelected = entity.getField(MultipleFields.IS_SELECTED);
-            if (isSelected) {
+        //要删除的商品id
+        StringBuilder ids = new StringBuilder();
+
+        for (MultipleItemEntity entity : totalEntity) {
+            final int isSelected = entity.getField(MultipleFields.PRODUCT_CHECKED);
+            if (isSelected == 1) {
                 deleteEntities.add(entity);
+                ids.append(String.valueOf(entity.getField(MultipleFields.PRODUCT_ID))).append(",");
             }
         }
-        for (MultipleItemEntity entity : deleteEntities) {
-            int removePosition;
-            final int entityPosition = entity.getField(MultipleFields.POSITION);
-            if (entityPosition > mCurrentCount - 1) {
-                removePosition = entityPosition - (mTotalCount - mCurrentCount);
-            } else {
-                removePosition = entityPosition;
-            }
-            if (removePosition <= mAdapter.getItemCount()) {
-                mAdapter.remove(removePosition);
-                mCurrentCount = mAdapter.getItemCount();
-                //更新数据
-                mAdapter.notifyItemRangeChanged(removePosition, mAdapter.getItemCount());
-                // mAdapter.notifyDataSetChanged();
+
+        int deleteEntityListCount = deleteEntities.size();
+
+        for (int i = 0; i < deleteEntityListCount; i++) {
+            final int currentPosition = deleteEntities.get(i).getField(MultipleFields.POSITION);
+
+            if (currentPosition < mAdapter.getData().size()) {
+                mAdapter.remove(currentPosition);
+                //删除后，此时currentPosition是删除前currentPosition的下一个商品
+                for (int j = currentPosition; j < totalEntity.size(); j++) {
+
+                    int a = totalEntity.get(j).getField(MultipleFields.POSITION);
+                    totalEntity.get(j).setField(MultipleFields.POSITION, a - 1);
+                }
             }
         }
+        //数据库删除商品
+        RestClient.builder()
+                .url("/cart/delete_product.do")
+                .params("productIds", ids.substring(0, ids.length() - 1))
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build()
+                .get();
         checkItemCount();
     }
 
@@ -133,7 +172,7 @@ public class ShopCartDelegate extends BottomItemDelegate
                     public void onSuccess(String response) {
                         //进行具体的支付
                         XiaoXuLogger.d("ORDER", response);
-                       // final int orderId = JSON.parseObject(response).getInteger("result");
+                        // final int orderId = JSON.parseObject(response).getInteger("result");
                         FastPay.create(ShopCartDelegate.this)
                                 .setPayResultListener(ShopCartDelegate.this)
                                 .setOrderId(0123)
@@ -145,20 +184,7 @@ public class ShopCartDelegate extends BottomItemDelegate
 
     }
 
-
-    @Override
-    public Object setLayout() {
-        return R.layout.delegate_shop_cart;
-    }
-
-    @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
-        mIconSelectAll.setTag(0);
-    }
-
-    @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
+    void request() {
         //请求数据
         RestClient.builder()
                 .url("/cart/list.do")
@@ -169,80 +195,100 @@ public class ShopCartDelegate extends BottomItemDelegate
     }
 
     @Override
-    public void onSuccess(String response) {
-
-        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
-        //转换数据
-       /* final ArrayList<MultipleItemEntity> data =
-                new ShopCartDataConverter()
-                        .setJsonData(response)
-                        .convertToEntityList();*/
-
-        //
-        ArrayList<MultipleItemEntity> dataList = new ArrayList<>();
-        final int productId = 1;
-        final int quantity = 3;
-        final String productName = "绝味小龙虾1kg 麻辣/十三香口味(17-25只)";
-        final String productSubtitle = ",";
-        final String productMainImage = "dbf30c59-2178-4257-a22c-a03704c32863.png";
-        final double productPrice = 60.253;
-
-        for (int i = 0; i < 20; i++) {
-            MultipleItemEntity entity = MultipleItemEntity.builder()
-                    .setField(MultipleFields.MAIN_IMAGE, productMainImage)
-                    .setField(MultipleFields.SUBTITLE, i)
-                    .setField(MultipleFields.NAME, productName)
-                    .setField(MultipleFields.QUANTITY, quantity)
-                    .setField(MultipleFields.PRICE, productPrice)
-                    .setField(MultipleFields.PRODUCT_ID, productId)
-                    .setField(MultipleFields.ITEM_TYPE, 6)
-                    .setField(MultipleFields.IS_SELECTED, false)
-                    .setField(MultipleFields.POSITION, i)
-                    .build();
-            dataList.add(entity);
-        }
-
-
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        mAdapter = new ShopCartAdapter(dataList);
-
-        mAdapter.setCartItemListener(this);
-
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(mAdapter);
-
-        mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
-
-
-        checkItemCount();
+    public Object setLayout() {
+        return R.layout.delegate_shop_cart;
     }
 
+    @Override
+    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
 
-    @SuppressWarnings("RestrictedApi")
-    private void checkItemCount() {
-        final int count = mAdapter.getItemCount();
-        if (count == 0) {
-            // TODO: 2017/8/31 API
-            final View stubView = mStubNoItem.inflate();
-            final AppCompatTextView tvToBuy =
-                    (AppCompatTextView) stubView.findViewById(R.id.tv_stub_to_buy);
-            tvToBuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), "你该购物啦！", Toast.LENGTH_SHORT).show();
-                }
-            });
-            mRecyclerView.setVisibility(View.GONE);
-        } else {
-            mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        //request();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端界面显示
+
+        } else {// 重新显示到最前端中
+            request();
         }
     }
 
     @Override
-    public void onItemClick(double itemTotalPrice) {
+    public void onSuccess(String response) {
+        XiaoXuLogger.d("cart", response);
+        int status = JSON.parseObject(response).getInteger("status");
+        if (status == 0) {
+            XiaoXuLogger.d("check", response);
+            //出事化全选状态 allChecked
+            boolean allChecked = JSON.parseObject(response).getJSONObject("data").getBoolean("allChecked");
+            if (allChecked) {
+                mIconSelectAll.setTag(1);
+                mIconSelectAll.setTextColor
+                        (ContextCompat.getColor(getContext(), R.color.app_main));
+            } else {
+                mIconSelectAll.setTag(0);
+                mIconSelectAll.setTextColor(Color.GRAY);
+            }
 
-        mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
+
+            double mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+            //转换数据
+            final ArrayList<MultipleItemEntity> data = new ShopCartDataConverter().setJsonData(response).convertToEntityList();
+
+            LinearLayoutManager manager = new LinearLayoutManager(getContext());
+            mAdapter = new ShopCartAdapter(data, new ShopCartDelegate());
+            mAdapter.setCartItemListener(this);
+            mRecyclerView.setLayoutManager(manager);
+            mRecyclerView.setAdapter(mAdapter);
+            mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+            checkItemCount();
+        } else {
+            Toast.makeText(getContext(), "需要重新登录", Toast.LENGTH_LONG).show();
+            getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
+        }
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @SuppressWarnings("RestrictedApi")
+    private void checkItemCount() {
+        final int count = mAdapter.getItemCount();
+
+        if (count == 0) {
+
+                /*// TODO: 2017/8/31 API
+               // final View stubView = mStubNoItem.inflate();
+                final AppCompatTextView tvToBuy =
+                        (AppCompatTextView) stubView.findViewById(R.id.tv_stub_to_buy);
+                tvToBuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getContext(), "你该购物啦！", Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+            mTvNoItem.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            // mStubNoItem.setVisibility(View.INVISIBLE);
+            mTvNoItem.setVisibility(View.GONE);
+
+        }
+
+    }
+
 
     @Override
     public void onPaySuccess() {
@@ -267,5 +313,16 @@ public class ShopCartDelegate extends BottomItemDelegate
     @Override
     public void onPayConnectError() {
 
+    }
+
+    @Override
+    public void onItemClick(@Nullable double itemTotalPrice, boolean allChecked) {
+        mTvTotalPrice.setText(String.valueOf(mAdapter.getTotalPrice()));
+        if (allChecked) {
+            mIconSelectAll.setTextColor
+                    (ContextCompat.getColor(getContext(), R.color.app_main));
+        } else {
+            mIconSelectAll.setTextColor(Color.GRAY);
+        }
     }
 }

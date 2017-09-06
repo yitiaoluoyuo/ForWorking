@@ -9,6 +9,95 @@
     android:orientation="horizontal">
 
     <RelativeLayout
+        android:id="@+id/rl_shop"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:paddingBottom="5dp">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/icon_shop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="{icon-ali-shop}"
+            android:textSize="20dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="店铺"
+            android:textSize="12dp" />
+
+        <!-- <com.xiaoxu.ui.widget.CircleTextView
+             android:id="@+id/tv_shopping_cart_amount"
+             android:layout_width="20dp"
+             android:layout_height="20dp"
+             android:layout_alignEnd="@+id/icon_shop_cart"
+             android:layout_alignParentTop="true"
+             android:layout_alignRight="@+id/icon_shop_cart"
+             android:layout_marginRight="20dp"
+             android:layout_marginTop="2dp"
+             android:gravity="center"
+             android:textColor="@android:color/white"
+             android:textSize="12sp"
+             tools:ignore="RtlHardcoded" />-->
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_shop_service"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:paddingBottom="5dp">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/icon_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="{icon-ali-service}"
+            android:textSize="20dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="客服"
+            android:textSize="12dp" />
+
+        <!-- <com.xiaoxu.ui.widget.CircleTextView
+             android:id="@+id/tv_shopping_cart_amount"
+             android:layout_width="20dp"
+             android:layout_height="20dp"
+             android:layout_alignEnd="@+id/icon_shop_cart"
+             android:layout_alignParentTop="true"
+             android:layout_alignRight="@+id/icon_shop_cart"
+             android:layout_marginRight="20dp"
+             android:layout_marginTop="2dp"
+             android:gravity="center"
+             android:textColor="@android:color/white"
+             android:textSize="12sp"
+             tools:ignore="RtlHardcoded" />-->
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:id="@+id/rl_favor"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -23,7 +112,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="{fa-heart-o}"
+            android:text="{icon-ali-star}"
             android:textSize="20sp" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -32,59 +121,17 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="喜欢"
+            android:text="收藏"
             android:textSize="12sp" />
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_shop_cart"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@android:color/white"
-        android:paddingBottom="5dp">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            android:id="@+id/icon_shop_cart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="{fa-shopping-cart}"
-            android:textSize="20sp" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="购物车"
-            android:textSize="12sp" />
-
-        <com.xiaoxu.ui.widget.CircleTextView
-            android:id="@+id/tv_shopping_cart_amount"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignEnd="@+id/icon_shop_cart"
-            android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/icon_shop_cart"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            tools:ignore="RtlHardcoded" />
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_add_shop_cart"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:background="@android:color/holo_orange_dark"
         android:gravity="center_horizontal">
 

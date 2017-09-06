@@ -95,6 +95,11 @@ public class Configurator {
         return this;
     }
 
+    public final Configurator withImageHost(String imageHost) {
+        XiaoXu_CONFIGS.put(ConfigKeys.IMAGE_HOST, imageHost);
+        return this;
+    }
+
     public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         XiaoXu_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);

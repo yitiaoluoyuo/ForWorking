@@ -69,7 +69,6 @@ public class IndexActivity extends ProxyActivity implements
         switch (tag){
             case SIGNED:
                 //登录成功的处理
-                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
                 getSupportDelegate().start(new BottomBarDelegate() );
                 break;
             case SIGNED_NON:

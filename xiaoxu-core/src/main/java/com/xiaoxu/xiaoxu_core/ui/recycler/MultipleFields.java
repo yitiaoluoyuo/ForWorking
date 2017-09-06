@@ -29,7 +29,7 @@ public enum MultipleFields {
     /**
      * shop cart
      */
-    QUANTITY,IS_SELECTED,POSITION
+    QUANTITY,POSITION,PRODUCT_CHECKED,PRODUCT_TOTAL_PRICE,ALL_CHECKED
 
     /**
      * order

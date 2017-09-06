@@ -3,7 +3,6 @@ package com.xiaoxu.xiaoxu_ec.main_delegates.shopcart;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xiaoxu.xiaoxu_core.ui.recycler.DataConverter;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
@@ -17,19 +16,18 @@ import java.util.ArrayList;
 
 public class ShopCartDataConverter extends DataConverter {
 
-
     @Override
     public ArrayList<MultipleItemEntity> convertToEntityList() {
-        ArrayList<MultiItemEntity> dataList = new ArrayList<>();
+        ArrayList<MultipleItemEntity> dataList = new ArrayList<>();
 
         JSONObject jsonObject = JSON.parseObject(getJsonData()).getJSONObject("data");
-        final boolean allChecked = jsonObject.getBoolean("allChecked");
         final double cartTotalPrice = jsonObject.getDouble("cartTotalPrice");
-        JSONArray jsonArray = jsonObject.getJSONArray("cartProductVoList");
 
-        final int size = jsonArray.size();
+        JSONArray cartProductArray = jsonObject.getJSONArray("cartProductVoList");
+
+        final int size = cartProductArray.size();
         for (int i = 0; i < size; i++) {
-            final JSONObject data = jsonArray.getJSONObject(i);
+            final JSONObject data = cartProductArray.getJSONObject(i);
             final int id = data.getInteger("id");
             final int userId = data.getInteger("userId");
             final int productId = data.getInteger("productId");
@@ -52,13 +50,15 @@ public class ShopCartDataConverter extends DataConverter {
                     .setField(MultipleFields.PRICE, productPrice)
                     .setField(MultipleFields.PRODUCT_ID, productId)
                     .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_SHOP_CART)
-                    .setField(MultipleFields.IS_SELECTED,false)
+                    .setField(MultipleFields.PRODUCT_CHECKED,productChecked)
+                    .setField(MultipleFields.PRODUCT_TOTAL_PRICE,productTotalPrice)
+                    .setField(MultipleFields.PRODUCT_STOCK,productStock)
                     .setField(MultipleFields.POSITION,i)
                     .build();
             dataList.add(entity);
 
 
         }
-        return null;
+        return dataList;
     }
 }
