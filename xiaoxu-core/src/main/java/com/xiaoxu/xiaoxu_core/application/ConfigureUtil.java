@@ -33,6 +33,10 @@ public final class ConfigureUtil {
         return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT);
     }
 
+    public static String getImageHost(){
+        return (String) getConfigurations().get(ConfigKeys.IMAGE_HOST);
+    }
+
     public static Handler getHandler(){
         return (Handler) getConfigurations().get(ConfigKeys.HANDLER);
     }

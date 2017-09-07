@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ContentFrameLayout;
 
 import com.xiaoxu.xiaoxu_core.R;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
@@ -22,7 +22,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
 
     private final SupportActivityDelegate ACTIVITY_DELEGATE = new SupportActivityDelegate(this);
 
-    public abstract XiaoXuDelegate setRootDelegate();
+    public abstract LatteDelegate setRootDelegate();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

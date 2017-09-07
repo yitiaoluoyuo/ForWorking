@@ -5,7 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
@@ -21,12 +21,11 @@ import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * Created by xiaoxu on 2017/8/28.
- *
  */
 
 public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
-            private final SortDelegateParent SORT_DELEGATE_PARENT;
+    private final SortDelegateParent SORT_DELEGATE_PARENT;
 
     private int mPrePosition = 0;
 
@@ -98,25 +97,20 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
 
     private void switchContent(SortContentDelegate delegateNew) {
 
-        final XiaoXuDelegate contentDelegate =
+        final LatteDelegate contentDelegate =
                 SupportHelper.findFragment(SORT_DELEGATE_PARENT.getChildFragmentManager(), SortContentDelegate.class);
 
-        if (delegateNew.isAdded()){
+        if (delegateNew.isAdded()) {
             if (contentDelegate != null) {
-
                 contentDelegate.getSupportDelegate().replaceFragment(delegateNew, false);//是否加入回退栈
             }
-
-        }else {
+        } else {
             if (contentDelegate != null) {
-                contentDelegate.getSupportDelegate().loadRootFragment(R.id.sort_rv_list_content,delegateNew);
-
+                contentDelegate.getSupportDelegate().loadRootFragment(R.id.sort_rv_list_content, delegateNew);
                 contentDelegate.getSupportDelegate().replaceFragment(delegateNew, false);//是否加入回退栈
             }
         }
-
     }
-
 
 
 }

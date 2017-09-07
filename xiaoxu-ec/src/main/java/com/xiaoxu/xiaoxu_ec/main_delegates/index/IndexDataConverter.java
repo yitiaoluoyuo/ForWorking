@@ -26,8 +26,8 @@ public class IndexDataConverter extends DataConverter {
         /*
                 单一格式的数据处理
          */
-        for (int j = 0; j < 10; j++) {
-            for (int i = 0; i < size; i++) {
+        for (int j = 0; j < 50; j++) {
+            for (int i = 1; i < size; i++) {
                 final JSONObject data = dataArray.getJSONObject(i);
                 final int id = data.getInteger("id");
                 final int categoryId = data.getInteger("categoryId");

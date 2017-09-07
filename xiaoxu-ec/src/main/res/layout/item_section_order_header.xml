@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingTop="3dp"
+    android:layout_height="50dp"
+    android:background="@android:color/white"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:id="@+id/tv_order_list_receiver"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="收件人"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_list_statusDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+           android:layout_toRightOf="@+id/tv_order_list_receiver"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="未支付"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_list_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv_order_list_statusDesc"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="总价"
+            android:textSize="12dp"
+            />
+        <TextView
+            android:id="@+id/tv_order_list_is_more"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text=""
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:id="@+id/tv_order_list_order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="订单号1523666366656"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_list_create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv_order_list_order_number"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="创建时间"
+            android:textSize="12dp"
+            />
+
+
+
+    </RelativeLayout>
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.5dp"
+    android:background="#cccccc"
+    />
+
+
+</LinearLayout>

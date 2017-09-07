@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
@@ -23,7 +23,7 @@ import butterknife.BindView;
  *
  */
 
-public class SortListDelegate extends XiaoXuDelegate {
+public class SortListDelegate extends LatteDelegate {
 
 
 

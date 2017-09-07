@@ -12,8 +12,9 @@ import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListAdapter;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListBean;
-import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.order.OrderListDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.personal.order.OrderListDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.address.AddressDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.personal.order.afterMarket.AfterMarketDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.profile.UserProfileDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.settings.SettingsDelegate;
 
@@ -49,6 +50,33 @@ public class PersonalDelegate extends BottomItemDelegate {
         mArgs.putString(ORDER_TYPE, "all");
         startOrderListByType();
     }
+
+    @OnClick(R2.id.ll_to_pay)
+    void onClickToPay() {
+        mArgs.putString(ORDER_TYPE, "pay");
+        startOrderListByType();
+    }
+
+    @OnClick(R2.id.ll_to_receive)
+    void onClickToReceiver() {
+        mArgs.putString(ORDER_TYPE, "receive");
+        startOrderListByType();
+    }
+
+    @OnClick(R2.id.ll_to_evaluate)
+    void onClickToEvaluate() {
+        mArgs.putString(ORDER_TYPE, "evaluate");
+        startOrderListByType();
+    }
+
+    @OnClick(R2.id.ll_after_market)
+    void onClickAfterMarket() {
+        mArgs.putString(ORDER_TYPE, "after");
+        final AfterMarketDelegate delegate= new AfterMarketDelegate();
+        getParentDelegate().getSupportDelegate().start(delegate);
+    }
+
+
 
     @OnClick(R2.id.img_user_avatar)
     void onClickAvatar() {

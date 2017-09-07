@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.xiaoxu.xiaoxu_core.application.AccountManager;
 import com.xiaoxu.xiaoxu_core.application.IUserChecker;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherScrollTag;
 import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
 import com.xiaoxu.xiaoxu_core.util.timer.BaseTimerTask;
@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * 启动倒计时
  */
 
-public class LauncherDelegate extends XiaoXuDelegate implements ITimerListener{
+public class LauncherDelegate extends LatteDelegate implements ITimerListener{
 
     @BindView(R2.id.tv_launcher_timer)
     AppCompatTextView mTvTimer = null;

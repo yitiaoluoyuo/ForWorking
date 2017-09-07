@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * 注册相关逻辑
  */
 
-public class SignUpDelegate extends XiaoXuDelegate {
+public class SignUpDelegate extends LatteDelegate {
 
     private WeakHashMap<String, Object> params = new WeakHashMap<>();
 

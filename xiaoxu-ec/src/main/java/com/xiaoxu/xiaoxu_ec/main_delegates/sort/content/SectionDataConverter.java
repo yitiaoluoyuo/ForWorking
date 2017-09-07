@@ -15,7 +15,7 @@ public class SectionDataConverter {
 
     public ArrayList<SectionHeadEntity> convertToEntityList(String json) {
 
-        final ArrayList<SectionHeadEntity> dataList = new ArrayList<>();
+        final ArrayList<SectionHeadEntity> sectionList = new ArrayList<>();
 
 
         //本地加入head数据
@@ -39,7 +39,7 @@ public class SectionDataConverter {
             final SectionHeadEntity sectionHeadEntity = new SectionHeadEntity(true, title);
             sectionHeadEntity.setId(i);
             sectionHeadEntity.setIsMore(true);
-            dataList.add(sectionHeadEntity);
+            sectionList.add(sectionHeadEntity);
 
             JSONArray goods = JSON.parseObject(json).getJSONObject("data").getJSONArray("list");
             //商品内容循环
@@ -57,13 +57,12 @@ public class SectionDataConverter {
                 itemEntity.setImageHost(imageHost);
                 itemEntity.setMainImage(mainImage);
                 //添加内容
-                dataList.add(new SectionHeadEntity(itemEntity));
+                sectionList.add(new SectionHeadEntity(itemEntity));
             }
             //商品内容循环结束
         }
         //Section循环结束
-
-        return dataList;
+        return sectionList;
 
     }
 }

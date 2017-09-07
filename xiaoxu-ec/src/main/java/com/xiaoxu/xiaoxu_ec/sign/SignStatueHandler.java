@@ -2,6 +2,7 @@ package com.xiaoxu.xiaoxu_ec.sign;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.application.AccountManager;
+import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
 import com.xiaoxu.xiaoxu_ec.database.DatabaseManager;
 import com.xiaoxu.xiaoxu_ec.database.UserBean;
 
@@ -23,6 +24,8 @@ public class SignStatueHandler {
         final long createTime = profileJson.getLong("createTime");
         final long updateTime = profileJson.getLong("createTime");
 
+        XiaoXuPreference.addCustomAppProfile("id",String.valueOf(id));
+
         final UserBean userBean = new UserBean(id, username, email, phone, role,createTime,updateTime);
 
         //把UserProfile中的数据插入数据库
@@ -40,17 +43,6 @@ public class SignStatueHandler {
 
 
     public static void onSignUpSuccess( ISignSuccessListener signListener) {
-
-       /* final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
-        final long userId = profileJson.getLong("userId");
-        final String name = profileJson.getString("name");
-        final String avatar = profileJson.getString("avatar");
-        final String gender = profileJson.getString("gender");
-        final String address = profileJson.getString("address");
-
-        //把返回的数据插入到数据库
-        final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
-        DatabaseManager.getInstance().getDao().insert(profile);*/
 
         //已经注册并没有登录
         AccountManager.setSignInState(false);

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
@@ -26,7 +26,7 @@ import butterknife.BindView;
  * 创建ContentDelegate时需要传入分类ID
  */
 
-public class SortContentDelegate extends XiaoXuDelegate {
+public class SortContentDelegate extends LatteDelegate {
 
     private SectionAdapter mSectionAdapter = null;
     private ArrayList<SectionHeadEntity> mData = null;
@@ -65,11 +65,17 @@ public class SortContentDelegate extends XiaoXuDelegate {
 
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
-
         final StaggeredGridLayoutManager manager =
                 new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         mRecycleView.setLayoutManager(manager);
         initData(mCategoryId);
+
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+
     }
 
     private void initData(int categoryId) {
@@ -84,7 +90,6 @@ public class SortContentDelegate extends XiaoXuDelegate {
                                 (R.layout.item_section_content,R.layout.item_section_header,mData);
                         mRecycleView.setAdapter(mSectionAdapter);
 
-                        Toast.makeText(ConfigureUtil.getApplicationContext(),"欢迎  光临！",Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.util.callback.CallbackManager;
 import com.xiaoxu.xiaoxu_core.util.callback.CallbackType;
@@ -27,7 +27,7 @@ import butterknife.BindView;
  * Created by xiaoxu on 2017/9/3.
  */
 
-public class SettingsDelegate extends XiaoXuDelegate {
+public class SettingsDelegate extends LatteDelegate {
 
     @BindView(R2.id.rv_settings)
     RecyclerView mRecyclerView = null;

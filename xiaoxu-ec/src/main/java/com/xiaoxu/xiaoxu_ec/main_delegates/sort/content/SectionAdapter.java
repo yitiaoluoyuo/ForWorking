@@ -22,15 +22,6 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionHeadEntity,Ba
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .dontAnimate();
 
-    /**
-     * Same as QuickAdapter#QuickAdapter(Context,int) but with
-     * some initialization data.
-     *
-     * @param layoutResId      The layout resource id of each item.
-     * @param sectionHeadResId The section head layout id for each item
-     * @param data             A new list is created out of this one to avoid mutable list
-     */
-
     public SectionAdapter(int layoutResId, int sectionHeadResId, List<SectionHeadEntity> data) {
         super(layoutResId, sectionHeadResId, data);
     }

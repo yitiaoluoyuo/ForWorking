@@ -9,7 +9,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.xiaoxu.xiaoxu_core.application.AccountManager;
 import com.xiaoxu.xiaoxu_core.application.IUserChecker;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherHolderCreator;
 import com.xiaoxu.xiaoxu_core.ui.launcher_scroll.LauncherScrollTag;
 import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * 轮播图
  */
 
-public class LauncherScrollDelegate extends XiaoXuDelegate implements OnItemClickListener {
+public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener {
 
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();

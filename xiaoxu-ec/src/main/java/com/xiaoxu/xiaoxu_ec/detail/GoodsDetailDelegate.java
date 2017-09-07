@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.banner.HolderCreator;
@@ -40,7 +40,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * Created by xiaoxu on 2017/8/28.
  */
 
-public class GoodsDetailDelegate extends XiaoXuDelegate  implements
+public class GoodsDetailDelegate extends LatteDelegate implements
         AppBarLayout.OnOffsetChangedListener{
 
     public static final String ARG_GOODS_ID = "ARG_GOODS_ID";

@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListBean;
 
 /**
@@ -13,9 +13,9 @@ import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListBean;
 
 public class SettingsClickListener extends SimpleClickListener {
 
-    private final XiaoXuDelegate DELEGATE;
+    private final LatteDelegate DELEGATE;
 
-    public SettingsClickListener(XiaoXuDelegate delegate) {
+    public SettingsClickListener(LatteDelegate delegate) {
         this.DELEGATE = delegate;
     }
 

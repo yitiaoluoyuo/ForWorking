@@ -9,12 +9,11 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
-import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.database.UserBean;
@@ -29,7 +28,7 @@ import butterknife.OnClick;
  * 登录业务
  */
 
-public class SignInDelegate extends XiaoXuDelegate {
+public class SignInDelegate extends LatteDelegate {
 
     private WeakHashMap<String, Object> params = new WeakHashMap<>();
 
@@ -75,7 +74,7 @@ public class SignInDelegate extends XiaoXuDelegate {
                                         userBean.getUserName()+
                                         " 访问", Toast.LENGTH_SHORT).show();
 
-                                XiaoXuLogger.json("/user/login.do",response);
+
                             } else if (statusCode == 1) {
 
                                 Toast.makeText(getContext(), (String) responseJsonData.get("msg"), Toast.LENGTH_LONG).show();

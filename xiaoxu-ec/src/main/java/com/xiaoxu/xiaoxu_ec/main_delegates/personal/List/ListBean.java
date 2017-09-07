@@ -3,7 +3,7 @@ package com.xiaoxu.xiaoxu_ec.main_delegates.personal.List;
 import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 
 /**
  * Created by xiaoxu on 2017/9/1.
@@ -15,10 +15,10 @@ public class ListBean implements MultiItemEntity {
     private String mText = null;
     private String mValue = null;
     private int mId = 0;
-    private XiaoXuDelegate mDelegate = null;
+    private LatteDelegate mDelegate = null;
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener = null;
 
-    public ListBean(int mItemType, String mImageUrl, String mText, String mValue, int mId, XiaoXuDelegate mDelegate, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
+    public ListBean(int mItemType, String mImageUrl, String mText, String mValue, int mId, LatteDelegate mDelegate, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
         this.mItemType = mItemType;
         this.mImageUrl = mImageUrl;
         this.mText = mText;
@@ -50,7 +50,7 @@ public class ListBean implements MultiItemEntity {
         return mId;
     }
 
-    public XiaoXuDelegate getDelegate() {
+    public LatteDelegate getDelegate() {
         return mDelegate;
     }
 
@@ -71,7 +71,7 @@ public class ListBean implements MultiItemEntity {
         private String text = null;
         private String value = null;
         private CompoundButton.OnCheckedChangeListener onCheckedChangeListener = null;
-        private XiaoXuDelegate delegate = null;
+        private LatteDelegate delegate = null;
 
         public Builder setId(int id) {
             this.id = id;
@@ -103,7 +103,7 @@ public class ListBean implements MultiItemEntity {
             return this;
         }
 
-        public Builder setDelegate(XiaoXuDelegate delegate) {
+        public Builder setDelegate(LatteDelegate delegate) {
             this.delegate = delegate;
             return this;
         }

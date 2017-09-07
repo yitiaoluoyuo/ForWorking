@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.xiaoxu.ui.date.DateDialogUtil;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.util.callback.CallbackManager;
 import com.xiaoxu.xiaoxu_core.util.callback.CallbackType;
 import com.xiaoxu.xiaoxu_core.util.callback.IGlobalCallback;
@@ -87,7 +87,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                 DELEGATE.startCameraWithCheck();
                 break;
             case 2:
-                final XiaoXuDelegate nameDelegate = bean.getDelegate();
+                final LatteDelegate nameDelegate = bean.getDelegate();
                 DELEGATE.getSupportDelegate().start(nameDelegate);
                 break;
             case 3:

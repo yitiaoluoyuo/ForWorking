@@ -2,7 +2,10 @@ package com.xiaoxu.xiaoxu_ec.main_delegates.personal.address;
 
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
@@ -31,7 +34,7 @@ public class AddressAdapter extends MultipleRecyclerAdapter {
     }
 
     @Override
-    protected void convert(final MultipleViewHolder holder, MultipleItemEntity entity) {
+    protected void convert(final MultipleViewHolder holder, final MultipleItemEntity entity) {
         switch (holder.getItemViewType()) {
             case ItemType.ITEM_ADDRESS:
                 final String name = entity.getField(MultipleFields.NAME);
@@ -53,13 +56,24 @@ public class AddressAdapter extends MultipleRecyclerAdapter {
                 deleteTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        final int id = entity.getField(MultipleFields.ID);
                         RestClient.builder()
-                                .url("address.php")
-                                .params("id", id)
+                                .url("/shipping/del.do")
+                                .params("shippingId", id)
                                 .success(new ISuccess() {
                                     @Override
                                     public void onSuccess(String response) {
-                                        remove(holder.getLayoutPosition());
+                                        int code = JSON.parseObject(response).getInteger("status");
+
+                                        if (code == 0){
+                                            remove(holder.getLayoutPosition());
+                                            Toast.makeText(ConfigureUtil.getApplicationContext(),"删除地址成功",Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            Toast.makeText(ConfigureUtil.getApplicationContext(),"删除地址失败",Toast.LENGTH_SHORT).show();
+                                        }
+
+
+
                                     }
                                 })
                                 .build()
@@ -67,19 +81,19 @@ public class AddressAdapter extends MultipleRecyclerAdapter {
                     }
                 });
 
-                //添加修改点击事件
-                resetTextView.setOnClickListener(new View.OnClickListener() {
+                //添加修改地址点击事件
+                /*resetTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         AddressResetDelegate addressResetDelegate = new AddressResetDelegate();
                         mDelegate.getParentDelegate().getSupportDelegate().start(addressResetDelegate);
                     }
-                });
+                });*/
 
                 nameText.setText(name);
                 phoneText.setText("电话：" + phone);
                 addressText.setText(address);
-                provinceCityText.setText(province + "  " + city);
+                provinceCityText.setText(city);
                 break;
             default:
                 break;

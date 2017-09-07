@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 import com.xiaoxu.xiaoxu_ec.detail.GoodsDetailDelegate;
@@ -16,14 +16,14 @@ import com.xiaoxu.xiaoxu_ec.detail.GoodsDetailDelegate;
 
 public class IndexItemClickListener extends SimpleClickListener {
 
-    private final XiaoXuDelegate DELEGATE;
+    private final LatteDelegate DELEGATE;
 
 
-    private IndexItemClickListener(XiaoXuDelegate delegate) {
+    private IndexItemClickListener(LatteDelegate delegate) {
         this.DELEGATE = delegate;
     }
 
-    public static SimpleClickListener create(XiaoXuDelegate delegate){
+    public static SimpleClickListener create(LatteDelegate delegate){
         return new IndexItemClickListener(delegate);
     }
 

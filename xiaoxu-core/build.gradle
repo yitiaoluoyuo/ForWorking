@@ -83,4 +83,7 @@ dependencies {
     compile 'com.blankj:utilcode:1.7.1'
     //图片剪裁
     compile 'com.github.yalantis:ucrop:2.2.1-native'
+
+    //城市选择器
+    compile 'liji.library.dev:citypickerview:2.0.1'
 }

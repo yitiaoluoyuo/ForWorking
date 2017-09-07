@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.R;
 import com.xiaoxu.xiaoxu_core.R2;
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -26,7 +26,7 @@ import me.yokeyword.fragmentation.ISupportFragment;
  * Created by xiaoxu on 2017/8/26.
  */
 
-public abstract class BaseBottomDelegate extends XiaoXuDelegate implements View.OnClickListener {
+public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener {
 
     
     private final ArrayList<BottomTabBean> BOTTOM_TAB_BEANS = new ArrayList<>();

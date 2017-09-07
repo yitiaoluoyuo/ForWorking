@@ -88,7 +88,7 @@
                 android:textSize="15dp"
                 android:text="15737635896"
                 />
-            <android.support.v7.widget.AppCompatTextView
+            <!--<android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_address_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="15dp"
                 android:text="编辑"
-                />
+                />-->
 
         </RelativeLayout>
     </android.support.v7.widget.LinearLayoutCompat>

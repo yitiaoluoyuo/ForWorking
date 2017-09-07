@@ -3,7 +3,7 @@ package com.xiaoxu.xiaoxu_core.delegates.web.event;
 import android.content.Context;
 import android.webkit.WebView;
 
-import com.xiaoxu.xiaoxu_core.delegates.XiaoXuDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.delegates.web.WebDelegate;
 
 /**
@@ -38,7 +38,7 @@ public abstract class Event implements IEvent {
         this.mAction = mAction;
     }
 
-    public XiaoXuDelegate getDelegate() {
+    public LatteDelegate getDelegate() {
         return mDelegate;
     }
 

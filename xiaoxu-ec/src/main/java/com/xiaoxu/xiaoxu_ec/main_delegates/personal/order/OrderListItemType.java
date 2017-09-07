@@ -1,4 +1,4 @@
-package com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.order;
+package com.xiaoxu.xiaoxu_ec.main_delegates.personal.order;
 
 /**
  * Created by xiaoxu on 2017/9/1.

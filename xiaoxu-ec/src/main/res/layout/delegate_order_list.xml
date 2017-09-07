@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/app_background"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_shop_cart"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
         android:background="@android:color/holo_orange_dark"
         android:gravity="center">
 
@@ -21,9 +22,28 @@
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_order_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_order_no_item"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:minHeight="50dp"
+        android:textSize="20dp"
+        android:text="您还没有购物"
+        android:textColor="@color/app_main"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp"
+        android:gravity="center_horizontal"
+        tools:ignore="HardcodedText,SpUsage" />
 
 </LinearLayout>
