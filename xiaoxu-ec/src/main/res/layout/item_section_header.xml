@@ -2,8 +2,10 @@
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:orientation="horizontal">
+    android:layout_height="45dp"
+    android:orientation="horizontal"
+    android:background="@color/app_gray_04"
+    >
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_header"
@@ -11,10 +13,12 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center|left"
-        android:paddingLeft="10dp"
-        android:textColor="@color/we_chat_black"
-        android:textSize="10sp"
-        android:textStyle="bold" />
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/app_gray_02"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="title"
+        />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_more"
@@ -22,7 +26,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center|right"
-        android:paddingRight="5dp"
+        android:paddingRight="15dp"
         android:text="more >>"
         android:textSize="10sp"
         android:textColor="@color/we_chat_black"

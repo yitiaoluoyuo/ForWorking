@@ -7,7 +7,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/app_ui"
         android:gravity="center">
 
         <android.support.v7.widget.AppCompatTextView
@@ -16,7 +16,7 @@
             android:gravity="center"
             android:paddingTop="6dp"
             android:text="分类"
-            android:textColor="@android:color/white"
+            android:textColor="@color/app_gray_06"
             android:textSize="20sp" />
 
     </android.support.v7.widget.Toolbar>
@@ -24,7 +24,7 @@
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/app_ui"
         android:baselineAligned="true"
         android:orientation="horizontal">
 
@@ -33,17 +33,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ffffff"
+            android:background="@color/app_gray_06"
             />
 
         <android.support.v7.widget.ContentFrameLayout
             android:id="@+id/sort_content_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="2.5"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
 
     </android.support.v7.widget.LinearLayoutCompat>

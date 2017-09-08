@@ -28,7 +28,7 @@ public class SortDelegateParent extends BottomItemDelegate {
             final SortListDelegate listDelegate = new SortListDelegate();
             getSupportDelegate().loadRootFragment(R.id.sort_list_container, listDelegate);
             //默认显示分类  100001
-            final SortContentDelegate sortContentDelegate = SortContentDelegate.newInstance(100001);
+            final SortContentDelegate sortContentDelegate = SortContentDelegate.newInstance(100002);
             getSupportDelegate().loadRootFragment(R.id.sort_content_container, sortContentDelegate);
         }
     }

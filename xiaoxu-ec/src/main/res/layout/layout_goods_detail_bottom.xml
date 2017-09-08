@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/app_gray_06"
         android:paddingBottom="5dp">
 
         <com.joanzapata.iconify.widget.IconTextView
@@ -24,7 +24,9 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="{icon-ali-shop}"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textColor="@color/app_gray_02"
+            />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -33,7 +35,9 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="店铺"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textColor="@color/app_gray_02"
+            />
 
         <!-- <com.xiaoxu.ui.widget.CircleTextView
              android:id="@+id/tv_shopping_cart_amount"
@@ -69,7 +73,9 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="{icon-ali-service}"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textColor="@color/app_gray_02"
+            />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -78,7 +84,9 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="客服"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textColor="@color/app_gray_02"
+            />
 
         <!-- <com.xiaoxu.ui.widget.CircleTextView
              android:id="@+id/tv_shopping_cart_amount"
@@ -98,7 +106,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_favor"
+        android:id="@+id/rl_collect"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -113,7 +121,9 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="{icon-ali-star}"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/app_gray_02"
+            />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -122,26 +132,46 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="收藏"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/app_gray_02"
+            />
 
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/rl_add_shop_cart"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_add_shop_crt"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
         android:layout_weight="1.5"
-        android:background="@android:color/holo_orange_dark"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="加入购物车"
+        android:textColor="@color/app_gray_06"
+        android:background="@color/app_ui"
+        android:textSize="13dp"
+        />
+
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:background="@color/app_gray_04"
+        />
+
 
         <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
+            android:id="@+id/tv_buy_immediately"
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="加入购物车"
-            android:textColor="@android:color/white" />
+            android:text="立即购买"
+            android:textColor="@color/app_gray_06"
+            android:background="@color/app_ui_deep"
+            android:textSize="13dp"
+            />
 
-    </RelativeLayout>
+
+
 </android.support.v7.widget.LinearLayoutCompat>

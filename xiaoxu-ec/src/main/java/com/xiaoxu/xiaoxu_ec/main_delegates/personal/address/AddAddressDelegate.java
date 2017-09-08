@@ -70,12 +70,10 @@ public class AddAddressDelegate extends LatteDelegate implements CityPickerView.
                         int code = JSON.parseObject(response).getInteger("status");
                         if (code == 0){
                             Toast.makeText(getContext(),"添加地址成功",Toast.LENGTH_SHORT).show();
-                            getSupportDelegate().replaceFragment(new AddressDelegate(),false);
-
-
+                            getFragmentManager().popBackStack();
+                            getSupportDelegate().onBackPressedSupport();
                         }else {
                             Toast.makeText(getContext(),"添加地址失败",Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 })
@@ -152,7 +150,7 @@ public class AddAddressDelegate extends LatteDelegate implements CityPickerView.
         city = cityBean.getName();
         district = districtBean.getName();
 
-        textViewCity.setText(province +"-"+ city +"-" + district);
+        textViewCity.setText(province +"--"+ city +"--" + district);
     }
 
     @Override

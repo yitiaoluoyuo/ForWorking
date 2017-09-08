@@ -44,7 +44,7 @@ public class SectionDataConverter {
             JSONArray goods = JSON.parseObject(json).getJSONObject("data").getJSONArray("list");
             //商品内容循环
             final int goodSize = goods.size();
-            for (int j = 0; j < goodSize; j++) {
+            for (int j = 1; j < goodSize; j++) {
                 final JSONObject contentItem = goods.getJSONObject(j);
                 final int id = contentItem.getInteger("id");
                 final String subtitle = contentItem.getString("subtitle");

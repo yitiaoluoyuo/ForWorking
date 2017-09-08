@@ -1,9 +1,9 @@
 package com.xiaoxu.xiaoxu_core.delegates.bottom;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
@@ -36,7 +36,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS_TAB_AND_DELEGATE = new LinkedHashMap<>();
     private int mCurrentDelegate = 0;
     private int mIndexDelegate = 0;
-    private int mClickedColor = Color.RED;
+    private int mClickedColor = R.color.app_ui;
 
     @BindView(R2.id.bottom_tab_container)
     LinearLayoutCompat mTabContainer = null;
@@ -86,8 +86,8 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             //如果刚好循环到需要展示的fragment
             if (i == mIndexDelegate) {
                 //设置点击后的颜色
-                itemIcon.setTextColor(mClickedColor);
-                itemTitle.setTextColor(mClickedColor);
+                itemIcon.setTextColor(ContextCompat.getColor(getContext(),R.color.app_ui));
+                itemTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.app_ui));
             }
         }
 
@@ -109,9 +109,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             final RelativeLayout item = (RelativeLayout) mTabContainer.getChildAt(i);
             final IconTextView itemTabIcon = (IconTextView) item.getChildAt(0);
             //Color.GRAY
-            itemTabIcon.setTextColor(getResources().getColor(R.color.colorGrayLight));
+            itemTabIcon.setTextColor(ContextCompat.getColor(getContext(),R.color.app_gray_03));
             final AppCompatTextView itemTabTitle = (AppCompatTextView) item.getChildAt(1);
-            itemTabTitle.setTextColor(getResources().getColor(R.color.colorGrayLight));
+            itemTabTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.app_gray_03));
         }
     }
 
@@ -146,9 +146,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         resetItemTabColor();
         final RelativeLayout itemTab = (RelativeLayout) v;
         final IconTextView itemTabIcon = (IconTextView) itemTab.getChildAt(0);
-        itemTabIcon.setTextColor(mClickedColor);
+        itemTabIcon.setTextColor(ContextCompat.getColor(getContext(),R.color.app_ui));
         final AppCompatTextView itemTabTitle = (AppCompatTextView) itemTab.getChildAt(1);
-        itemTabTitle.setTextColor(mClickedColor);
+        itemTabTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.app_ui));
         //---------------------------------------需要显示的delegate-------需要隐藏的delegate
         getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         //注意先后顺序

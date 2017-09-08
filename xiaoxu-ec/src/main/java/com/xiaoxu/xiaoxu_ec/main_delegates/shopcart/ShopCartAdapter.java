@@ -97,10 +97,10 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 final IconTextView iconIsSelected = holder.getView(R.id.icon_item_select_shop_cart);
 
                 //赋值
-                textViewName.setText(name);
+                textViewName.setText(name.substring(8,name.length()-1));
                 textViewTitle.setText(title);
                 textViewCount.setText(String.valueOf(quantity));
-                textViewPrice.setText(String.valueOf(price));
+                textViewPrice.setText(String.valueOf("￥"+price));
 
                 final AppCompatImageView imageView =
                         holder.getView(R.id.image_item_shop_cart);
@@ -126,7 +126,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 //根据数据状态显示左侧勾勾
                 if (productChecked == 1) {
                     iconIsSelected.setTextColor
-                            (ContextCompat.getColor(ConfigureUtil.getApplicationContext(), R.color.app_main));
+                            (ContextCompat.getColor(ConfigureUtil.getApplicationContext(), R.color.app_ui));
 
                 } else {
                     iconIsSelected.setTextColor(Color.GRAY);
@@ -174,7 +174,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                                             if (mCartItemListener != null) {
                                                 mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
                                                 iconIsSelected.setTextColor
-                                                        (ContextCompat.getColor(ConfigureUtil.getApplicationContext(), R.color.app_main));
+                                                        (ContextCompat.getColor(ConfigureUtil.getApplicationContext(), R.color.app_ui));
                                                 item.setField(MultipleFields.PRODUCT_CHECKED, 1);
                                                 boolean allChecked = JSON.parseObject(response).getJSONObject("data").getBoolean("allChecked");
                                                 mCartItemListener.onItemClick(mTotalPrice,allChecked);

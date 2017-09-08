@@ -28,7 +28,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:text="姓名"
-                android:textColor="@color/app_main" />
+                android:textColor="@color/app_ui"
+                android:textSize="15dp"
+                />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_address_province_city"
@@ -36,7 +38,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="上海  静安区"
-                android:textColor="@color/we_chat_black" />
+                android:textColor="@color/app_gray_02"
+                android:textSize="15dp"
+                />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_address_delete"
@@ -46,7 +50,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:text="删除"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@color/color_text_03"
+                android:textSize="15dp"
+                />
 
         </RelativeLayout>
 
@@ -71,7 +77,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="left"
-                android:textColor="@color/we_chat_black"
+                android:textColor="@color/app_gray_02"
                 android:textSize="15dp"
                 android:text="望山法规的开发，接口连接，价格可垃圾ssdsdf克己奉公空了减肥的"
                 />
@@ -84,7 +90,7 @@
                 android:gravity="left"
                 android:layout_below="@+id/tv_address_address"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/we_chat_black"
+                android:textColor="@color/app_gray_02"
                 android:textSize="15dp"
                 android:text="15737635896"
                 />

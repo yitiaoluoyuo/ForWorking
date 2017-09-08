@@ -6,8 +6,8 @@
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/holo_orange_dark">
+        android:layout_height="70dp"
+        android:background="@color/app_ui">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -15,12 +15,14 @@
             android:gravity="center"
             android:text="设置"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_settings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/app_gray_05"
+        />
 
 </android.support.v7.widget.LinearLayoutCompat>

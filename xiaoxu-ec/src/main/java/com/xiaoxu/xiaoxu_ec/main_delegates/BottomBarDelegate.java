@@ -1,11 +1,11 @@
 package com.xiaoxu.xiaoxu_ec.main_delegates;
 
-import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BaseBottomDelegate;
-import com.xiaoxu.xiaoxu_core.delegates.bottom.ItemBuilder;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomTabBean;
+import com.xiaoxu.xiaoxu_core.delegates.bottom.ItemBuilder;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.main_delegates.discover.DiscoverDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.index.IndexDelegate;
@@ -37,11 +37,12 @@ public class BottomBarDelegate extends BaseBottomDelegate {
 
     @Override
     public int setIndexDelegate() {
+
         return 0;
     }
 
     @Override
     public int setClickedColor() {
-        return Color.parseColor("#ffff8800");
+        return ContextCompat.getColor(getContext(), com.xiaoxu.xiaoxu_core.R.color.app_ui);
     }
 }

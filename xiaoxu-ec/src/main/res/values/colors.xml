@@ -11,4 +11,17 @@
     <color name="app_background">#1111</color>
     <color name="we_chat_black">#323232</color>
     <color name="item_background">#F1F1F1</color>
+
+
+    <color name="app_ui">#fe5954</color>
+    <color name="app_ui_deep">#fd4641</color>
+
+    <color name="app_gray_01">#323232</color>
+    <color name="app_gray_02">#7c7c7c</color>
+    <color name="app_gray_03">#acacac</color>
+    <color name="app_gray_04">#ededed</color>
+    <color name="app_gray_05">#f4f4f4</color>
+    <color name="app_gray_06">#ffffff</color>
+
+
 </resources>

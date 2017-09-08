@@ -7,6 +7,7 @@ import com.choices.divider.DividerItemDecoration;
 /**
  * Created by xiaoxu on 2017/8/28.
  *
+ *
  */
 
 public class BaseDividerItemDecoration extends DividerItemDecoration {

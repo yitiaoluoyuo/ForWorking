@@ -16,7 +16,7 @@
         android:background="@drawable/btn_border_takephoto"
         android:gravity="center"
         android:text="拍照"
-        android:textColor="#323232" />
+        android:textColor="@color/app_gray_02" />
 
     <View
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         android:background="@drawable/btn_border_nativephoto"
         android:gravity="center"
         android:text="本地"
-        android:textColor="#323232" />
+        android:textColor="@color/app_gray_02" />
 
     <View
         android:layout_width="match_parent"
@@ -51,6 +51,6 @@
         android:background="@drawable/btn_border"
         android:gravity="center"
         android:text="取消"
-        android:textColor="#323232" />
+        android:textColor="@color/app_gray_02" />
 
 </android.support.v7.widget.LinearLayoutCompat>

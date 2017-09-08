@@ -10,7 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@color/app_gray_02"
+        />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_arrow_value"
@@ -19,7 +21,9 @@
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/icon_arrow"
         android:gravity="center"
-        android:text="未设置" />
+        android:text="未设置"
+        android:textColor="@color/app_gray_03"
+        />
 
     <com.joanzapata.iconify.widget.IconTextView
         android:id="@+id/icon_arrow"
@@ -28,6 +32,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:gravity="center"
-        android:text="{fa-chevron-right}" />
+        android:text="{fa-chevron-right}"
+        android:textColor="@color/app_gray_03"
+        />
 
 </RelativeLayout>

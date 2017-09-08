@@ -7,8 +7,8 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_shop_cart"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:background="@android:color/holo_orange_dark"
+        android:layout_height="65dp"
+        android:background="@color/app_ui"
         android:gravity="center">
 
         <android.support.v7.widget.AppCompatTextView
@@ -16,8 +16,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="售后服务"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textColor="@color/app_gray_06"
+            android:textSize="20dp" />
     </android.support.v7.widget.Toolbar>
 
     <TextView
@@ -26,6 +26,7 @@
         android:layout_centerInParent="true"
         android:textSize="20dp"
         android:text="您还没购买任何商品"
+        android:textColor="@color/app_ui"
 
         />
 

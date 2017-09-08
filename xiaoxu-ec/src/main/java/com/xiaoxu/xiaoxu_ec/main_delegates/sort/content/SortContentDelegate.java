@@ -81,6 +81,7 @@ public class SortContentDelegate extends LatteDelegate {
     private void initData(int categoryId) {
         RestClient.builder()
                 .url("/product/list.do?keyword&categoryId="+categoryId+"&orderBy=price_desc")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {

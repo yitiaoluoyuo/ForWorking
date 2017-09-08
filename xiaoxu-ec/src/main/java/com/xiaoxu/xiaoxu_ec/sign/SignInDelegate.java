@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -16,7 +17,6 @@ import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
-import com.xiaoxu.xiaoxu_ec.database.UserBean;
 
 import java.util.WeakHashMap;
 
@@ -51,7 +51,7 @@ public class SignInDelegate extends LatteDelegate {
 
 
     @OnClick(R2.id.btn_sign_in)
-    void onClickSignIn() {
+    void onClickSignIn(final View view) {
         if (checkForm()) {
 
             params.put("username", userName);
@@ -68,13 +68,13 @@ public class SignInDelegate extends LatteDelegate {
 
                             //通过服务器返回的状态码对注册状态进行判断并处理
                             if (statusCode == 0) {
-                                UserBean userBean = SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
+                                SignStatueHandler.onSignInSuccess(responseJsonData, mSignSuccessListener);
 
-                                Toast.makeText(getContext(), "欢迎 " +
-                                        userBean.getUserName()+
-                                        " 访问", Toast.LENGTH_SHORT).show();
-
-
+                                //判断输入法的隐藏状态
+                                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                if (imm.isActive()) {
+                                    imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                                }
                             } else if (statusCode == 1) {
 
                                 Toast.makeText(getContext(), (String) responseJsonData.get("msg"), Toast.LENGTH_LONG).show();

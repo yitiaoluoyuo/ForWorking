@@ -14,18 +14,19 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_index"
+            android:paddingTop="60dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    <!--app:layout_behavior="com.flj.latte.ec.main.index.TranslucentBehavior"-->
+    //控制 toolbar 随着下拉刷新的变化
+    <!--app:layout_behavior="com.xiaoxu.xiaoxu_ec.main_delegates.index.TranslucentBehavior""-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:layout_behavior="com.xiaoxu.xiaoxu_ec.main_delegates.index.TranslucentBehavior"
-        android:background="@android:color/transparent"
+        android:background="@color/app_ui"
         >
 
         <android.support.v7.widget.LinearLayoutCompat

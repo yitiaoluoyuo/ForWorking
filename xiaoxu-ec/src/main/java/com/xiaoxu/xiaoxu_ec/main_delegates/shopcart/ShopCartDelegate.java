@@ -64,7 +64,7 @@ public class ShopCartDelegate extends BottomItemDelegate
         final int tag = (int) mIconSelectAll.getTag();
         if (tag == 0) {
             mIconSelectAll.setTextColor
-                    (ContextCompat.getColor(getContext(), R.color.app_main));
+                    (ContextCompat.getColor(getContext(), R.color.app_ui));
             mIconSelectAll.setTag(1);
             mAdapter.setIsSelectedAll(1);
             RestClient.builder()
@@ -304,7 +304,7 @@ public class ShopCartDelegate extends BottomItemDelegate
             if (allChecked) {
                 mIconSelectAll.setTag(1);
                 mIconSelectAll.setTextColor
-                        (ContextCompat.getColor(getContext(), R.color.app_main));
+                        (ContextCompat.getColor(getContext(), R.color.app_ui));
             } else {
                 mIconSelectAll.setTag(0);
                 mIconSelectAll.setTextColor(Color.GRAY);
@@ -383,7 +383,7 @@ public class ShopCartDelegate extends BottomItemDelegate
         mTvTotalPrice.setText(String.valueOf(totalPrice));
         if (allChecked) {
             mIconSelectAll.setTextColor
-                    (ContextCompat.getColor(getContext(), R.color.app_main));
+                    (ContextCompat.getColor(getContext(), R.color.app_ui));
         } else {
             mIconSelectAll.setTextColor(Color.GRAY);
         }

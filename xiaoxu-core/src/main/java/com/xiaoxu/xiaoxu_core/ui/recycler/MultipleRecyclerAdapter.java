@@ -4,7 +4,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -66,7 +65,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);
         addItemType(ItemType.IMAGE, R.layout.item_multiple_image);
         addItemType(ItemType.TEXT_IMAGE, R.layout.item_multiple_image_text);
-        addItemType(ItemType.BANNER, R.layout.item_multiple_banner);
+        //addItemType(ItemType.BANNER, R.layout.item_multiple_banner);
         //设置宽度的监听
         setSpanSizeLookup(this);
         //打开加载的动画效果
@@ -105,10 +104,8 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
      * To bind different types of holder and solve different the bind events
      *
      * @param holder
-     * @param positions
      * @see #getDefItemViewType(int)
      */
-    //todo 继承自哪个类？？？？？？？？？？？？？？？？？？？
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity item) {
 
@@ -118,7 +115,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         final String name;
         final String subtitle;
         final String mainImage;
-        final float price = item.getField(MultipleFields.PRICE);
+        final double price ;
         final int status = item.getField(MultipleFields.STATUS);
         final String imageHost;
 
@@ -138,7 +135,8 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
             case ItemType.TEXT_IMAGE:
                 imageHost = item.getField(MultipleFields.IMAGE_HOST);
                 mainImage = item.getField(MultipleFields.MAIN_IMAGE);
-                subtitle = item.getField(MultipleFields.SUBTITLE);
+                name = item.getField(MultipleFields.NAME);
+                price = item.getField(MultipleFields.PRICE);
                 Glide.with(mContext)
                         .load(imageHost + mainImage)
                         .apply(RECYCLER_OPTIONS)
@@ -147,7 +145,8 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                  * RecyclerAdapter steep  01
                  * ViewHolder视图绑定
                  */
-                holder.setText(R.id.item_tv_multiple, subtitle);
+                holder.setText(R.id.tv_index_goods_name, name.substring(8,name.length()-1));
+                holder.setText(R.id.tv_index_goods_price, String.valueOf(price));
                 break;
             case ItemType.BANNER:
                 if (!mIsInitBanner) {

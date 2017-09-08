@@ -47,10 +47,6 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment{
                     }
              }
 
-
-
-
-
     private Unbinder mUnbinder;
     private final SupportFragmentDelegate fragment_DELEGATE = new SupportFragmentDelegate(this);
     protected FragmentActivity _mActivity = null;

@@ -28,7 +28,9 @@
                     <com.bigkoo.convenientbanner.ConvenientBanner
                         android:id="@+id/detail_banner"
                         android:layout_width="match_parent"
-                        android:layout_height="350dp" />
+                        android:layout_height="350dp"
+                        android:background="@color/app_gray_05"
+                        />
 
                     <android.support.v7.widget.ContentFrameLayout
                         android:id="@+id/frame_goods_info"
@@ -50,22 +52,25 @@
 
                         <com.joanzapata.iconify.widget.IconTextView
                             android:id="@+id/icon_goods_back"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center"
                             android:text="{fa-chevron-left}"
-                            android:textColor="@android:color/black"
-                            android:textSize="26sp" />
+                            android:textColor="@color/app_gray_03"
+                            android:textSize="25dp"
+                            />
 
                         <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/tv_detail_title_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
+                            android:layout_marginTop="10dp"
                             android:text="商品详情"
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp" />
+                            android:textColor="@color/app_gray_03"
+                            android:textSize="20dp" />
                     </RelativeLayout>
                 </android.support.v7.widget.Toolbar>
                 <!--如果将TabLayout写在这里，将透明-->

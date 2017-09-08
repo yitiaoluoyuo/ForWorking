@@ -3,7 +3,6 @@ package com.xiaoxu.forworking.example;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.widget.Toast;
 
 import com.xiaoxu.xiaoxu_core.activities.ProxyActivity;
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
@@ -52,14 +51,15 @@ public class IndexActivity extends ProxyActivity implements
 
     @Override
     public void onSignInSuccess() {
-        Toast.makeText(this,"sign in success callback finished ",Toast.LENGTH_LONG).show();
+        //getFragmentManager().popBackStack();
         getSupportDelegate().start(new BottomBarDelegate());
+
     }
 
     @Override
     public void onSignUpSuccess() {
         //注册成功后的一些业务（发送请求统计信息，计时）
-        Toast.makeText(this,"sign up success you can sign in ",Toast.LENGTH_LONG).show();
+        getFragmentManager().popBackStack();
         getSupportDelegate().start(new SignInDelegate());
     }
 
@@ -69,11 +69,12 @@ public class IndexActivity extends ProxyActivity implements
         switch (tag){
             case SIGNED:
                 //登录成功的处理
-                getSupportDelegate().start(new BottomBarDelegate() );
+                //getFragmentManager().popBackStack();
+                getSupportDelegate().startWithPop(new BottomBarDelegate());
                 break;
             case SIGNED_NON:
                 //没有登录做的处理
-                Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();
+                getFragmentManager().popBackStack();
                 getSupportDelegate().start(new SignInDelegate());
                 break;
             default:

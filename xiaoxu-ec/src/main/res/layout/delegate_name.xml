@@ -9,7 +9,7 @@
         android:id="@+id/tb_name"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/holo_orange_dark" />
+        android:background="@color/app_ui" />
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -24,7 +24,10 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="姓名:" />
+            android:text="姓名:"
+            android:textSize="15dp"
+            android:textColor="@color/app_gray_02"
+            />
 
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="0dp"
@@ -33,7 +36,10 @@
             android:background="@null"
             android:gravity="center"
             android:hint="输入姓名"
-            android:paddingLeft="20dp" />
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/app_gray_02"
+            />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -44,10 +50,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/app_ui"
         android:gravity="center"
         android:text="提交"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="20dp" />
 
 </android.support.v7.widget.LinearLayoutCompat>

@@ -11,9 +11,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
@@ -27,6 +27,8 @@ import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.banner.HolderCreator;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+import com.xiaoxu.xiaoxu_ec.detail.inside.ServiceDelegate;
+import com.xiaoxu.xiaoxu_ec.detail.inside.ShopDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +43,11 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  */
 
 public class GoodsDetailDelegate extends LatteDelegate implements
-        AppBarLayout.OnOffsetChangedListener{
+        AppBarLayout.OnOffsetChangedListener {
 
     public static final String ARG_GOODS_ID = "ARG_GOODS_ID";
     private int mGoodsId = -1;
+    private int mFavorTag = 0;
 
     @BindView(R2.id.goods_detail_toolbar)
     Toolbar mToolbar = null;
@@ -62,24 +65,59 @@ public class GoodsDetailDelegate extends LatteDelegate implements
     //底部
     @BindView(R2.id.icon_favor)
     IconTextView mIconFavor = null;
-    @BindView(R2.id.rl_add_shop_cart)
-    RelativeLayout mRlAddShopCart = null;
+    @BindView(R2.id.tv_add_shop_crt)
+    AppCompatTextView mTvAddShopCart = null;
 
-    @OnClick(R2.id.rl_add_shop_cart)
-    void onClickAddShopCart(){
+    @OnClick(R2.id.tv_add_shop_crt)
+    void onClickAddShopCart() {
         RestClient.builder()
                 .url("/cart/add.do")
-                .params("productId",mGoodsId)
-                .params("count",1)
+                .params("productId", mGoodsId)
+                .params("count", 1)
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Toast.makeText(getContext(),"商品添加购物车成功",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "商品添加购物车成功", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build()
                 .get();
+    }
+
+
+    @OnClick(R2.id.tv_buy_immediately)
+    void buyImmediately() {
+
+    }
+
+    @OnClick(R2.id.rl_shop)
+    void goShop() {
+        getSupportDelegate().start(new ShopDelegate());
+    }
+
+    @OnClick(R2.id.rl_shop_service)
+    void service() {
+        getSupportDelegate().start(new ServiceDelegate());
+    }
+
+    @OnClick(R2.id.rl_collect)
+    void collect() {
+        if (mFavorTag == 0) {
+            mIconFavor.setTextColor(ContextCompat.getColor(getContext(), R.color.app_ui));
+            Toast.makeText(getContext(), "收藏成功", Toast.LENGTH_SHORT).show();
+            mFavorTag = 1;
+        } else {
+            mIconFavor.setTextColor(ContextCompat.getColor(getContext(), R.color.app_gray_02));
+            Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
+            mFavorTag = 0;
+        }
+    }
+
+
+    @OnClick(R2.id.icon_goods_back)
+    void back() {
+        getFragmentManager().popBackStackImmediate();
     }
 
 
@@ -95,9 +133,8 @@ public class GoodsDetailDelegate extends LatteDelegate implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Bundle args = getArguments();
-        if (args != null){
+        if (args != null) {
             mGoodsId = args.getInt(ARG_GOODS_ID);
-            Toast.makeText(getContext(),"mGoodsId  :"+ mGoodsId,Toast.LENGTH_LONG).show();
         }
     }
 
@@ -137,7 +174,7 @@ public class GoodsDetailDelegate extends LatteDelegate implements
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        final JSONObject  data =
+                        final JSONObject data =
                                 JSON.parseObject(response).getJSONObject("data");
                         initBanner(data);
                         initGoodsInfo(data);
@@ -160,13 +197,13 @@ public class GoodsDetailDelegate extends LatteDelegate implements
         String[] subImageArray = subImages.split(",");
 
 
-        final String mainImage = data.getString("mainImage");
+        //final String mainImage = data.getString("mainImage");
         final List<String> images = new ArrayList<>();
         //先把主图加进去
-        images.add(imageHost+mainImage);
+        //images.add(imageHost+mainImage);
         final int size = subImageArray.length;
         for (int i = 0; i < size; i++) {
-            images.add(imageHost+subImageArray[i]);
+            images.add(imageHost + subImageArray[i]);
         }
         mBanner
                 .setPages(new HolderCreator(), images)

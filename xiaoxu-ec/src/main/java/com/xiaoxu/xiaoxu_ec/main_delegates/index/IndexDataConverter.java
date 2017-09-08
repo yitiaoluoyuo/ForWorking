@@ -34,7 +34,7 @@ public class IndexDataConverter extends DataConverter {
                 final String name = data.getString("name");
                 final String subtitle = data.getString("subtitle");
                 final String mainImage = data.getString("mainImage");
-                final float price = data.getFloat("price");
+                final double price = data.getDouble("price");
                 final int status = data.getInteger("status");
                 final String imageHost = data.getString("imageHost");
 

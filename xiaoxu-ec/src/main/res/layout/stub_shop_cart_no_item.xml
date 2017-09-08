@@ -13,7 +13,7 @@
         android:layout_marginBottom="50dp"
         android:layout_centerInParent="true"
         android:text="购物车啥都木有了"
-        android:textColor="@color/app_main"
+        android:textColor="@color/app_ui"
         android:textSize="18sp"
         tools:ignore="HardcodedText"
         android:layout_centerHorizontal="true"

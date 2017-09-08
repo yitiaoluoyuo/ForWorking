@@ -73,7 +73,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                 //进行网络请求，在请求返回的回调里，把 refresh progress 关闭
                 REFRESH_LAYOUT.setRefreshing(false);
             }
-        },2000);
+        },500);
     }
 
 
@@ -90,10 +90,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                     public void onSuccess(String response) {
                         final JSONObject object = JSON.parseObject(response);
 
-                       /* BEAN.setTotal(object.getInteger("total"))
-                                .setPageSize(object.getInteger("page_size"));*/
-
-
                         mRecycleViewAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
                         //todo **********************************??????????????????*******
                         mRecycleViewAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
@@ -106,7 +102,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-                        Toast.makeText(ConfigureUtil.getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(),msg,Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {

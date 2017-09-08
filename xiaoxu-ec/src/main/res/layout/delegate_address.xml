@@ -6,15 +6,15 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@android:color/holo_orange_dark">
+        android:background="@color/app_ui">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="30dp"
-            >
+            android:paddingTop="30dp">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -24,17 +24,17 @@
                 android:textColor="@android:color/white"
                 android:textSize="20dp" />
 
-           <com.joanzapata.iconify.widget.IconTextView
+            <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_address_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="{fa-plus-square-o}"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="25dp" />
 
         </RelativeLayout>
 
@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/app_gray_05"
         />
 
     <TextView
@@ -52,14 +53,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/app_gray_05"
         android:minHeight="50dp"
         android:textSize="20dp"
         android:text="您还没有添加收货地址"
-        android:textColor="@color/app_main"
+        android:textColor="@color/app_ui"
         android:paddingTop="50dp"
         android:paddingBottom="50dp"
         android:gravity="center_horizontal"
-        tools:ignore="HardcodedText,SpUsage" />
+        tools:ignore="HardcodedText,dpUsage" />
 
 </LinearLayout>

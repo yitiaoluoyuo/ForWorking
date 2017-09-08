@@ -4,23 +4,27 @@
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
     android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="20dp"
+    >
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/iv_section"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp" />
+         />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
-        android:textColor="@color/we_chat_black"
-        android:textStyle="bold"
-        android:textSize="10sp"
+        android:textColor="@color/app_gray_01"
+        android:text="subtitle"
+        android:textSize="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         />
 
 </android.support.v7.widget.LinearLayoutCompat>

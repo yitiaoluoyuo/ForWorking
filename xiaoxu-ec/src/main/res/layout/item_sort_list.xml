@@ -4,7 +4,7 @@
     android:id="@+id/sort_item_rl_vertical_list_content"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:background="#ffffff"
+    android:background="@color/white"
     >
     
     <View
@@ -20,12 +20,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:textColor="#ff666666"
+        android:text="打开房勒"
+        android:textColor="@color/app_gray_02"
         />
     <View
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:background="#999999"
+        android:background="@color/app_gray_04"
         />
 
 </RelativeLayout>

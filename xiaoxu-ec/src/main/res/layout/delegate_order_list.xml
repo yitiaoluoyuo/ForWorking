@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/app_background"
+    android:background="@color/app_gray_05"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_shop_cart"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/app_ui"
         android:gravity="center">
 
         <android.support.v7.widget.AppCompatTextView
@@ -19,7 +19,7 @@
             android:gravity="center"
             android:text="订单列表"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
     </android.support.v7.widget.Toolbar>
 
 
@@ -28,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/app_gray_05"
         />
 
 
@@ -36,12 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/app_gray_05"
         android:minHeight="50dp"
         android:textSize="20dp"
         android:text="您还没有购物"
-        android:textColor="@color/app_main"
-        android:paddingTop="50dp"
+        android:textColor="@color/app_ui"
+        android:paddingTop="80dp"
         android:paddingBottom="50dp"
         android:gravity="center_horizontal"
         tools:ignore="HardcodedText,SpUsage" />

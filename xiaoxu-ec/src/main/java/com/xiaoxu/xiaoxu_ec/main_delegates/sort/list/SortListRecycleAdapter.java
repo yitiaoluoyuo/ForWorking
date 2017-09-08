@@ -65,7 +65,7 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
                             notifyItemChanged(currentPosition);
                             mPrePosition = currentPosition;
                             final int categoryId = getData().get(currentPosition).getField(MultipleFields.ID);
-                            showContent(categoryId);
+                            //showContent(categoryId);
 
                         }
                     }
@@ -74,12 +74,12 @@ public class SortListRecycleAdapter extends MultipleRecyclerAdapter {
                 if (!isClick) {
                     line.setVisibility(View.INVISIBLE);
                     // TODO: 2017/8/29  ContextCompat 选取颜色能兼容更多的手机
-                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.we_chat_gray));
-                    itemView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorGrayLight));
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.app_gray_02));
+                    itemView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.app_gray_05));
                 } else {
                     line.setVisibility(View.VISIBLE);
-                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.app_main));
-                    line.setBackgroundColor(ContextCompat.getColor(mContext, R.color.app_main));
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.app_ui));
+                    line.setBackgroundColor(ContextCompat.getColor(mContext, R.color.app_ui));
                     itemView.setBackgroundColor(Color.WHITE);
                 }
                 holder.setText(R.id.sort_tv_list_name, name);
