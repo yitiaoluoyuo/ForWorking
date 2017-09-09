@@ -14,11 +14,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingTop="6dp"
+            android:paddingTop="8dp"
             android:text="发现"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+
+            />
     </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:text="我发现自己很美..."
+        android:textColor="@color/app_ui"
+        android:textSize="20dp"
+        android:layout_marginTop="100dp"
+        />
 
     <android.support.v7.widget.ContentFrameLayout
         android:id="@+id/web_discovery_container"

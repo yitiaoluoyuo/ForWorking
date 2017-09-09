@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
@@ -22,8 +23,9 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
-import com.xiaoxu.xiaoxu_ec.pay.FastPay;
+import com.xiaoxu.xiaoxu_ec.main_delegates.personal.address.AddAddressDelegate;
 import com.xiaoxu.xiaoxu_ec.pay.IALPayResultListener;
+import com.xiaoxu.xiaoxu_ec.pay.textpay.WeChatPayDelegate;
 import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
 import java.util.ArrayList;
@@ -53,6 +55,7 @@ public class ShopCartDelegate extends BottomItemDelegate
      ViewStubCompat mStubNoItem = null;*/
     @BindView(R2.id.tv_shop_cart_total_price)
     AppCompatTextView mTvTotalPrice = null;
+    private JSONArray mCartDataJsonArray;
 
 
     /**
@@ -73,21 +76,21 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
                             mTvTotalPrice.setText(String.valueOf(mTotalPrice));
-                            XiaoXuLogger.d("checkAll","/cart/select_all.do"+ response);
+                            XiaoXuLogger.d("checkAll", "/cart/select_all.do" + response);
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            XiaoXuLogger.d("checkAll","select_all.do ERROR" + msg);
+                            XiaoXuLogger.d("checkAll", "select_all.do ERROR" + msg);
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            XiaoXuLogger.d("checkAll","elect_all.do onFailure" );
+                            XiaoXuLogger.d("checkAll", "elect_all.do onFailure");
                         }
                     })
                     .build()
@@ -104,21 +107,21 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
                             mTvTotalPrice.setText(String.valueOf(mTotalPrice));
-                            XiaoXuLogger.d("checkAll","/un_select_all.do" + response);
+                            XiaoXuLogger.d("checkAll", "/un_select_all.do" + response);
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            XiaoXuLogger.d("checkAll","/un_select_all.do ERROR" + msg);
+                            XiaoXuLogger.d("checkAll", "/un_select_all.do ERROR" + msg);
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            XiaoXuLogger.d("checkAll","/un_select_all.do onFailure" );
+                            XiaoXuLogger.d("checkAll", "/un_select_all.do onFailure");
                         }
                     })
                     .build()
@@ -163,7 +166,7 @@ public class ShopCartDelegate extends BottomItemDelegate
             }
         }
         //判断是否有被选中的商品
-        if(ids.length()!=0){
+        if (ids.length() != 0) {
             //数据库删除商品
             RestClient.builder()
                     .url("/cart/delete_product.do")
@@ -172,7 +175,7 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
                             mTvTotalPrice.setText(String.valueOf(mTotalPrice));
                             Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
                         }
@@ -180,8 +183,8 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .build()
                     .get();
             checkItemCount();
-        }else {
-            Toast.makeText(getContext(),"还木有选择要删除的商品",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "还木有选择要删除的商品", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -198,9 +201,9 @@ public class ShopCartDelegate extends BottomItemDelegate
 
         //遍历添加全部商品ID
         for (MultipleItemEntity entity : totalEntity) {
-                ids.append(String.valueOf(entity.getField(MultipleFields.PRODUCT_ID))).append(",");
+            ids.append(String.valueOf(entity.getField(MultipleFields.PRODUCT_ID))).append(",");
         }
-        if(ids.length()!=0) {
+        if (ids.length() != 0) {
             //数据库删除商品
             RestClient.builder()
                     .url("/cart/delete_product.do")
@@ -209,7 +212,7 @@ public class ShopCartDelegate extends BottomItemDelegate
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+                            mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
                             mTvTotalPrice.setText(String.valueOf(mTotalPrice));
                             mIconSelectAll.setTextColor(Color.GRAY);
                             Toast.makeText(getContext(), "商品删除成功", Toast.LENGTH_SHORT).show();
@@ -220,8 +223,8 @@ public class ShopCartDelegate extends BottomItemDelegate
             mAdapter.getData().clear();
             mAdapter.notifyDataSetChanged();
             checkItemCount();
-        }else {
-            Toast.makeText(getContext(),"购物车已经是空的了",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "购物车已经是空的了", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -230,7 +233,30 @@ public class ShopCartDelegate extends BottomItemDelegate
 
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
-        createOrder();
+        //createOrder();
+        RestClient.builder()
+                .url("/shipping/list.do")
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        final JSONArray array = JSON.parseObject(response).getJSONObject("data").getJSONArray("list");
+                        if (array.size() == 0) {
+                            Toast.makeText(getContext(), "您还没有添加收货地址", Toast.LENGTH_LONG).show();
+                            getParentDelegate().getSupportDelegate().start(new AddAddressDelegate());
+                        } else {
+                            if (mCartDataJsonArray.size() == 0) {
+                                Toast.makeText(getContext(), "请添加商品到购物车", Toast.LENGTH_LONG).show();
+                            } else {
+                                getParentDelegate().getSupportDelegate().start(new WeChatPayDelegate());
+                            }
+                        }
+                    }
+                })
+                .build()
+                .get();
+
+
     }
 
     //创建订单，注意，和支付是没有关系的
@@ -248,10 +274,10 @@ public class ShopCartDelegate extends BottomItemDelegate
                         //进行具体的支付
                         XiaoXuLogger.d("ORDER", response);
                         // final int orderId = JSON.parseObject(response).getInteger("result");
-                        FastPay.create(ShopCartDelegate.this)
+                       /* FastPay.create(ShopCartDelegate.this,getSupportDelegate())
                                 .setPayResultListener(ShopCartDelegate.this)
                                 .setOrderId(0123)
-                                .beginPayDialog();
+                                .beginPayDialog();*/
                     }
                 })
                 .build()
@@ -310,8 +336,8 @@ public class ShopCartDelegate extends BottomItemDelegate
                 mIconSelectAll.setTextColor(Color.GRAY);
             }
 
-
-            mTotalPrice  = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
+            mCartDataJsonArray = JSON.parseObject(response).getJSONObject("data").getJSONArray("cartProductVoList");
+            mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
             //转换数据
             final ArrayList<MultipleItemEntity> data = new ShopCartDataConverter().setJsonData(response).convertToEntityList();
 

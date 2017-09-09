@@ -81,6 +81,11 @@ public class XiaoXuPreference {
                 .apply();
     }
 
+    public static String getCustomAppProfile(String key) {
+        return getAppPreference().getString(key, "");
+    }
+
+
     public static void addCustomAppProfile(String key, HashSet val) {
         getAppPreference()
                 .edit()
@@ -88,9 +93,7 @@ public class XiaoXuPreference {
                 .apply();
     }
 
-    public static String getCustomAppProfile(String key) {
-        return getAppPreference().getString(key, "");
-    }
+
 
     public static HashSet<String> getCustomAppProfile(String key,HashSet<String> defValues) {
         return (HashSet<String>) getAppPreference().getStringSet(key, defValues );

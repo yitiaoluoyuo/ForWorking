@@ -20,6 +20,7 @@ import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
+import com.xiaoxu.xiaoxu_core.util.storage.PreferenceKeys;
 import com.xiaoxu.xiaoxu_core.util.storage.XiaoXuPreference;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
@@ -53,7 +54,7 @@ public class AddAddressDelegate extends LatteDelegate implements CityPickerView.
     @OnClick(R2.id.tv_add_address_commit)
     void commit(){
 
-      long id =Long.valueOf(XiaoXuPreference.getCustomAppProfile("id"));
+      long id =Long.valueOf(XiaoXuPreference.getCustomAppProfile(PreferenceKeys.USER_ID.name()));
 
         RestClient.builder()
                 .url("/shipping/add.do")

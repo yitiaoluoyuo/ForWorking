@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.xiaoxu.xiaoxu_core.delegates.bottom.BottomItemDelegate;
-import com.xiaoxu.xiaoxu_core.delegates.web.route.WebDelegateImpl;
 import com.xiaoxu.xiaoxu_ec.R;
 
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
@@ -30,9 +29,9 @@ public class DiscoverDelegate extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        final WebDelegateImpl delegate = WebDelegateImpl.create("index.html");
+        /*final WebDelegateImpl delegate = WebDelegateImpl.create("index.html");
         delegate.setTopDelegate(this.getParentDelegate());
-        getSupportDelegate().loadRootFragment(R.id.web_discovery_container, delegate);
+        getSupportDelegate().loadRootFragment(R.id.web_discovery_container, delegate);*/
     }
 
     @Override

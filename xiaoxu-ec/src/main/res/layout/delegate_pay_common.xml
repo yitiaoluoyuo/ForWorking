@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/app_ui"
+        >
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_pay_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="支付页面"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:paddingTop="10dp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/image_qr_code"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@color/app_gray_05"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存截屏"
+        android:gravity="center"
+        android:textColor="@color/app_gray_01"
+        android:textSize="13dp"
+        android:layout_marginTop="10dp"
+
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="扫码完成支付￥0.01"
+        android:gravity="center"
+        android:textColor="@color/app_gray_01"
+        android:textSize="13dp"
+        android:layout_marginTop="2dp"
+
+        />
+
+</android.support.v7.widget.LinearLayoutCompat>

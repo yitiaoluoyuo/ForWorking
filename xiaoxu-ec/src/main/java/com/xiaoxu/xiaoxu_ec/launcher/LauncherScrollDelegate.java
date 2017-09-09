@@ -17,6 +17,8 @@ import com.xiaoxu.xiaoxu_ec.R;
 
 import java.util.ArrayList;
 
+
+
 /**
  * Created by xiaoxu on 2017/8/25.
  * 轮播图
@@ -29,11 +31,11 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
     private ILauncherListener mILauncherListener = null;
 
     private void initBanner() {
-        INTEGERS.add(R.mipmap.launcher02);
-        INTEGERS.add(R.mipmap.launcher03);
-        INTEGERS.add(R.mipmap.launcher04);
-        INTEGERS.add(R.mipmap.launcher05);
-        INTEGERS.add(R.mipmap.launcher06);
+        INTEGERS.add(R.mipmap.launche02);
+        INTEGERS.add(R.mipmap.launche03);
+        INTEGERS.add(R.mipmap.launche04);
+        INTEGERS.add(R.mipmap.launche05);
+        INTEGERS.add(R.mipmap.launche06);
         mConvenientBanner
                 .setPages(new LauncherHolderCreator(), INTEGERS)
                 //设置指示点

@@ -6,14 +6,13 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/launcher_sister"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".IndexActivity"
-            >
+
+        <activity android:name=".IndexActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -127,7 +126,18 @@
             android:value="26a34a494a1d5dc03b133b241" />
 
         <!--极光推送结束-->
+
+
+        //友盟打包
+        <!--<meta-data
+            android:name="UMENG_APPKEY"
+            android:value="59b38b75f29d985a0200088f" />--><!--友盟APPKEY-->
+        <!--<meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />--><!--渠道号-->
+
+
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

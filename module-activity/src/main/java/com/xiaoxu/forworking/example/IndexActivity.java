@@ -70,7 +70,7 @@ public class IndexActivity extends ProxyActivity implements
             case SIGNED:
                 //登录成功的处理
                 //getFragmentManager().popBackStack();
-                getSupportDelegate().startWithPop(new BottomBarDelegate());
+                getSupportDelegate().start(new BottomBarDelegate());
                 break;
             case SIGNED_NON:
                 //没有登录做的处理

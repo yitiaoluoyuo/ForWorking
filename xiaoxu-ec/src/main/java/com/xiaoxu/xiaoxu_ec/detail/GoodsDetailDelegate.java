@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.joanzapata.iconify.widget.IconTextView;
@@ -29,6 +30,10 @@ import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.detail.inside.ServiceDelegate;
 import com.xiaoxu.xiaoxu_ec.detail.inside.ShopDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.BottomBarDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.personal.address.AddAddressDelegate;
+import com.xiaoxu.xiaoxu_ec.pay.FastPay;
+import com.xiaoxu.xiaoxu_ec.pay.IALPayResultListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +48,9 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  */
 
 public class GoodsDetailDelegate extends LatteDelegate implements
-        AppBarLayout.OnOffsetChangedListener {
+        AppBarLayout.OnOffsetChangedListener ,IALPayResultListener {
+
+    final BottomBarDelegate bottomBarDelegate = getParentDelegate();
 
     public static final String ARG_GOODS_ID = "ARG_GOODS_ID";
     private int mGoodsId = -1;
@@ -88,6 +95,29 @@ public class GoodsDetailDelegate extends LatteDelegate implements
 
     @OnClick(R2.id.tv_buy_immediately)
     void buyImmediately() {
+
+        RestClient.builder()
+                .url("/shipping/list.do")
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        final JSONArray array = JSON.parseObject(response).getJSONObject("data").getJSONArray("list");
+                        if (array.size()==0){
+                            Toast.makeText(getContext(),"您还没有添加收货地址",Toast.LENGTH_LONG).show();
+                            getSupportDelegate().start(new AddAddressDelegate());
+                        }else{
+                            FastPay.create(GoodsDetailDelegate.this,getSupportDelegate())
+                                    .setPayResultListener(GoodsDetailDelegate.this)
+                                    .setOrderId(0123)
+                                    .beginPayDialog();
+                        }
+                    }
+                })
+                .build()
+                .get();
+
+
 
     }
 
@@ -224,6 +254,31 @@ public class GoodsDetailDelegate extends LatteDelegate implements
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
 
     }
 }

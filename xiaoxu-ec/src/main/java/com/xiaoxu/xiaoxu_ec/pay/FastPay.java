@@ -15,6 +15,10 @@ import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_ec.R;
+import com.xiaoxu.xiaoxu_ec.pay.textpay.AliPayDelegate;
+import com.xiaoxu.xiaoxu_ec.pay.textpay.WeChatPayDelegate;
+
+import me.yokeyword.fragmentation.SupportFragmentDelegate;
 
 /**
  * Created by xiaoxu on 2017/8/31.
@@ -22,6 +26,7 @@ import com.xiaoxu.xiaoxu_ec.R;
 
 public class FastPay implements View.OnClickListener{
 
+    private SupportFragmentDelegate supportFragmentDelegate = null;
     //设置支付回调监听
     private IALPayResultListener mIALPayResultListener = null;
     private Activity mActivity = null;
@@ -29,13 +34,15 @@ public class FastPay implements View.OnClickListener{
     private AlertDialog mDialog = null;
     private int mOrderID = -1;
 
-    private FastPay(LatteDelegate delegate) {
+    private FastPay(LatteDelegate delegate,SupportFragmentDelegate supportFragmentDelegate) {
+        this.supportFragmentDelegate = supportFragmentDelegate;
         this.mActivity = delegate.getProxyActivity();
         this.mDialog = new AlertDialog.Builder(delegate.getContext()).create();
     }
 
-    public static FastPay create(LatteDelegate delegate) {
-        return new FastPay(delegate);
+    public static FastPay create(LatteDelegate delegate,SupportFragmentDelegate supportFragmentDelegate) {
+
+        return new FastPay(delegate,supportFragmentDelegate);
     }
 
     public void beginPayDialog() {
@@ -134,10 +141,12 @@ public class FastPay implements View.OnClickListener{
         int id = v.getId();
         // TODO: 2017/8/31 library 不能使用switch case
         if (id == R.id.btn_dialog_pay_alpay) {
-            alPay(mOrderID);
+           // alPay(mOrderID);
+            supportFragmentDelegate.start(new AliPayDelegate());
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_wechat) {
             //weChatPay(mOrderID);
+            supportFragmentDelegate.start(new WeChatPayDelegate());
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_cancel) {
             mDialog.cancel();

@@ -19,6 +19,7 @@ public class AddressDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convertToEntityList() {
         final JSONArray array = JSON.parseObject(getJsonData()).getJSONObject("data").getJSONArray("list");
+
         final int size = array.size();
         for (int i = 0; i < size; i++) {
 

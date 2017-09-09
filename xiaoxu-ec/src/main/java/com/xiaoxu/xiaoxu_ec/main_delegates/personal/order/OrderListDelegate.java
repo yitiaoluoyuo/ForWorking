@@ -6,13 +6,16 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.PersonalDelegate;
+import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
 import java.util.List;
 
@@ -20,7 +23,6 @@ import butterknife.BindView;
 
 /**
  * Created by xiaoxu on 2017/9/1.
- *
  */
 
 public class OrderListDelegate extends LatteDelegate {
@@ -59,18 +61,23 @@ public class OrderListDelegate extends LatteDelegate {
 
     }
 
-    void request(){
+    void request() {
         RestClient.builder()
                 .loader(getContext())
                 .url("/order/list.do")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+                        int status = JSON.parseObject(response).getInteger("status");
+                        if (status == 1 |status ==10) {
+                            Toast.makeText(getContext(), "需要重新登录", Toast.LENGTH_LONG).show();
+                            getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
+                        }
                         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
                         mRecyclerView.setLayoutManager(manager);
                         final List<OrderSectionEntity> data =
                                 new OrderSectionDataConverter().convertToEntityList(response);
-                        mAdapter = new OrderSectionAdapter(R.layout.item_section_order_list,R.layout.item_section_order_header,data);
+                        mAdapter = new OrderSectionAdapter(R.layout.item_section_order_list, R.layout.item_section_order_header, data);
                         mRecyclerView.setAdapter(mAdapter);
                         checkItemCount();
                         //mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListDelegate.this));
@@ -101,7 +108,7 @@ public class OrderListDelegate extends LatteDelegate {
         final int count = mAdapter.getItemCount();
 
         if (count == 0) {
-           mTvNoItem.setVisibility(View.VISIBLE);
+            mTvNoItem.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
 
         } else {

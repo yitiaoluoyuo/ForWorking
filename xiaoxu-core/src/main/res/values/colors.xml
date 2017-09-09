@@ -6,8 +6,12 @@
     <color name="colorGrayLight">#dddddd</color>
     <color name="item_back_ground">#f2f2f2</color>
 
-    <color name="app_ui">#fe5954</color>
-    <color name="app_ui_deep">#fd4641</color>
+    <color name="app_ui_01">#fe5954</color>
+    <color name="app_ui_deep_01">#fd4641</color>
+
+
+    <color name="app_ui">#f40c3d</color>
+    <color name="app_ui_deep">#ff0d40</color>
 
     <color name="app_gray_01">#323232</color>
     <color name="app_gray_02">#7c7c7c</color>

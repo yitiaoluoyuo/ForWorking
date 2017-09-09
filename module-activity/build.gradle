@@ -16,15 +16,64 @@ android {
                 JPUSH_APPKEY : "26a34a494a1d5dc03b133b241",
                 JPUSH_CHANNEL: "developer-default",
         ]
+
+        //友盟
+        multiDexEnabled true //突破应用方法数65535的一个限制
+        //manifestPlaceholders = [UMENG_CHANNEL_CALUE: "umeng"]
+
+
     }
+
+    //添加文件签名配置
+   /* signingConfigs {
+        debug {}
+        //为release包添加签名配置
+        release {
+            storeFile file("signed.jks")
+            storePassword "82650731992az"
+            keyAlias "ForWorking"
+            keyPassword "82650731992az"
+        }
+    }*/
+
     buildTypes {
         release {
             minifyEnabled false
+           // signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
     }
+
+
+
+
     productFlavors {
+       /* xiaomi {
+           manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }*/
+
+       /* wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }*/
+
+       /* huawei {
+            //manifestPlaceholders = [UMENG_CHANNEL_CALUE: "huawei"]
+        }
+
+        lenvo {
+            //manifestPlaceholders = [UMENG_CHANNEL_CALUE: "lenvo"]
+        }*/
+
+
+
     }
+
+   /* productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }*/
+
+
 }
 
 dependencies {

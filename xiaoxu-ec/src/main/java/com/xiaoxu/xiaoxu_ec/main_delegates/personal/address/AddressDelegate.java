@@ -6,14 +6,18 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
+import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
 import java.util.List;
 
@@ -38,7 +42,7 @@ public class AddressDelegate extends LatteDelegate implements ISuccess,View.OnCl
     @BindView(R2.id.icon_address_add)
     IconTextView  iconTextView = null;
 
-    @OnClick(R2.id.icon_address_add)
+    @OnClick(R2.id.toolbar_address)
     void addAddress(){
         AddAddressDelegate addAddressDelegate = new AddAddressDelegate();
         getSupportDelegate().start(addAddressDelegate, ISupportFragment.SINGLETASK);
@@ -83,6 +87,13 @@ public class AddressDelegate extends LatteDelegate implements ISuccess,View.OnCl
 
     @Override
     public void onSuccess(String response) {
+        XiaoXuLogger.json("json",response);
+
+        int status = JSON.parseObject(response).getInteger("status");
+        if (status == 1) {
+            Toast.makeText(getContext(), "需要重新登录", Toast.LENGTH_LONG).show();
+            getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
+        }
         //初始化RecycleView
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);

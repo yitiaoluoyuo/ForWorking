@@ -13,8 +13,13 @@
     <color name="item_background">#F1F1F1</color>
 
 
-    <color name="app_ui">#fe5954</color>
-    <color name="app_ui_deep">#fd4641</color>
+    <color name="app_ui_01">#fe5954</color>
+    <color name="app_ui_deep_01">#fd4641</color>
+
+
+    <color name="app_ui">#f40c3d</color>
+    <color name="app_ui_50">#5ef40c3d</color>
+    <color name="app_ui_deep">#ff0d40</color>
 
     <color name="app_gray_01">#323232</color>
     <color name="app_gray_02">#7c7c7c</color>
@@ -22,6 +27,8 @@
     <color name="app_gray_04">#ededed</color>
     <color name="app_gray_05">#f4f4f4</color>
     <color name="app_gray_06">#ffffff</color>
+
+    <color name="app_gray_02_50">#467c7c7c</color>
 
 
 </resources>

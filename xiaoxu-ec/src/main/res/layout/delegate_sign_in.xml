@@ -3,22 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@mipmap/signin_up"
+    >
+<com.joanzapata.iconify.widget.IconTextView
+    android:id="@+id/icon_sign_in_back"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginLeft="20dp"
+    android:text="{fa-times}"
+    android:textSize="30dp"
+    android:textColor="@color/app_gray_02"
+    />
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/app_ui">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="登录"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText" />
-    </android.support.v7.widget.Toolbar>
 
     <!--兼容小屏幕手机采用滚动View-->
     <android.support.v4.widget.NestedScrollView
@@ -32,14 +30,14 @@
             android:orientation="vertical"
             android:paddingLeft="21dp"
             android:paddingRight="21dp"
-            android:paddingTop="56dp">
+            android:paddingTop="36dp">
 
             <android.support.v7.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="21dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/logo_round_corner" />
 
             <!--姓名-->
             <android.support.design.widget.TextInputLayout
@@ -51,11 +49,16 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_sign_in_username"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:paddingLeft="10dp"
+                   android:gravity="center_vertical"
                     android:hint="@string/username"
+                    android:textColor="@color/app_gray_01"
                     android:inputType="textPersonName"
-                    android:textSize="10sp"
-                    tools:ignore="HardcodedText" />
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText"
+                    android:background="@color/app_gray_02_50"
+                    />
             </android.support.design.widget.TextInputLayout>
 
             <!--密码-->
@@ -68,16 +71,19 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_sign_in_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:paddingLeft="10dp"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textSize="10sp"
-                    tools:ignore="HardcodedText" />
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/app_gray_01"
+                    android:background="@color/app_gray_02_50"
+
+                    />
             </android.support.design.widget.TextInputLayout>
-
-
-
-
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_sign_in"
@@ -85,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="21dp"
                 android:layout_marginTop="21dp"
-                android:background="@color/app_ui"
+                android:background="@color/app_ui_50"
                 android:gravity="center"
                 android:padding="10dp"
                 android:layout_marginLeft="50dp"
@@ -97,12 +103,14 @@
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_link_sign_up"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_marginBottom="21dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center|right"
                 android:text="还没账号？ 去注册 >>"
-                android:textSize="12sp"
+                android:textSize="13sp"
+                android:textColor="@color/app_gray_01"
+
                 tools:ignore="HardcodedText" />
 
             <com.joanzapata.iconify.widget.IconTextView
@@ -112,8 +120,8 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:text="{fa-weixin}"
-                android:textColor="#04b00f"
-                android:textSize="12sp" />
+                android:textColor="#04a40e"
+                android:textSize="40sp" />
 
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v4.widget.NestedScrollView>

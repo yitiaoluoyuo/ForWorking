@@ -9,6 +9,7 @@ import com.joanzapata.iconify.Icon;
 
 public enum XiaoXuIcons implements Icon {
     icon_scan('\ue603'),
+    icon_ali_pay('\ue621'),
     icon_ali_message('\ue624'),
     icon_ali_shop('\ue61c'),
     icon_ali_service('\ue6de'),

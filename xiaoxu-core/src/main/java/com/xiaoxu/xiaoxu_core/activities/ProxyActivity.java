@@ -27,8 +27,9 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       ACTIVITY_DELEGATE.onCreate(savedInstanceState);
-        ACTIVITY_DELEGATE.showFragmentStackHierarchyView();
+        ACTIVITY_DELEGATE.onCreate(savedInstanceState);
+        //显示栈视图
+        //ACTIVITY_DELEGATE.showFragmentStackHierarchyView();
         ACTIVITY_DELEGATE.logFragmentStackHierarchy("SupportActivityDelegate");
 
         //初始化视图容器
@@ -36,14 +37,14 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     }
 
     //初始化视图容器
-    private void initContainer(@Nullable Bundle savedInstanceState){
+    private void initContainer(@Nullable Bundle savedInstanceState) {
         ContentFrameLayout contentFrameLayout = new ContentFrameLayout(this);
         contentFrameLayout.setId(R.id.delegate_container);
         setContentView(contentFrameLayout);
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             //加载根Fragment, 即Activity内的第一个Fragment 或 Fragment内的第一个子Fragment
             //第一个参数必须为ID文件生成的
-            ACTIVITY_DELEGATE.loadRootFragment(R.id.delegate_container,setRootDelegate());
+            ACTIVITY_DELEGATE.loadRootFragment(R.id.delegate_container, setRootDelegate());
         }
     }
 
@@ -55,7 +56,6 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
         System.gc();
         System.runFinalization();
     }
-
 
 
     @Override
