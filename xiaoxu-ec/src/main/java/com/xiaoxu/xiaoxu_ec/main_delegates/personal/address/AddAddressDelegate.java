@@ -15,7 +15,7 @@ import com.lljjcoder.city_20170724.CityPickerView;
 import com.lljjcoder.city_20170724.bean.CityBean;
 import com.lljjcoder.city_20170724.bean.DistrictBean;
 import com.lljjcoder.city_20170724.bean.ProvinceBean;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * Created by xiaoxu on 2017/9/7.
  */
 
-public class AddAddressDelegate extends LatteDelegate implements CityPickerView.OnCityItemClickListener {
+public class AddAddressDelegate extends MainDelegate implements CityPickerView.OnCityItemClickListener {
 
     CityPickerView cityPicker = null;
 

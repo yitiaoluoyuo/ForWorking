@@ -10,14 +10,13 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
-import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ import me.yokeyword.fragmentation.ISupportFragment;
  * Created by xiaoxu on 2017/9/3.
  */
 
-public class AddressDelegate extends LatteDelegate implements ISuccess,View.OnClickListener {
+public class AddressDelegate extends MainDelegate implements ISuccess,View.OnClickListener {
 
     private AddressAdapter mAdapter = null;
 
@@ -90,19 +89,22 @@ public class AddressDelegate extends LatteDelegate implements ISuccess,View.OnCl
         XiaoXuLogger.json("json",response);
 
         int status = JSON.parseObject(response).getInteger("status");
-        if (status == 1) {
-            Toast.makeText(getContext(), "需要重新登录", Toast.LENGTH_LONG).show();
-            getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
-        }
-        //初始化RecycleView
-        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(manager);
+        if (status != 0) {
+            Toast.makeText(getContext(), "需要登录", Toast.LENGTH_LONG).show();
+            //getParentDelegate().getSupportDelegate().start(new SignInDelegate());
+        }else {
+            //初始化RecycleView
+            final LinearLayoutManager manager = new LinearLayoutManager(getContext());
+            mRecyclerView.setLayoutManager(manager);
 
-      final List<MultipleItemEntity> data =
-                new AddressDataConverter().setJsonData(response).convertToEntityList();
-        mAdapter = new AddressAdapter(data,new AddressDelegate());
-        mRecyclerView.setAdapter(mAdapter);
-        checkItemCount();
+            final List<MultipleItemEntity> data =
+                    new AddressDataConverter().setJsonData(response).convertToEntityList();
+            mAdapter = new AddressAdapter(data,new AddressDelegate());
+            mRecyclerView.setAdapter(mAdapter);
+            checkItemCount();
+        }
+
+
     }
 
     @Override

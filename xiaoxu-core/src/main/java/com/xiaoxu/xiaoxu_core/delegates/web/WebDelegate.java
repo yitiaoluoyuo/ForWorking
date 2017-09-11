@@ -9,7 +9,7 @@ import android.webkit.WebView;
 
 import com.xiaoxu.xiaoxu_core.application.ConfigKeys;
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.delegates.web.route.RouteKeys;
 
 import java.lang.ref.ReferenceQueue;
@@ -19,13 +19,13 @@ import java.lang.ref.WeakReference;
  * Created by xiaoxu on 2017/9/4.
  */
 
-public abstract class WebDelegate extends LatteDelegate implements IWebViewInitializer {
+public abstract class WebDelegate extends MainDelegate implements IWebViewInitializer {
 
     private WebView mWebView = null;
     private final ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
     private String mUrl = null;
     private boolean mIsWebViewAvailable = false;
-    private LatteDelegate mTopDelegate = null;
+    private MainDelegate mTopDelegate = null;
 
     public WebDelegate() {
     }
@@ -70,11 +70,11 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
         }
     }
 
-    public void setTopDelegate(LatteDelegate delegate) {
+    public void setTopDelegate(MainDelegate delegate) {
         mTopDelegate = delegate;
     }
 
-    public LatteDelegate getTopDelegate() {
+    public MainDelegate getTopDelegate() {
         if (mTopDelegate == null) {
             mTopDelegate = this;
         }

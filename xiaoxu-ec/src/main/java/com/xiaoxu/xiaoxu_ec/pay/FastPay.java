@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_ec.R;
@@ -34,13 +34,13 @@ public class FastPay implements View.OnClickListener{
     private AlertDialog mDialog = null;
     private int mOrderID = -1;
 
-    private FastPay(LatteDelegate delegate,SupportFragmentDelegate supportFragmentDelegate) {
+    private FastPay(MainDelegate delegate, SupportFragmentDelegate supportFragmentDelegate) {
         this.supportFragmentDelegate = supportFragmentDelegate;
         this.mActivity = delegate.getProxyActivity();
         this.mDialog = new AlertDialog.Builder(delegate.getContext()).create();
     }
 
-    public static FastPay create(LatteDelegate delegate,SupportFragmentDelegate supportFragmentDelegate) {
+    public static FastPay create(MainDelegate delegate, SupportFragmentDelegate supportFragmentDelegate) {
 
         return new FastPay(delegate,supportFragmentDelegate);
     }

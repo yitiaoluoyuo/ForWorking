@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 
@@ -17,7 +17,7 @@ import butterknife.BindView;
  * Created by xiaoxu on 2017/9/3.
  */
 
-public class GoodsInfoDelegate extends LatteDelegate {
+public class GoodsInfoDelegate extends MainDelegate {
 
     @BindView(R2.id.tv_goods_info_title)
     AppCompatTextView mGoodsInfoTitle = null;

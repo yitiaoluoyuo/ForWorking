@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
@@ -17,19 +18,18 @@ import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleRecyclerAdapter;
 
 /**
  * Created by xiaoxu on 2017/8/27.
- *
+ * <p>
  * 下拉刷新小助手
  */
 
 
-
 /**
  * RecyclerAdapter steep  02
- *
+ * <p>
  * 绑定视图
  */
 public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
-        BaseQuickAdapter.RequestLoadMoreListener{
+        BaseQuickAdapter.RequestLoadMoreListener {
 
     //
     private final SwipeRefreshLayout REFRESH_LAYOUT;
@@ -63,7 +63,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
         refresh();
     }
 
-    private void refresh(){
+    private void refresh() {
         //should show refresh progress
         REFRESH_LAYOUT.setRefreshing(true);
         // TODO: 2017/8/27 全局handler的调用
@@ -73,18 +73,20 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                 //进行网络请求，在请求返回的回调里，把 refresh progress 关闭
                 REFRESH_LAYOUT.setRefreshing(false);
             }
-        },500);
+        }, 500);
+
     }
 
 
     /**
      * RecycleView steep 3
-     *      获取数据源
+     * 获取数据源
      */
-    public void firstPage(String url){
+    public void firstPage(String url, MainDelegate delegate) {
         BEAN.setDelayed(3000);
         RestClient.builder()
                 .url(url)
+                .loader(delegate.getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -102,13 +104,13 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-                        Toast.makeText(ConfigureUtil.getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-                        Toast.makeText(ConfigureUtil.getApplicationContext(),"failure",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConfigureUtil.getApplicationContext(), "failure", Toast.LENGTH_LONG).show();
                     }
                 })
                 .build()

@@ -13,6 +13,18 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp" />
 
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_arrow_value"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/tv_arrow_img_text"
+        android:gravity="center"
+        android:text="更换头像"
+        android:textColor="@color/app_gray_03"
+        />
+
     <com.joanzapata.iconify.widget.IconTextView
         android:id="@+id/tv_arrow_img_text"
         android:layout_width="wrap_content"

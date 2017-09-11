@@ -4,6 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -11,7 +12,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xiaoxu.xiaoxu_core.R;
+import com.xiaoxu.xiaoxu_core.ui.banner.BannerCreator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,7 +68,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);
         addItemType(ItemType.IMAGE, R.layout.item_multiple_image);
         addItemType(ItemType.TEXT_IMAGE, R.layout.item_multiple_image_text);
-        //addItemType(ItemType.BANNER, R.layout.item_multiple_banner);
+        addItemType(ItemType.BANNER, R.layout.item_multiple_banner);
         //设置宽度的监听
         setSpanSizeLookup(this);
         //打开加载的动画效果
@@ -110,19 +113,20 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
     protected void convert(MultipleViewHolder holder, MultipleItemEntity item) {
 
 
-        final int id = item.getField(MultipleFields.ID);
-        final int categoryId = item.getField(MultipleFields.CATEGORY_ID);
+        final int id ;
+        final int categoryId;
         final String name;
+        final String text;
         final String subtitle;
         final String mainImage;
         final double price ;
-        final int status = item.getField(MultipleFields.STATUS);
+        final int status;
         final String imageHost;
 
         switch (holder.getItemViewType()) {
             case ItemType.TEXT:
-                name = item.getField(MultipleFields.NAME);
-                holder.setText(R.id.item_tv_single, name);
+                text = item.getField(MultipleFields.TEXT);
+                holder.setText(R.id.item_tv_single, text);
                 break;
             case ItemType.IMAGE:
                 imageHost = item.getField(MultipleFields.IMAGE_HOST);
@@ -151,9 +155,9 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
             case ItemType.BANNER:
                 if (!mIsInitBanner) {
                     //需要传入图片ListArray<string> urls 资源
-                   /* bannerImages = entity.getField(MultipleFields.BANNERS);
-                    final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
-                    BannerCreator.setDefault(convenientBanner, bannerImages, this);*/
+                    final ArrayList<String> bannerImages = item.getField(MultipleFields.BANNERS);
+                    final ConvenientBanner<String> convenientBanner = holder.getView(R.id.item_banner_recycler_01);
+                    BannerCreator.setDefault(convenientBanner, bannerImages, this);
                     //设置初始化成功
                     mIsInitBanner = true;
                 }

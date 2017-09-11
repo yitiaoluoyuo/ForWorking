@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
@@ -26,7 +26,7 @@ import butterknife.BindView;
  * 创建ContentDelegate时需要传入分类ID
  */
 
-public class SortContentDelegate extends LatteDelegate {
+public class SortContentDelegate extends MainDelegate {
 
     private SectionAdapter mSectionAdapter = null;
     private ArrayList<SectionHeadEntity> mData = null;

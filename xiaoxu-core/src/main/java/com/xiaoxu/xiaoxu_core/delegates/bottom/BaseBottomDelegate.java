@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xiaoxu.xiaoxu_core.R;
 import com.xiaoxu.xiaoxu_core.R2;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -26,7 +26,7 @@ import me.yokeyword.fragmentation.ISupportFragment;
  * Created by xiaoxu on 2017/8/26.
  */
 
-public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener {
+public abstract class BaseBottomDelegate extends MainDelegate implements View.OnClickListener {
 
     
     private final ArrayList<BottomTabBean> BOTTOM_TAB_BEANS = new ArrayList<>();
@@ -44,10 +44,33 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     // TODO: 2017/8/30 抽象方法一般是为了强制赋值 
     public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
 
+    //
     @ColorInt
     public abstract int setClickedColor();
-    //设置初始化页面
+    //设置默认展示页面
     public abstract int setIndexDelegate();
+
+
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mIndexDelegate = setIndexDelegate();
+        if (setClickedColor() != 0) {
+            mClickedColor = setClickedColor();
+        }
+        final ItemBuilder builder = ItemBuilder.builder();
+        // TODO: 2017/8/30 赋值思想 用builder.addItems().build(); 返回  LinkedHashMap<BottomTabBean, BottomItemDelegate>
+        final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = setItems(builder);
+        ITEMS_TAB_AND_DELEGATE.putAll(items);
+        for (Map.Entry<BottomTabBean, BottomItemDelegate> item : ITEMS_TAB_AND_DELEGATE.entrySet()) {
+            final BottomTabBean key = item.getKey();
+            final BottomItemDelegate value = item.getValue();
+            BOTTOM_TAB_BEANS.add(key);
+            ITEM_DELEGATES.add(value);
+        }
+    }
 
 
 
@@ -61,8 +84,6 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
         final int size = ITEMS_TAB_AND_DELEGATE.size();
-
-
         for (int i = 0; i < size; i++) {
             /*
                     初始化item_main 下部tab的布局
@@ -79,7 +100,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
 
             final BottomTabBean itemTabBean = BOTTOM_TAB_BEANS.get(i);
 
-            //初始化数据
+            //初始化tab数据
             itemIcon.setText(itemTabBean.getIcon());
             itemTitle.setText(itemTabBean.getTitle());
 
@@ -97,7 +118,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         //-------------------------------------------------------------------------String[] a = {};
         final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
 
-        //loadMultipleRootFragment(int containerId, int showPosition, ISupportFragment... toFragments)
+        /**
+         *  loadMultipleRootFragment(int containerId, int showPosition, ISupportFragment... toFragments)
+         */
         getSupportDelegate().loadMultipleRootFragment(
                 R.id.bottom_tab_delegate_container, mIndexDelegate, delegateArray);
     }
@@ -117,27 +140,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
 
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mIndexDelegate = setIndexDelegate();
-        if (setClickedColor() != 0) {
-            mClickedColor = setClickedColor();
-        }
 
-        final ItemBuilder builder = ItemBuilder.builder();
-
-        // TODO: 2017/8/30 赋值思想 用builder.addItems().build(); 返回  LinkedHashMap<BottomTabBean, BottomItemDelegate>
-        final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = setItems(builder);
-
-        ITEMS_TAB_AND_DELEGATE.putAll(items);
-        for (Map.Entry<BottomTabBean, BottomItemDelegate> item : ITEMS_TAB_AND_DELEGATE.entrySet()) {
-            final BottomTabBean key = item.getKey();
-            final BottomItemDelegate value = item.getValue();
-            BOTTOM_TAB_BEANS.add(key);
-            ITEM_DELEGATES.add(value);
-        }
-    }
 
 
     @Override

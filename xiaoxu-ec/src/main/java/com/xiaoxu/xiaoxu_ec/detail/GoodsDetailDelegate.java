@@ -22,7 +22,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_core.ui.banner.HolderCreator;
@@ -34,6 +34,7 @@ import com.xiaoxu.xiaoxu_ec.main_delegates.BottomBarDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.address.AddAddressDelegate;
 import com.xiaoxu.xiaoxu_ec.pay.FastPay;
 import com.xiaoxu.xiaoxu_ec.pay.IALPayResultListener;
+import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,8 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * Created by xiaoxu on 2017/8/28.
  */
 
-public class GoodsDetailDelegate extends LatteDelegate implements
-        AppBarLayout.OnOffsetChangedListener ,IALPayResultListener {
+public class GoodsDetailDelegate extends MainDelegate implements
+        AppBarLayout.OnOffsetChangedListener, IALPayResultListener {
 
     final BottomBarDelegate bottomBarDelegate = getParentDelegate();
 
@@ -85,7 +86,14 @@ public class GoodsDetailDelegate extends LatteDelegate implements
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Toast.makeText(getContext(), "商品添加购物车成功", Toast.LENGTH_SHORT).show();
+                        int status = JSON.parseObject(response).getInteger("status");
+                        if (status != 0) {
+                            Toast.makeText(getContext(), "需要登录", Toast.LENGTH_LONG).show();
+                            getSupportDelegate().start(new SignInDelegate());
+                        } else {
+                            Toast.makeText(getContext(), "商品添加购物车成功", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 })
                 .build()
@@ -102,21 +110,26 @@ public class GoodsDetailDelegate extends LatteDelegate implements
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        final JSONArray array = JSON.parseObject(response).getJSONObject("data").getJSONArray("list");
-                        if (array.size()==0){
-                            Toast.makeText(getContext(),"您还没有添加收货地址",Toast.LENGTH_LONG).show();
-                            getSupportDelegate().start(new AddAddressDelegate());
-                        }else{
-                            FastPay.create(GoodsDetailDelegate.this,getSupportDelegate())
-                                    .setPayResultListener(GoodsDetailDelegate.this)
-                                    .setOrderId(0123)
-                                    .beginPayDialog();
+                        int status = JSON.parseObject(response).getInteger("status");
+                        if (status != 0) {
+                            Toast.makeText(getContext(), "需要登录", Toast.LENGTH_LONG).show();
+                            getSupportDelegate().start(new SignInDelegate());
+                        } else {
+                            final JSONArray array = JSON.parseObject(response).getJSONObject("data").getJSONArray("list");
+                            if (array.size() == 0) {
+                                Toast.makeText(getContext(), "您还没有添加收货地址", Toast.LENGTH_LONG).show();
+                                getSupportDelegate().start(new AddAddressDelegate());
+                            } else {
+                                FastPay.create(GoodsDetailDelegate.this, getSupportDelegate())
+                                        .setPayResultListener(GoodsDetailDelegate.this)
+                                        .setOrderId(0123)
+                                        .beginPayDialog();
+                            }
                         }
                     }
                 })
                 .build()
                 .get();
-
 
 
     }

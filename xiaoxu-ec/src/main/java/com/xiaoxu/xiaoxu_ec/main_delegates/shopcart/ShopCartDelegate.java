@@ -109,19 +109,16 @@ public class ShopCartDelegate extends BottomItemDelegate
                         public void onSuccess(String response) {
                             mTotalPrice = JSON.parseObject(response).getJSONObject("data").getDouble("cartTotalPrice");
                             mTvTotalPrice.setText(String.valueOf(mTotalPrice));
-                            XiaoXuLogger.d("checkAll", "/un_select_all.do" + response);
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            XiaoXuLogger.d("checkAll", "/un_select_all.do ERROR" + msg);
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            XiaoXuLogger.d("checkAll", "/un_select_all.do onFailure");
                         }
                     })
                     .build()
@@ -349,7 +346,7 @@ public class ShopCartDelegate extends BottomItemDelegate
             mTvTotalPrice.setText(String.valueOf(mTotalPrice));
             checkItemCount();
         } else {
-            Toast.makeText(getContext(), "需要重新登录", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "需要登录", Toast.LENGTH_LONG).show();
             getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
         }
     }

@@ -12,11 +12,12 @@ import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListAdapter;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.List.ListBean;
-import com.xiaoxu.xiaoxu_ec.main_delegates.personal.order.OrderListDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.address.AddressDelegate;
+import com.xiaoxu.xiaoxu_ec.main_delegates.personal.order.OrderListDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.order.afterMarket.AfterMarketDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.profile.UserProfileDelegate;
 import com.xiaoxu.xiaoxu_ec.main_delegates.personal.settings.SettingsDelegate;
+import com.xiaoxu.xiaoxu_ec.sign.SignInDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,11 @@ public class PersonalDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_mine;
+    }
+
+    @OnClick(R2.id.tv_personal_sign_in)
+    void signIn(){
+       getParentDelegate().getSupportDelegate().start(new SignInDelegate());
     }
 
     @OnClick(R2.id.tv_all_order)
@@ -80,6 +86,7 @@ public class PersonalDelegate extends BottomItemDelegate {
 
     @OnClick(R2.id.img_user_avatar)
     void onClickAvatar() {
+        verifyStoragePermissions(getActivity());
         getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
     }
 

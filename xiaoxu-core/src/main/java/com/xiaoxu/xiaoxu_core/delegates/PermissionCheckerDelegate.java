@@ -97,7 +97,6 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         super.onActivityResult(requestCode, resultCode, data);
         //
         if (resultCode == RESULT_OK) {
-            verifyStoragePermissions(getActivity());
             switch (requestCode) {
                 case RequestCodes.TAKE_PHOTO:
                     //取出传入CameraImageBean中的URI

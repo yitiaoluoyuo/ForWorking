@@ -68,7 +68,7 @@ public class RequestCallBacks implements Callback<String> {
     private  void stopLoading(){
         Object delayedTimeValue = ConfigureUtil.getConfiguration(ConfigKeys.LOADER_DELAYED);
         if (delayedTimeValue == null){
-            delayedTimeValue = 3000;
+            delayedTimeValue = 1000;
         }
         if (LOADERSTYLE != null) {
             HANDLER.postDelayed(new Runnable() {

@@ -7,7 +7,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="c00dc555900fb9c610c5d425e808df02700c3d6b">
+        sha1="5d78cdb9f4002cc1b02c7e575f9d2b54235fdd3d">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\4\classes_d4bfb03f2ac8bf1026a3295a705bfc261f86e105\classes.dex" />
     </item>
     <item
@@ -16,8 +16,17 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="56a54e0bc562c31d0028d2862cc3b38218bc876f">
+        sha1="29c9b2998fa2759313406acd6fc2b10448e1e6d9">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\4\classes_9b9a7514d43eda7240f7e121d66a35fbb05da75c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\ForWorking\ForWorking\xiaoxu-annotations\build\libs\xiaoxu-annotations.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1a5f069a6c368b389090d84aa3f9e4c447cd1f4b">
+        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\4\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -27,15 +36,6 @@
         revision="25.0.0"
         sha1="1aab0ba135c13adbf0852a388c897a55626bfe21">
         <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\4\classes_fcfbe2d9f050dc57b6585859cb6f1d2a3dd6e32d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\ForWorking\ForWorking\xiaoxu-annotations\build\libs\xiaoxu-annotations.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="40a94ea7b3166a2d94e534c2c3b3283aa5b6d6c0">
-        <dex dex="D:\ForWorking\ForWorking\module-activity\build\intermediates\transforms\dex\debug\folders\1000\4\xiaoxu-annotations_a33d5060e48be9c0da62489c08a0d09b75806942\classes.dex" />
     </item>
     <item
         is-multidex="true"

@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_ec.R;
 
 /**
  * Created by xiaoxu on 2017/9/2.
  */
 
-public class NameDelegate extends LatteDelegate {
+public class NameDelegate extends MainDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_name;

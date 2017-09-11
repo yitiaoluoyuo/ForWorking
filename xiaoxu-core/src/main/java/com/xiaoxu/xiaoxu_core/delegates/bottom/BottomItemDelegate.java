@@ -2,7 +2,7 @@ package com.xiaoxu.xiaoxu_core.delegates.bottom;
 
 import android.widget.Toast;
 
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 
 /**
  * Created by xiaoxu on 2017/8/26.
@@ -12,7 +12,7 @@ import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
  * 添加双击backKey退出事件
  */
 
-public abstract class BottomItemDelegate extends LatteDelegate {
+public abstract class BottomItemDelegate extends MainDelegate {
 
     // 再点一次退出程序时间设置
     private static final long WAIT_TIME = 2000L;

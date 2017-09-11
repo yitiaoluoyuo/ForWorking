@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
@@ -21,7 +21,7 @@ import butterknife.BindView;
  * Created by xiaoxu on 2017/9/3.
  */
 
-public class ImageDelegate extends LatteDelegate {
+public class ImageDelegate extends MainDelegate {
 
     private static final String ARG_PICTURES = "ARG_PICTURES";
     @BindView(R2.id.rv_image_container)

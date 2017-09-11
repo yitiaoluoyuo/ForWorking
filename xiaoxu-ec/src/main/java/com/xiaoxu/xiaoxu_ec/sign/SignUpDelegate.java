@@ -10,13 +10,14 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+import com.xiaoxu.xiaoxu_ec.main_delegates.BottomBarDelegate;
 
 import java.util.WeakHashMap;
 
@@ -28,7 +29,7 @@ import butterknife.OnClick;
  * 注册相关逻辑
  */
 
-public class SignUpDelegate extends LatteDelegate {
+public class SignUpDelegate extends MainDelegate {
 
     private WeakHashMap<String, Object> params = new WeakHashMap<>();
 
@@ -118,6 +119,11 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.tv_link_sign_in)
     void onClickLink() {
         getSupportDelegate().start(new SignInDelegate());
+    }
+
+    @OnClick(R2.id.icon_sign_up_back)
+    void onClickBack(){
+        getSupportDelegate().start(new BottomBarDelegate());
     }
 
     private boolean checkForm() {

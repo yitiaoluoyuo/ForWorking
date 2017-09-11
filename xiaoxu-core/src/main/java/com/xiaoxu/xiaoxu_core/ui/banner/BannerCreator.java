@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  */
 
-public class BannerCreate {
+public class BannerCreator {
 
     public static void setDefault(ConvenientBanner<String> convenientBanner,
                                   ArrayList<String> banners,
@@ -23,7 +23,7 @@ public class BannerCreate {
                 .setPages(new HolderCreator(), banners)//设置viewHolder和URLList
                 .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})//设置 导航点
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .setOnItemClickListener(clickListener)//监听item点击
+                //.setOnItemClickListener(clickListener)//监听item点击
                 .setPageTransformer(new DefaultTransformer())//自定义翻页动画效果
                 .startTurning(3000)
                 .setCanLoop(true);

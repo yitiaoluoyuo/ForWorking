@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="8dp"
-        android:text="我发现自己很美..."
+        android:text="发现明天更美好"
         android:textColor="@color/app_ui"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_marginTop="100dp"
         />
 

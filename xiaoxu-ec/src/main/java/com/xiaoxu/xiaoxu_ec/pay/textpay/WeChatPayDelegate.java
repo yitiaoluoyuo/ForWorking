@@ -6,7 +6,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
 
@@ -16,7 +16,7 @@ import butterknife.BindView;
  * Created by xiaoxu on 2017/9/9.
  */
 
-public class WeChatPayDelegate extends LatteDelegate {
+public class WeChatPayDelegate extends MainDelegate {
 
    @BindView(R2.id.tv_pay_title)
     AppCompatTextView tvPayTitle = null;

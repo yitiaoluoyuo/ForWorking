@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.util.logger.XiaoXuLogger;
 import com.xiaoxu.xiaoxu_ec.R;
@@ -25,7 +25,7 @@ import butterknife.BindView;
  *
  */
 
-public class UserProfileDelegate extends LatteDelegate {
+public class UserProfileDelegate extends MainDelegate {
 
     ListAdapter adapter = null;
 

@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar;
 
 import com.xiaoxu.xiaoxu_core.activities.ProxyActivity;
 import com.xiaoxu.xiaoxu_core.application.ConfigureUtil;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_ec.launcher.ILauncherListener;
 import com.xiaoxu.xiaoxu_ec.launcher.LauncherDelegate;
 import com.xiaoxu.xiaoxu_ec.launcher.LauncherFinishedTag;
@@ -21,7 +21,7 @@ public class IndexActivity extends ProxyActivity implements
         ISignSuccessListener,ILauncherListener {
 
     @Override
-    public LatteDelegate setRootDelegate() {
+    public MainDelegate setRootDelegate() {
         return new LauncherDelegate();
 
     }

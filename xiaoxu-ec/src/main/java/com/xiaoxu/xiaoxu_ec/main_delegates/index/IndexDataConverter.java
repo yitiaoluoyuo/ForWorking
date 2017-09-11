@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoxu.xiaoxu_core.ui.recycler.DataConverter;
+import com.xiaoxu.xiaoxu_core.ui.recycler.ItemType;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleFields;
 import com.xiaoxu.xiaoxu_core.ui.recycler.MultipleItemEntity;
 
@@ -20,14 +21,31 @@ public class IndexDataConverter extends DataConverter {
 
     @Override
     public ArrayList<MultipleItemEntity> convertToEntityList() {
+
+        //手动加入banner资源
+        final ArrayList<String> bannerImages = new ArrayList<>();
+        bannerImages.add("https://i8.mifile.cn/v1/a1/251f0880-423e-fa2d-3c18-1d3ec23f9912.webp");
+        bannerImages.add("https://i8.mifile.cn/v1/a1/49dfd019-9504-abb5-34bb-26f425b67e45.webp");
+        bannerImages.add("https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/b9540da01aef9a00a5c640b1c98b955a.jpg");
+        final MultipleItemEntity entityBanner = MultipleItemEntity
+                .builder()
+                .setField(MultipleFields. BANNERS,bannerImages)
+                .setField(MultipleFields.SPAN_SIZE,4)
+                .setField(MultipleFields.ITEM_TYPE, ItemType.BANNER)
+                .build();
+        ENTITIES_LIST.add(entityBanner);
+
+
         //*******************************************拿到json数据**
         final JSONArray dataArray = JSON.parseObject(getJsonData()).getJSONObject("data").getJSONArray("list");
         final int size = dataArray.size();
         /*
                 单一格式的数据处理
          */
-        for (int j = 0; j < 50; j++) {
-            for (int i = 1; i < size; i++) {
+        for (int j = 0; j < 100; j++) {
+
+
+            for (int i = 1; i < size-1; i++) {
                 final JSONObject data = dataArray.getJSONObject(i);
                 final int id = data.getInteger("id");
                 final int categoryId = data.getInteger("categoryId");
@@ -48,7 +66,7 @@ public class IndexDataConverter extends DataConverter {
             }*/
 
 
-                final MultipleItemEntity entity = MultipleItemEntity
+                MultipleItemEntity entity = MultipleItemEntity
                         .builder()
                         .setField(MultipleFields.ID,id)
                         .setField(MultipleFields.CATEGORY_ID,categoryId)
@@ -59,10 +77,19 @@ public class IndexDataConverter extends DataConverter {
                         .setField(MultipleFields.STATUS,status)
                         .setField(MultipleFields.IMAGE_HOST,imageHost)
                         .setField(MultipleFields.SPAN_SIZE,2)
-                        .setField(MultipleFields.ITEM_TYPE,3)
+                        .setField(MultipleFields.ITEM_TYPE, ItemType.TEXT_IMAGE)
                         .build();
                 ENTITIES_LIST.add(entity);
             }
+
+
+            final MultipleItemEntity entityText = MultipleItemEntity
+                    .builder()
+                    .setField(MultipleFields.TEXT,"我是野广告"+j)
+                    .setField(MultipleFields.SPAN_SIZE,4)
+                    .setField(MultipleFields.ITEM_TYPE, ItemType.TEXT)
+                    .build();
+            ENTITIES_LIST.add(entityText);
 
         }
 

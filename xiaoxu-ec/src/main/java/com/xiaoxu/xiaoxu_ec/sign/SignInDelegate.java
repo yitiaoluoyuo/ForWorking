@@ -10,13 +10,14 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoxu.xiaoxu_core.delegates.LatteDelegate;
+import com.xiaoxu.xiaoxu_core.delegates.MainDelegate;
 import com.xiaoxu.xiaoxu_core.net.RestClient;
 import com.xiaoxu.xiaoxu_core.net.callback.IError;
 import com.xiaoxu.xiaoxu_core.net.callback.IFailure;
 import com.xiaoxu.xiaoxu_core.net.callback.ISuccess;
 import com.xiaoxu.xiaoxu_ec.R;
 import com.xiaoxu.xiaoxu_ec.R2;
+import com.xiaoxu.xiaoxu_ec.main_delegates.BottomBarDelegate;
 
 import java.util.WeakHashMap;
 
@@ -28,7 +29,7 @@ import butterknife.OnClick;
  * 登录业务
  */
 
-public class SignInDelegate extends LatteDelegate {
+public class SignInDelegate extends MainDelegate {
 
     private WeakHashMap<String, Object> params = new WeakHashMap<>();
 
@@ -47,6 +48,11 @@ public class SignInDelegate extends LatteDelegate {
         if (_mActivity instanceof ISignSuccessListener){
             mSignSuccessListener = (ISignSuccessListener) _mActivity;
         }
+    }
+
+    @OnClick(R2.id.icon_sign_in_back)
+    void onClickBack(){
+        getSupportDelegate().start(new BottomBarDelegate());
     }
 
 

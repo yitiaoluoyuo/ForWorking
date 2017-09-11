@@ -4,11 +4,11 @@ package com.xiaoxu.xiaoxu_core.delegates;
  * Created by xiaoxu on 2017/8/24.
  */
 
-public abstract class LatteDelegate extends PermissionCheckerDelegate {
+public abstract class MainDelegate extends PermissionCheckerDelegate {
 
 
     @SuppressWarnings("unchecked")
-    public <T extends LatteDelegate> T getParentDelegate() {
+    public <T extends MainDelegate> T getParentDelegate() {
         return (T) getParentFragment();
     }
 

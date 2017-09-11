@@ -106,7 +106,7 @@ public class IndexDelegate extends BottomItemDelegate {
          */
         //为关键字搜索预留的方法
         createUrl("测");
-        mRefreshHandler.firstPage(url);
+        mRefreshHandler.firstPage(url,this);
     }
 
     @Override
